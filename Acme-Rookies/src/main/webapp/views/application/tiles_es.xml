@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- * tiles_es.xml * * Copyright (C) 2018 Universidad de Sevilla * * The 
+	use of this project is hereby constrained to the conditions of the * TDG 
+	Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="application/listCompany" extends="master.page">
+		<put-attribute name="title" value="Mis solicitudes" />
+		<put-attribute name="body" value="/views/application/listCompany.jsp" />
+	</definition>
+
+	<definition name="application/listHacker" extends="master.page">
+		<put-attribute name="title" value="Mis solicitudes" />
+		<put-attribute name="body" value="/views/application/listHacker.jsp" />
+	</definition>
+
+	<definition name="application/create" extends="master.page">
+		<put-attribute name="title" value="Crear solicitud" />
+		<put-attribute name="body" value="/views/application/create.jsp" />
+	</definition>
+
+	<definition name="application/edit" extends="master.page">
+		<put-attribute name="title" value="Editar solicitud" />
+		<put-attribute name="body" value="/views/application/edit.jsp" />
+	</definition>
+
+	<definition name="application/display" extends="master.page">
+		<put-attribute name="title" value="Visualizar solicitud" />
+		<put-attribute name="body" value="/views/application/display.jsp" />
+	</definition>
+
+</tiles-definitions>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- * tiles.xml * * Copyright (C) 2019 Universidad de Sevilla * * The use 
+	of this project is hereby constrained to the conditions of the * TDG Licence, 
+	a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="notification/list" extends="master.page">
+		<put-attribute name="title" value="List of notifications" />
+		<put-attribute name="body" value="/views/notification/list.jsp" />
+	</definition>
+
+	<definition name="notification/display" extends="master.page">
+		<put-attribute name="title" value="Display notification" />
+		<put-attribute name="body" value="/views/notification/display.jsp" />
+	</definition>
+	
+	<definition name="notification/broadcast" extends="master.page">
+		<put-attribute name="title" value="Notify security breach to all users" />
+		<put-attribute name="body" value="/views/notification/notifyBreach.jsp" />
+	</definition>
+	
+	<definition name="notification/broadcastHackers" extends="master.page">
+		<put-attribute name="title" value="Notify security breach to hackers" />
+		<put-attribute name="body" value="/views/notification/notifyBreach.jsp" />
+	</definition>
+	
+	<definition name="notification/broadcastCompanies" extends="master.page">
+		<put-attribute name="title" value="Notify security breach to companies" />
+		<put-attribute name="body" value="/views/notification/notifyBreach.jsp" />
+	</definition>
+
+</tiles-definitions>
