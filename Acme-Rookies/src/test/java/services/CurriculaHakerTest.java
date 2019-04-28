@@ -33,20 +33,20 @@ public class CurriculaHakerTest extends AbstractTest {
 		final Object testingData[][] = {
 			/*
 			 * a) Functional requirements - 17.1. An actor who is
-			 * authenticated as a hacker must be able to manage his or her
+			 * authenticated as a rookie must be able to manage his or her
 			 * curricula. - Create. b) Positive test c) analysis of sentence
 			 * coverage: 88.2% d) analysis of data coverage - se crea curricula
-			 * siendo hacker1.
+			 * siendo rookie1.
 			 */
 			{
 
-				fullName, "hacker1", null
+				fullName, "rookie1", null
 			},
 			/*
 			 * a) Functional requirements - 17.1. An actor who is
-			 * authenticated as a hacker must be able to manage his or her
+			 * authenticated as a rookie must be able to manage his or her
 			 * curricula. -Create. b) Negative test - Business rule: it
-			 * can't be created by a not hacker user c) analysis of sentence
+			 * can't be created by a not rookie user c) analysis of sentence
 			 * coverage: 88.2% d) analysis of data coverage - se intenta crear
 			 * problem siendo company1.
 			 */
@@ -56,14 +56,14 @@ public class CurriculaHakerTest extends AbstractTest {
 
 			/*
 			 * a) Functional requirements - 17.1. An actor who is
-			 * authenticated as a hacker must be able to manage his or her
+			 * authenticated as a rookie must be able to manage his or her
 			 * curricula. - Create. b) Negative test - Business rule: it
 			 * can't be created without a fullName c) analysis of sentence
 			 * coverage: 88.2% d) analysis of data coverage - se intenta crear
-			 * curricula siendo hacker1 sin atributo fullName.
+			 * curricula siendo rookie1 sin atributo fullName.
 			 */
 			{
-				null, "hacker1", javax.validation.ConstraintViolationException.class
+				null, "rookie1", javax.validation.ConstraintViolationException.class
 			}
 		};
 
@@ -120,19 +120,19 @@ public class CurriculaHakerTest extends AbstractTest {
 		final Object testingData[][] = {
 			/*
 			 * a) Functional requirements - 17.1. An actor who is
-			 * authenticated as a hacker must be able to manage his or her
+			 * authenticated as a rookie must be able to manage his or her
 			 * curricula. - Edit. b) Positive test c) analysis of sentence
 			 * coverage: 92.4% d) analysis of data coverage - se edita curricula
-			 * siendo hacker1.
+			 * siendo rookie1.
 			 */
 			{
-				fullName, curriculaIdMine, "hacker1", null
+				fullName, curriculaIdMine, "rookie1", null
 			},
 			/*
 			 * a) Functional requirements - 17.1. An actor who is
-			 * authenticated as a hacker must be able to manage his or her
+			 * authenticated as a rookie must be able to manage his or her
 			 * curricula.- Edit. b) Negative test - Business rule: it can't
-			 * be edited by a not hacker user c) analysis of sentence
+			 * be edited by a not rookie user c) analysis of sentence
 			 * coverage: 92.4% d) analysis of data coverage - se intenta editar
 			 * curricula siendo company1.
 			 */
@@ -141,25 +141,25 @@ public class CurriculaHakerTest extends AbstractTest {
 			},
 			/*
 			 * a) Functional requirements - 17.1. An actor who is
-			 * authenticated as a hacker must be able to manage his or her
+			 * authenticated as a rookie must be able to manage his or her
 			 * curricula. - Edit. b) Negative test - Business rule: it can't
 			 * be edited by a foreign c) analysis of sentence coverage: 92.4% d)
 			 * analysis of data coverage - se intenta editar curricula ajeno
-			 * siendo hacker1.
+			 * siendo rookie1.
 			 */
 			{
-				fullName, curriculaIdNotMine, "hacker1", java.lang.IllegalArgumentException.class
+				fullName, curriculaIdNotMine, "rookie1", java.lang.IllegalArgumentException.class
 			},
 			/*
 			 * a) Functional requirements - 17.1. An actor who is
-			 * authenticated as a hacker must be able to manage his or her
+			 * authenticated as a rookie must be able to manage his or her
 			 * curricula. - Create. b) Negative test - Business rule: it
 			 * can't be created without a fullName c) analysis of sentence
 			 * coverage: 92.4% d) analysis of data coverage - se intenta crear
-			 * curricula siendo hacker1 sin atributo fullName.
+			 * curricula siendo rookie1 sin atributo fullName.
 			 */
 			{
-				null, curriculaIdMine, "hacker1", javax.validation.ConstraintViolationException.class
+				null, curriculaIdMine, "rookie1", javax.validation.ConstraintViolationException.class
 			}
 		};
 
@@ -210,17 +210,17 @@ public class CurriculaHakerTest extends AbstractTest {
 		final Object testingData[][] = {
 			/*
 			 * a) Functional requirements - 17.1. An actor who is
-			 * authenticated as a hacker must be able to manage his or her
+			 * authenticated as a rookie must be able to manage his or her
 			 * curricula. - Delete. b) Positive test c) analysis of sentence
 			 * coverage: 89.7% d) analysis of data coverage - se elimina
-			 * curricula siendo hacker1.
+			 * curricula siendo rookie1.
 			 */
 			{
-				curriculaIdMine, "hacker1", null
+				curriculaIdMine, "rookie1", null
 			},
 			/*
 			 * a) Functional requirements - 17.1. An actor who is
-			 * authenticated as a hacker must be able to manage his or her
+			 * authenticated as a rookie must be able to manage his or her
 			 * curricula.. - Eliminar. b) Negative test - Business rule: it
 			 * can't be deleted by a not company user c) analysis of
 			 * sentence coverage: 89.7% d) analysis of data coverage - se
@@ -231,14 +231,14 @@ public class CurriculaHakerTest extends AbstractTest {
 			},
 			/*
 			 * a) Functional requirements - 17.1. An actor who is
-			 * authenticated as a hacker must be able to manage his or her
+			 * authenticated as a rookie must be able to manage his or her
 			 * curricula. - Delete. b) Negative test - Business rule: it
 			 * can't be deleted by a foreign company c) analysis of sentence
 			 * coverage: 89.7% d) analysis of data coverage - se intenta
-			 * eliminar curricula ajeno siendo hacker1.
+			 * eliminar curricula ajeno siendo rookie1.
 			 */
 			{
-				curriculaIdNotMine, "hacker1", java.lang.IllegalArgumentException.class
+				curriculaIdNotMine, "rookie1", java.lang.IllegalArgumentException.class
 			}
 		};
 

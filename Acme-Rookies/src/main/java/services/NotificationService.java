@@ -14,7 +14,7 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
 import domain.Company;
-import domain.Hacker;
+import domain.Rookie;
 import domain.Notification;
 
 @Service
@@ -32,7 +32,7 @@ public class NotificationService {
 	ActorService actorService;
 
 	@Autowired
-	HackerService hackerService;
+	RookieService rookieService;
 
 	@Autowired
 	CompanyService companyService;
@@ -107,13 +107,13 @@ public class NotificationService {
 		}
 	}
 
-	public void broadcastHackers(final Notification notification) {
+	public void broadcastRookies(final Notification notification) {
 		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString()
 				.contains("ADMIN"));
 		Assert.notNull(notification);
-		Collection<Hacker> hackers = hackerService.findAll();
-		if (!hackers.isEmpty()) {
-			for (Hacker h : hackers) {
+		Collection<Rookie> rookies = rookieService.findAll();
+		if (!rookies.isEmpty()) {
+			for (Rookie h : rookies) {
 				Notification n = this.create();
 				n.setActor(h);
 				n.setBody(notification.getBody());

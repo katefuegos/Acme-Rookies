@@ -12,7 +12,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="finder/hacker/update.do" modelAttribute="finder">
+<form:form action="finder/rookie/update.do" modelAttribute="finder">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="lastUpdate" />
@@ -25,7 +25,7 @@
 
 	<acme:submit name="save" code="finder.save"/>
 	<acme:submit name="clean" code="finder.clean"/>
-	<acme:cancel url="finder/hacker/listPositions.do" code="finder.cancel"/>
+	<acme:cancel url="finder/rookie/listPositions.do" code="finder.cancel"/>
 
 
 </form:form>

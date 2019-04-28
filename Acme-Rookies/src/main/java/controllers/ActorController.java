@@ -49,8 +49,8 @@ public class ActorController extends AbstractController {
 		ModelAndView result;
 		final ActorForm actorForm = new ActorForm();
 
-		final Authority hacker = new Authority();
-		hacker.setAuthority(Authority.HACKER);
+		final Authority rookie = new Authority();
+		rookie.setAuthority(Authority.ROOKIE);
 		final Authority company = new Authority();
 		company.setAuthority(Authority.COMPANY);
 		final Authority admin = new Authority();
@@ -61,8 +61,8 @@ public class ActorController extends AbstractController {
 			final Actor a = this.actorService.findByUserAccount(LoginService.getPrincipal());
 			Assert.notNull(a);
 
-			if (a.getUserAccount().getAuthorities().contains(hacker))
-				actorForm.setAuth("HACKER");
+			if (a.getUserAccount().getAuthorities().contains(rookie))
+				actorForm.setAuth("ROOKIE");
 			else if (a.getUserAccount().getAuthorities().contains(company)) {
 				actorForm.setAuth("COMPANY");
 				final Company comp = this.companyService.findCompanyByUseraccountId(a.getUserAccount().getId());
@@ -162,7 +162,7 @@ public class ActorController extends AbstractController {
 	//
 	//		final Actor actor = this.actorService.findOne(actorId);
 	//		final Company company = this.companyService.findOne(actorId);
-	//		final domain.Hacker hacker = this.hackerService.findOne(actorId);
+	//		final domain.Rookie rookie = this.rookieService.findOne(actorId);
 	//
 	//		try {
 	//			Assert.notNull(actor);
@@ -170,7 +170,7 @@ public class ActorController extends AbstractController {
 	//
 	//			if (company != null)
 	//				actorForm.setComercialName(company.getComercialName());
-	//			else if (hacker != null)
+	//			else if (rookie != null)
 	//				actorForm.setComercialName("---");
 	//
 	//			actorForm.setUserAccount(actor.getUserAccount());

@@ -16,13 +16,13 @@
       
 <tiles-definitions>
 
-	<definition name="finder/hacker/update" extends="master.page">	
+	<definition name="finder/rookie/update" extends="master.page">	
 		<put-attribute name="title" value="Actualizar buscador" />
 		<put-attribute name="body" value="/views/finder/edit.jsp" />
 	</definition>
 	
 	
-	<definition name="finder/hacker/listPositions" extends="master.page">
+	<definition name="finder/rookie/listPositions" extends="master.page">
 		<put-attribute name="title" value="Resultados buscador" />
 		<put-attribute name="body" value="/views/finder/list.jsp" />
 	</definition>

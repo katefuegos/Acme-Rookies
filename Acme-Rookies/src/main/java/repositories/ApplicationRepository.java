@@ -15,19 +15,19 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 	@Query("select a from Application a where a.position.company.id=?1")
 	Collection<Application> findByCompanyId(int companyId);
 
-	@Query("select a from Application a where a.hacker.id=?1")
-	Collection<Application> findByHackerId(int hackerId);
+	@Query("select a from Application a where a.rookie.id=?1")
+	Collection<Application> findByRookieId(int rookieId);
 
-	@Query("select a from Application a where a.hacker.id=?1 and a.status = 'PENDING'")
-	Collection<Application> findPendingByHackerId(int hackerId);
+	@Query("select a from Application a where a.rookie.id=?1 and a.status = 'PENDING'")
+	Collection<Application> findPendingByRookieId(int rookieId);
 
-	@Query("select a from Application a where a.hacker.id=?1 and a.status = 'REJECTED'")
-	Collection<Application> findRejectedByHackerId(int hackerId);
+	@Query("select a from Application a where a.rookie.id=?1 and a.status = 'REJECTED'")
+	Collection<Application> findRejectedByRookieId(int rookieId);
 
-	@Query("select a from Application a where a.hacker.id=?1 and a.status = 'ACCEPTED'")
-	Collection<Application> findAcceptedByHackerId(int hackerId);
+	@Query("select a from Application a where a.rookie.id=?1 and a.status = 'ACCEPTED'")
+	Collection<Application> findAcceptedByRookieId(int rookieId);
 
-	@Query("select a from Application a where a.hacker.id=?1 and a.status = 'SUBMITTED'")
-	Collection<Application> findSubmittedByHackerId(int hackerId);
+	@Query("select a from Application a where a.rookie.id=?1 and a.status = 'SUBMITTED'")
+	Collection<Application> findSubmittedByRookieId(int rookieId);
 
 }

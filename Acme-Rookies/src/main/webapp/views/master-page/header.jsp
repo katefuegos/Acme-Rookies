@@ -33,8 +33,8 @@
 						code="master.page.register" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="register/actor.do?authority=HACKER"><spring:message
-								code="master.page.register.hacker" /></a></li>
+					<li><a href="register/actor.do?authority=ROOKIE"><spring:message
+								code="master.page.register.rookie" /></a></li>
 
 					<li><a href="register/actor.do?authority=COMPANY"><spring:message
 								code="master.page.register.company" /></a></li>
@@ -98,8 +98,8 @@
 					<li><a href="notification/administrator/notifyBreach.do"><spring:message
 								code="master.page.broadcast" /></a></li>
 					<li><a
-						href="notification/administrator/notifyBreachHackers.do"><spring:message
-								code="master.page.broadcastHackers" /></a></li>
+						href="notification/administrator/notifyBreachRookies.do"><spring:message
+								code="master.page.broadcastRookies" /></a></li>
 					<li><a
 						href="notification/administrator/notifyBreachCompanies.do"><spring:message
 								code="master.page.broadcastCompanies" /></a></li>
@@ -128,14 +128,14 @@
 		</security:authorize>
 
 
-		<!-- HACKER -->
+		<!-- ROOKIE -->
 
-		<security:authorize access="hasRole('HACKER')">
-			<li><a class="fNiv" href="application/hacker/list.do"><spring:message
+		<security:authorize access="hasRole('ROOKIE')">
+			<li><a class="fNiv" href="application/rookie/list.do"><spring:message
 						code="master.page.application.list" /></a></li>
-			<li><a class="fNiv" href="finder/hacker/listPositions.do"><spring:message
+			<li><a class="fNiv" href="finder/rookie/listPositions.do"><spring:message
 						code="master.page.finder" /></a></li>
-			<li><a class="fNiv" href="curricula/hacker/list.do"><spring:message
+			<li><a class="fNiv" href="curricula/rookie/list.do"><spring:message
 						code="master.page.curricula.list" /></a></li>
 		</security:authorize>
 

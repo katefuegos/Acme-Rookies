@@ -54,9 +54,9 @@ public class ApplicationCompanyTest extends AbstractTest {
 				 * applications to their positions - Accept b) Negative test -
 				 * Business rule: It can not be accepted if it's not from an
 				 * company. c) analysis of sentence coverage: 95.6% d) analysis of
-				 * data coverage se intenta aceptar application siendo hacker1.
+				 * data coverage se intenta aceptar application siendo rookie1.
 				 */
-				{ 1, applicationIdSubmitted, "hacker1",
+				{ 1, applicationIdSubmitted, "rookie1",
 						java.lang.IllegalArgumentException.class },
 				/*
 				 * a) Functional requirements - 9.3. An actor who is
@@ -64,9 +64,9 @@ public class ApplicationCompanyTest extends AbstractTest {
 				 * applications to their positions - Decline b) Negative test -
 				 * Business rule: It can not be refused if it's not from an
 				 * company. c) analysis of sentence coverage: 95.6% d) analysis of
-				 * data coverage se intenta rechazar application siendo hacker1.
+				 * data coverage se intenta rechazar application siendo rookie1.
 				 */
-				{ 2, applicationIdSubmitted, "hacker1",
+				{ 2, applicationIdSubmitted, "rookie1",
 						java.lang.IllegalArgumentException.class },
 				/*
 				 * a) Functional requirements - 9.3. An actor who is

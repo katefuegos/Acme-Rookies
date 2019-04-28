@@ -29,7 +29,7 @@ public class MiscellaneousDataService {
 	private CurriculaService			curriculaService;
 
 	@Autowired
-	private HackerService				hackerService;
+	private RookieService				rookieService;
 
 
 	// Constructor----------------------------------------------
@@ -42,7 +42,7 @@ public class MiscellaneousDataService {
 	// Simple CRUD----------------------------------------------
 
 	public MiscellaneousData create() {
-		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("HACKER"));
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("ROOKIE"));
 		final MiscellaneousData miscellaneousData = new MiscellaneousData();
 
 		return miscellaneousData;
@@ -58,9 +58,9 @@ public class MiscellaneousDataService {
 
 	public MiscellaneousData save(final MiscellaneousData miscellaneousData) {
 		Assert.notNull(miscellaneousData);
-		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("HACKER"));
-		final int hackerId = this.hackerService.findHackerByUseraccount(LoginService.getPrincipal()).getId();
-		final Collection<Curricula> curriculas = this.curriculaService.findByHackerId(hackerId);
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("ROOKIE"));
+		final int rookieId = this.rookieService.findRookieByUseraccount(LoginService.getPrincipal()).getId();
+		final Collection<Curricula> curriculas = this.curriculaService.findByRookieId(rookieId);
 		Assert.isTrue(curriculas.contains(miscellaneousData.getCurricula()));
 		final MiscellaneousData saved = this.miscellaneousDataRepository.save(miscellaneousData);
 		return saved;
@@ -68,9 +68,9 @@ public class MiscellaneousDataService {
 
 	public void delete(final MiscellaneousData miscellaneousData) {
 		Assert.notNull(miscellaneousData);
-		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("HACKER"));
-		final int hackerId = this.hackerService.findHackerByUseraccount(LoginService.getPrincipal()).getId();
-		final Collection<Curricula> curriculas = this.curriculaService.findByHackerId(hackerId);
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("ROOKIE"));
+		final int rookieId = this.rookieService.findRookieByUseraccount(LoginService.getPrincipal()).getId();
+		final Collection<Curricula> curriculas = this.curriculaService.findByRookieId(rookieId);
 		Assert.isTrue(curriculas.contains(miscellaneousData.getCurricula()));
 		this.miscellaneousDataRepository.delete(miscellaneousData);
 	}

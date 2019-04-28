@@ -262,7 +262,7 @@ Blocking all cookies will have a negative impact upon the usability of many webs
 	<br>
 	<h2>N. Additional notes</h2>
 	<br>
-	1.The deletion of personal data exclusively affects the user profile data and the curriculas in case of hackers.
+	1.The deletion of personal data exclusively affects the user profile data and the curriculas in case of rookies.
 	<br>
 	<br>
 </jstl:if>
@@ -501,7 +501,7 @@ Nuestro sitio web usa cookies. Una cookie es un fichero que contiene un identifi
 	<br>
 	<h2>N. Notas adicionales</h2>
 	<br>
-	1.El borrado de datos personales afecta exclusivamente a los datos referentes a los datos de perfil del usuario y de los curriculums en el caso de los hackers.
+	1.El borrado de datos personales afecta exclusivamente a los datos referentes a los datos de perfil del usuario y de los curriculums en el caso de los novatos.
 	<br>
 	<br>
 </jstl:if>

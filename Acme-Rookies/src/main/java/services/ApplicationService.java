@@ -38,7 +38,7 @@ public class ApplicationService {
 	private ProblemService			problemService;
 
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService			rookieService;
 
 	@Autowired
 	private CurriculaService		curriculaService;
@@ -57,7 +57,7 @@ public class ApplicationService {
 	// Simple CRUD----------------------------------------------
 
 	public Application create(final int positionId, final int curriculaId) {
-		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("HACKER"));
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("ROOKIE"));
 		Assert.notNull(positionId);
 		Assert.notNull(curriculaId);
 		final Application application = new Application();
@@ -77,7 +77,7 @@ public class ApplicationService {
 
 		application.setStatus("PENDING");
 
-		application.setHacker(this.hackerService.findHackerByUseraccount(LoginService.getPrincipal()));
+		application.setRookie(this.rookieService.findRookieByUseraccount(LoginService.getPrincipal()));
 
 		return application;
 	}
@@ -92,8 +92,8 @@ public class ApplicationService {
 
 	public Application save(final Application application) {
 		Assert.notNull(application);
-		if (LoginService.getPrincipal().getAuthorities().toString().contains("HACKER")) {
-			Assert.isTrue(application.getHacker().equals(this.hackerService.findHackerByUseraccount(LoginService.getPrincipal())));
+		if (LoginService.getPrincipal().getAuthorities().toString().contains("ROOKIE")) {
+			Assert.isTrue(application.getRookie().equals(this.rookieService.findRookieByUseraccount(LoginService.getPrincipal())));
 			Assert.isTrue(application.getPosition().isDraftmode() == false);
 		} else {
 			Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("COMPANY"));
@@ -139,29 +139,29 @@ public class ApplicationService {
 		return this.applicationRepository.findByCompanyId(companyId);
 	}
 
-	public Collection<Application> findByHackerId(final int hackerId) {
-		Assert.notNull(hackerId);
-		return this.applicationRepository.findByHackerId(hackerId);
+	public Collection<Application> findByRookieId(final int rookieId) {
+		Assert.notNull(rookieId);
+		return this.applicationRepository.findByRookieId(rookieId);
 	}
 
-	public Collection<Application> findPendingByHackerId(final int hackerId) {
-		Assert.notNull(hackerId);
-		return this.applicationRepository.findPendingByHackerId(hackerId);
+	public Collection<Application> findPendingByRookieId(final int rookieId) {
+		Assert.notNull(rookieId);
+		return this.applicationRepository.findPendingByRookieId(rookieId);
 	}
 
-	public Collection<Application> findRejectedByHackerId(final int hackerId) {
-		Assert.notNull(hackerId);
-		return this.applicationRepository.findRejectedByHackerId(hackerId);
+	public Collection<Application> findRejectedByRookieId(final int rookieId) {
+		Assert.notNull(rookieId);
+		return this.applicationRepository.findRejectedByRookieId(rookieId);
 	}
 
-	public Collection<Application> findAcceptedByHackerId(final int hackerId) {
-		Assert.notNull(hackerId);
-		return this.applicationRepository.findAcceptedByHackerId(hackerId);
+	public Collection<Application> findAcceptedByRookieId(final int rookieId) {
+		Assert.notNull(rookieId);
+		return this.applicationRepository.findAcceptedByRookieId(rookieId);
 	}
 
-	public Collection<Application> findSubmittedByHackerId(final int hackerId) {
-		Assert.notNull(hackerId);
-		return this.applicationRepository.findSubmittedByHackerId(hackerId);
+	public Collection<Application> findSubmittedByRookieId(final int rookieId) {
+		Assert.notNull(rookieId);
+		return this.applicationRepository.findSubmittedByRookieId(rookieId);
 	}
 
 	public void reject(final Application application, final Company company) {

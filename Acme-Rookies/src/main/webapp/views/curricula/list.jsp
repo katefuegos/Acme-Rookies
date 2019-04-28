@@ -13,15 +13,15 @@
 <display:table name="curriculas" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 	
-		<security:authorize access="hasRole('HACKER')">
+		<security:authorize access="hasRole('ROOKIE')">
 		<display:column>
-			<a href="curricula/hacker/show.do?curriculaId=${row.id}"> <spring:message
+			<a href="curricula/rookie/show.do?curriculaId=${row.id}"> <spring:message
 					code="curricula.show" />
 			</a>
 		</display:column>
 		
 		<display:column>
-			<a href="curricula/hacker/edit.do?curriculaId=${row.id}"> <spring:message
+			<a href="curricula/rookie/edit.do?curriculaId=${row.id}"> <spring:message
 					code="curricula.edit" />
 			</a>
 		</display:column>
@@ -37,25 +37,25 @@
 	
 	<display:column property="linkedinprofile" titleKey="curricula.linkedInProfile" />
 
-	<security:authorize access="hasRole('HACKER')">
+	<security:authorize access="hasRole('ROOKIE')">
 		<display:column>
-			<a href="curricula/hacker/listData.do?curriculaId=${row.id}"> <spring:message
+			<a href="curricula/rookie/listData.do?curriculaId=${row.id}"> <spring:message
 					code="curricula.listData" />
 			</a>
 		</display:column>
 		
 		<display:column>
-			<a href="positionData/hacker/create.do?curriculaId=${row.id}"> <spring:message
+			<a href="positionData/rookie/create.do?curriculaId=${row.id}"> <spring:message
 					code="curricula.createPD" />
 			</a>
 		</display:column>
 		<display:column>
-			<a href="miscellaneousData/hacker/create.do?curriculaId=${row.id}"> <spring:message
+			<a href="miscellaneousData/rookie/create.do?curriculaId=${row.id}"> <spring:message
 					code="curricula.createMD" />
 			</a>
 		</display:column>
 		<display:column>
-			<a href="educationData/hacker/create.do?curriculaId=${row.id}"> <spring:message
+			<a href="educationData/rookie/create.do?curriculaId=${row.id}"> <spring:message
 					code="curricula.createED" />
 			</a>
 			
@@ -65,8 +65,8 @@
 </display:table>
 <br>
 <br>
-<security:authorize access="hasRole('HACKER')">
-			<a href="curricula/hacker/create.do"> <spring:message code="curricula.create" />
+<security:authorize access="hasRole('ROOKIE')">
+			<a href="curricula/rookie/create.do"> <spring:message code="curricula.create" />
 			</a>
 	</security:authorize>
 <br>

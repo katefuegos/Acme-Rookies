@@ -25,8 +25,8 @@
 		titleKey="application.position.title" />
 	<display:column property="problem.title"
 		titleKey="application.problem.title" />
-	<display:column property="hacker.name"
-		titleKey="application.hacker.name" />
+	<display:column property="rookie.name"
+		titleKey="application.rookie.name" />
 
 	<display:column>
 		<a href="application/company/display.do?applicationId=${row.id}"><spring:message
@@ -49,8 +49,8 @@
 		titleKey="application.position.title" />
 	<display:column property="problem.title"
 		titleKey="application.problem.title" />
-	<display:column property="hacker.name"
-		titleKey="application.hacker.name" />
+	<display:column property="rookie.name"
+		titleKey="application.rookie.name" />
 
 	<display:column>
 		<a href="application/company/display.do?applicationId=${row.id}"><spring:message
@@ -73,8 +73,8 @@
 		titleKey="application.position.title" />
 	<display:column property="problem.title"
 		titleKey="application.problem.title" />
-	<display:column property="hacker.name"
-		titleKey="application.hacker.name" />
+	<display:column property="rookie.name"
+		titleKey="application.rookie.name" />
 
 	<display:column>
 		<a href="application/company/display.do?applicationId=${row.id}"><spring:message
@@ -104,8 +104,8 @@
 		titleKey="application.position.title" />
 	<display:column property="problem.title"
 		titleKey="application.problem.title" />
-	<display:column property="hacker.name"
-		titleKey="application.hacker.name" />
+	<display:column property="rookie.name"
+		titleKey="application.rookie.name" />
 
 	<display:column>
 		<a href="application/company/display.do?applicationId=${row.id}"><spring:message

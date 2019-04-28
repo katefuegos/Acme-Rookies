@@ -157,28 +157,28 @@ public class RegistrationTest extends AbstractTest {
 	}
 
 	@Test
-	public void driverHacker() {
+	public void driverRookie() {
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		UserAccount userAccount = null;
 
-		// HAcker
-		userAccount = this.accountService.create("Joseph", encoder.encodePassword("jojo12345", null), "HACKER");
-		final ActorForm actorFormM1 = this.constructActor(userAccount, 0, "HACKER", "Joseph", "Joestar", "ES00005", "http://www.photo.com", "jojo@hotmail.com", "654789321", "Calle falsa 123", "JoJo's Bizarre Adventure", "JOJO", "VISA", "1111222233334444",
+		// Rookie
+		userAccount = this.accountService.create("Joseph", encoder.encodePassword("jojo12345", null), "ROOKIE");
+		final ActorForm actorFormM1 = this.constructActor(userAccount, 0, "ROOKIE", "Joseph", "Joestar", "ES00005", "http://www.photo.com", "jojo@hotmail.com", "654789321", "Calle falsa 123", "JoJo's Bizarre Adventure", "JOJO", "VISA", "1111222233334444",
 			9, 2020, 123);
 
-		userAccount = this.accountService.create("Joseph", encoder.encodePassword("jojo12345", null), "HACKER");
-		final ActorForm actorFormM2 = this.constructActor(userAccount, 0, "HACKER", "Joseph", "Joestar", "ES00005", "photo.com", "jojo@hotmail.com", "654789321", "Calle falsa 123", ".", "JOJO", "VISA", "1111222233334444", 9, 2020, 123);
+		userAccount = this.accountService.create("Joseph", encoder.encodePassword("jojo12345", null), "ROOKIE");
+		final ActorForm actorFormM2 = this.constructActor(userAccount, 0, "ROOKIE", "Joseph", "Joestar", "ES00005", "photo.com", "jojo@hotmail.com", "654789321", "Calle falsa 123", ".", "JOJO", "VISA", "1111222233334444", 9, 2020, 123);
 
 		final Object testingData[][] = {
 
 			/*
-			 * a) Functional requirements 7.1 - Register as a hacker
+			 * a) Functional requirements 7.1 - Register as a rookie
 			 * b) Positive tests
 			 * c) analysis of sentence coverage: 93% with eclemma
 			 * d) analysis of data coverage. The new company is being modified with
 			 * the following data: useraccount.username=Joseph,
 			 * useraccount.password=jojo12345,
-			 * useraccount.authority=HACKER
+			 * useraccount.authority=ROOKIE
 			 * ,name="Joseph",middleName="Joestar",surname= "Joestar",photo=
 			 * "http://www.photo.com",email= "jojo@hotmail.com",phone=
 			 * "654789321",address= "Calle falsa 123",title=
@@ -190,13 +190,13 @@ public class RegistrationTest extends AbstractTest {
 			},
 
 			/*
-			 * a) Functional requirements 7.1 - Register as a hacker
+			 * a) Functional requirements 7.1 - Register as a rookie
 			 * b) Negative tests - Business rule: Attribute photo must be url
 			 * c) analysis of sentence coverage: 93% with eclemma
-			 * d) analysis of data coverage. The new hacker is being modified with the
+			 * d) analysis of data coverage. The new rookie is being modified with the
 			 * following data: useraccount.username=Joseph,
 			 * useraccount.password=jojo12345,
-			 * useraccount.authority=HACKER
+			 * useraccount.authority=ROOKIE
 			 * ,name="Joseph",middleName="Joestar",surname= "Joestar",photo=photo.com",email= "jojo@hotmail.com",phone=
 			 * "654789321",address= "Calle falsa 123",title= "."
 			 * The actor in charge is: unauthenticate
@@ -241,7 +241,7 @@ public class RegistrationTest extends AbstractTest {
 			 * new admin is being modified with the following data:
 			 * useraccount.username=Joseph,
 			 * useraccount.password=jojo12345,
-			 * useraccount.authority=HACKER
+			 * useraccount.authority=ROOKIE
 			 * ,name="Joseph",middleName="Joestar",surname= "Joestar",photo=
 			 * "http://www.photo.com",email= "jojo@hotmail.com",phone=
 			 * "654789321",address= "Calle falsa 123",title=
@@ -258,7 +258,7 @@ public class RegistrationTest extends AbstractTest {
 			 * new admin is being modified with the following data:
 			 * useraccount.username=Joseph,
 			 * useraccount.password=jojo12345,
-			 * useraccount.authority=HACKER
+			 * useraccount.authority=ROOKIE
 			 * ,name="Joseph",middleName="Joestar",surname= "Joestar",photo=
 			 * "http://www.photo.com",email= "jojo@hotmail.com",phone=
 			 * "654789321",address= "Calle falsa 123",title=

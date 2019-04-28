@@ -14,7 +14,7 @@ import repositories.CurriculaRepository;
 import security.LoginService;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
+import domain.Rookie;
 import domain.MiscellaneousData;
 import domain.PositionData;
 
@@ -39,7 +39,7 @@ public class CurriculaService {
 	private MiscellaneousDataService	miscellaneousDataService;
 
 	@Autowired
-	private HackerService				hackerService;
+	private RookieService				rookieService;
 
 
 	// Constructor----------------------------------------------
@@ -52,9 +52,9 @@ public class CurriculaService {
 	// Simple CRUD----------------------------------------------
 
 	public Curricula create() {
-		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("HACKER"));
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("ROOKIE"));
 		final Curricula curricula = new Curricula();
-		curricula.setHacker(hackerService.findHackerByUseraccount(LoginService.getPrincipal()));
+		curricula.setRookie(rookieService.findRookieByUseraccount(LoginService.getPrincipal()));
 		curricula.setCopy(false);
 		return curricula;
 	}
@@ -69,18 +69,18 @@ public class CurriculaService {
 
 	public Curricula save(final Curricula curricula) {
 		Assert.notNull(curricula);
-		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("HACKER"));
-		final Hacker hacker = this.hackerService.findHackerByUseraccount(LoginService.getPrincipal());
-		Assert.isTrue(curricula.getHacker().equals(hacker));
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("ROOKIE"));
+		final Rookie rookie = this.rookieService.findRookieByUseraccount(LoginService.getPrincipal());
+		Assert.isTrue(curricula.getRookie().equals(rookie));
 		final Curricula saved = this.curriculaRepository.save(curricula);
 		return saved;
 	}
 
 	public void delete(final Curricula curricula) {
 		Assert.notNull(curricula);
-		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("HACKER"));
-		final Hacker hacker = this.hackerService.findHackerByUseraccount(LoginService.getPrincipal());
-		Assert.isTrue(curricula.getHacker().equals(hacker));
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("ROOKIE"));
+		final Rookie rookie = this.rookieService.findRookieByUseraccount(LoginService.getPrincipal());
+		Assert.isTrue(curricula.getRookie().equals(rookie));
 		if (curricula.isCopy() == false) {
 
 			final Collection<EducationData> educationdatas = this.educationDataService.findByCurriculaId(curricula.getId());
@@ -117,7 +117,7 @@ public class CurriculaService {
 		curriculaCopy.setCopy(true);
 		curriculaCopy.setFullName(curricula.getFullName());
 		curriculaCopy.setGithubProfile(curricula.getGithubProfile());
-		curriculaCopy.setHacker(curricula.getHacker());
+		curriculaCopy.setRookie(curricula.getRookie());
 		curriculaCopy.setLinkedinprofile(curricula.getLinkedinprofile());
 		curriculaCopy.setPhoneNumber(curricula.getPhoneNumber());
 		curriculaCopy.setStatement(curricula.getStatement());
@@ -150,14 +150,14 @@ public class CurriculaService {
 		return result;
 	}
 
-	public Collection<Curricula> findByHackerId(final int hackerId) {
-		Assert.notNull(hackerId);
-		return this.curriculaRepository.findByHackerId(hackerId);
+	public Collection<Curricula> findByRookieId(final int rookieId) {
+		Assert.notNull(rookieId);
+		return this.curriculaRepository.findByRookieId(rookieId);
 	}
 
-	public Collection<Curricula> findNoCopies(final int hackerId) {
-		Assert.notNull(hackerId);
-		return this.curriculaRepository.findNoCopies(hackerId);
+	public Collection<Curricula> findNoCopies(final int rookieId) {
+		Assert.notNull(rookieId);
+		return this.curriculaRepository.findNoCopies(rookieId);
 	}
 	public Curricula findById(final int curriculaId) {
 		Assert.notNull(curriculaId);

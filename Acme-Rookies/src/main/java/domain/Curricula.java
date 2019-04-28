@@ -80,17 +80,17 @@ public class Curricula extends DomainEntity {
 	}
 
 	// Relationships ---------------------------------------------------------
-	private Hacker hacker;
+	private Rookie rookie;
 
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	public Hacker getHacker() {
-		return hacker;
+	public Rookie getRookie() {
+		return rookie;
 	}
 
-	public void setHacker(Hacker hacker) {
-		this.hacker = hacker;
+	public void setRookie(Rookie rookie) {
+		this.rookie = rookie;
 	}
 
 }

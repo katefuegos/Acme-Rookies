@@ -38,9 +38,9 @@ public class RegisterController extends AbstractController {
 
 	// Constructor---------------------------------------------------------
 
-	// Register hacker and company
+	// Register rookie and company
 	@RequestMapping(value = "/actor", method = RequestMethod.GET)
-	public ModelAndView createHackerAndCompany(@RequestParam(required = false, defaultValue = "default") final String authority) {
+	public ModelAndView createRookieAndCompany(@RequestParam(required = false, defaultValue = "default") final String authority) {
 		ModelAndView modelAndView;
 		final ActorForm actorForm = new ActorForm();
 		final UserAccount userAccount = new UserAccount();
@@ -50,9 +50,9 @@ public class RegisterController extends AbstractController {
 
 		try {
 			switch (authority) {
-			case "HACKER":
-				a.setAuthority(Authority.HACKER);
-				actorForm.setAuth("HACKER");
+			case "ROOKIE":
+				a.setAuthority(Authority.ROOKIE);
+				actorForm.setAuth("ROOKIE");
 				actorForm.setComercialName("---");
 				break;
 			case "COMPANY":
@@ -127,13 +127,13 @@ public class RegisterController extends AbstractController {
 		final Collection<Authority> authorities = actorForm.getUserAccount().getAuthorities();
 		final Authority company = new Authority();
 		company.setAuthority("COMPANY");
-		final Authority hacker = new Authority();
-		hacker.setAuthority("HACKER");
+		final Authority rookie = new Authority();
+		rookie.setAuthority("ROOKIE");
 
 		if (authorities.contains(company))
 			result = new ModelAndView("register/company");
-		else if (authorities.contains(hacker))
-			result = new ModelAndView("register/hacker");
+		else if (authorities.contains(rookie))
+			result = new ModelAndView("register/rookie");
 		else
 			throw new NullPointerException();
 

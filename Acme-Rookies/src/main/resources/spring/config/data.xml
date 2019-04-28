@@ -28,9 +28,9 @@
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://bzil11tioymr9y2qzqm9-mysql.services.clever-cloud.com:3306/bzil11tioymr9y2qzqm9" />
-		<property name="user" value="usmsjxbc4hesv7mo" />
-		<property name="password" value="JH8lU8zN69KQapUawNki" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/Acme-Rookies" />
+		<property name="user" value="acme-user" />
+		<property name="password" value="ACME-Us3r-P@ssw0rd" />
 		<property name="minPoolSize" value="1" />
 		<property name="maxPoolSize" value="5" />
 	</bean>
@@ -38,7 +38,7 @@
 	<!-- JPA -->
 
 	<bean id="persistenceUnit" class="java.lang.String">
-		<constructor-arg value="Acme-Hacker-Rank" />
+		<constructor-arg value="Acme-Rookies" />
 	</bean>
 
 	<bean id="sqlDialect" class="java.lang.String">

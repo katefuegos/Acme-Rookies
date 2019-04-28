@@ -13,7 +13,7 @@ import repositories.EducationDataRepository;
 import security.LoginService;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
+import domain.Rookie;
 
 @Service
 @Transactional
@@ -30,7 +30,7 @@ public class EducationDataService {
 	private CurriculaService curriculaService;
 
 	@Autowired
-	private HackerService hackerService;
+	private RookieService rookieService;
 
 	// Constructor----------------------------------------------
 
@@ -43,7 +43,7 @@ public class EducationDataService {
 
 	public EducationData create() {
 		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString()
-				.contains("HACKER"));
+				.contains("ROOKIE"));
 		final EducationData educationData = new EducationData();
 
 		return educationData;
@@ -60,10 +60,10 @@ public class EducationDataService {
 	public EducationData save(final EducationData educationData) {
 		Assert.notNull(educationData);
 		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString()
-				.contains("HACKER"));
-		final Hacker hacker = this.hackerService
-				.findHackerByUseraccount(LoginService.getPrincipal());
-		Assert.isTrue(educationData.getCurricula().getHacker().equals(hacker));
+				.contains("ROOKIE"));
+		final Rookie rookie = this.rookieService
+				.findRookieByUseraccount(LoginService.getPrincipal());
+		Assert.isTrue(educationData.getCurricula().getRookie().equals(rookie));
 
 		final EducationData saved = this.educationDataRepository
 				.save(educationData);
@@ -73,11 +73,11 @@ public class EducationDataService {
 	public void delete(final EducationData educationData) {
 		Assert.notNull(educationData);
 		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString()
-				.contains("HACKER"));
-		final int hackerId = this.hackerService.findHackerByUseraccount(
+				.contains("ROOKIE"));
+		final int rookieId = this.rookieService.findRookieByUseraccount(
 				LoginService.getPrincipal()).getId();
 		final Collection<Curricula> curriculas = this.curriculaService
-				.findByHackerId(hackerId);
+				.findByRookieId(rookieId);
 		Assert.isTrue(curriculas.contains(educationData.getCurricula()));
 		this.educationDataRepository.delete(educationData);
 	}

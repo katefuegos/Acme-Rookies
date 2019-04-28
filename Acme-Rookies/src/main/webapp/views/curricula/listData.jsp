@@ -19,16 +19,16 @@
 	pagesize="5" class="displaytag">
 
 
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKIE')">
 
 	<display:column>
-	<a href="positionData/hacker/show.do?positionDataId=${row.id}"> <spring:message
+	<a href="positionData/rookie/show.do?positionDataId=${row.id}"> <spring:message
 					code="positionData.show" />
 			</a>
 	</display:column>
 	
 	<display:column>
-	<a href="positionData/hacker/edit.do?positionDataId=${row.id}"> <spring:message
+	<a href="positionData/rookie/edit.do?positionDataId=${row.id}"> <spring:message
 					code="positionData.edit" />
 			</a>
 	</display:column>
@@ -57,16 +57,16 @@
 	pagesize="5" class="displaytag">
 
 
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKIE')">
 
 	<display:column>
-	<a href="miscellaneousData/hacker/show.do?miscellaneousDataId=${row.id}"> <spring:message
+	<a href="miscellaneousData/rookie/show.do?miscellaneousDataId=${row.id}"> <spring:message
 					code="miscellaneousData.show" />
 			</a>
 	</display:column>
 	
 	<display:column>
-	<a href="miscellaneousData/hacker/edit.do?miscellaneousDataId=${row.id}"> <spring:message
+	<a href="miscellaneousData/rookie/edit.do?miscellaneousDataId=${row.id}"> <spring:message
 					code="miscellaneousData.edit" />
 			</a>
 	</display:column>
@@ -89,16 +89,16 @@
 	pagesize="5" class="displaytag">
 
 
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKIE')">
 
 	<display:column>
-	<a href="educationData/hacker/show.do?educationDataId=${row.id}"> <spring:message
+	<a href="educationData/rookie/show.do?educationDataId=${row.id}"> <spring:message
 					code="educationData.show" />
 			</a>
 	</display:column>
 	
 	<display:column>
-	<a href="educationData/hacker/edit.do?educationDataId=${row.id}"> <spring:message
+	<a href="educationData/rookie/edit.do?educationDataId=${row.id}"> <spring:message
 					code="educationData.edit" />
 			</a>
 	</display:column>

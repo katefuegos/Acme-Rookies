@@ -7,7 +7,7 @@ import javax.persistence.AccessType;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
-import domain.Hacker;
+import domain.Rookie;
 
 @Access(AccessType.PROPERTY)
 public class CurriculaForm {
@@ -20,7 +20,7 @@ public class CurriculaForm {
 	private String	phoneNumber;
 	private String	githubProfile;
 	private String	linkedInProfile;
-	private Hacker	hacker;
+	private Rookie	rookie;
 
 
 	// Constructor------------------------------------------------------------------
@@ -79,12 +79,12 @@ public class CurriculaForm {
 		this.statement = statement;
 	}
 
-	public Hacker getHacker() {
-		return this.hacker;
+	public Rookie getRookie() {
+		return this.rookie;
 	}
 
-	public void setHacker(final Hacker hacker) {
-		this.hacker = hacker;
+	public void setRookie(final Rookie rookie) {
+		this.rookie = rookie;
 
 	}
 

@@ -34,10 +34,10 @@
 		</form:label>
 	<form:input path="curricula.fullName" readonly="${isRead}" />
 	<br>
-	<form:label path="hacker.name">
-		<spring:message code="application.hacker.name" />:
+	<form:label path="rookie.name">
+		<spring:message code="application.rookie.name" />:
 		</form:label>
-	<form:input path="hacker.name" readonly="${isRead}" />
+	<form:input path="rookie.name" readonly="${isRead}" />
 	<br>
 	<form:label path="company.comercialName">
 		<spring:message code="application.company.comercialName" />:
@@ -64,8 +64,8 @@
 		</form:label>
 	<form:input path="status" readonly="${isRead}" />
 	<br>
-	<security:authorize access="hasRole('HACKER')">
-		<acme:cancel url="application/hacker/list.do" code="application.back" />
+	<security:authorize access="hasRole('ROOKIE')">
+		<acme:cancel url="application/rookie/list.do" code="application.back" />
 	</security:authorize>
 	<security:authorize access="hasRole('COMPANY')">
 		<acme:cancel url="application/company/list.do" code="application.back" />

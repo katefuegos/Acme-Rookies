@@ -13,7 +13,7 @@
 
 <form:form action="${requestURI}" modelAttribute="curriculaForm">
 	<form:hidden path="id" />
-	<form:hidden path="hacker" />
+	<form:hidden path="rookie" />
 
 
 	<acme:textbox code="curricula.fullName" path="fullName" />
@@ -31,6 +31,6 @@
 		</jstl:if>
 	</jstl:if>
 
-	<acme:cancel url="curricula/hacker/list.do" code="curricula.cancel" />
+	<acme:cancel url="curricula/rookie/list.do" code="curricula.cancel" />
 
 </form:form>

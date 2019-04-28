@@ -51,10 +51,10 @@ public class ProblemCompanyTest extends AbstractTest {
 			 * be able to manage their database of problems. - Create. b) Negative test -
 			 * Business rule: it can't be created by a not company user c)
 			 * analysis of sentence coverage: 92.4% d) analysis of data coverage
-			 * - se intenta crear problem siendo hacker1.
+			 * - se intenta crear problem siendo rookie1.
 			 */
 			{
-				title, positionIdMine, "hacker1", java.lang.IllegalArgumentException.class
+				title, positionIdMine, "rookie1", java.lang.IllegalArgumentException.class
 			},
 			/*
 			 * a) Functional requirements - 9.2. An actor who is authenticated as a company must
@@ -144,10 +144,10 @@ public class ProblemCompanyTest extends AbstractTest {
 			 * be able to manage their database of problems. - Edit. b) Negative test -
 			 * Business rule: it can't be edited by a not company user c)
 			 * analysis of sentence coverage: 92.4% d) analysis of data coverage
-			 * - se intenta editar problem siendo hacker1.
+			 * - se intenta editar problem siendo rookie1.
 			 */
 			{
-				title, problemIdMine, "hacker1", java.lang.IllegalArgumentException.class
+				title, problemIdMine, "rookie1", java.lang.IllegalArgumentException.class
 			},
 			/*
 			 * a) Functional requirements - 9.2. An actor who is authenticated as a company must
@@ -228,10 +228,10 @@ public class ProblemCompanyTest extends AbstractTest {
 			 * be able to manage their database of problems. - Eliminar. b) Negative test -
 			 * Business rule: it can't be deleted by a not company user c)
 			 * analysis of sentence coverage: 89.7% d) analysis of data coverage
-			 * - se intenta eliminar problem siendo hacker1.
+			 * - se intenta eliminar problem siendo rookie1.
 			 */
 			{
-				problemIdMine, "hacker1", java.lang.IllegalArgumentException.class
+				problemIdMine, "rookie1", java.lang.IllegalArgumentException.class
 			},
 			/*
 			 * a) Functional requirements - 9.2. An actor who is authenticated as a company must

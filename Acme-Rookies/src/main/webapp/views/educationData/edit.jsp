@@ -30,12 +30,12 @@
 			<acme:delete confirmDelete="educationData.confirmDelete" name="delete" code="educationData.delete"/>
 		
 		</jstl:if>
-		<acme:cancel url="curricula/hacker/list.do" code="educationData.cancel"/>
+		<acme:cancel url="curricula/rookie/list.do" code="educationData.cancel"/>
 	</jstl:if>
 
 
 	<jstl:if test="${isRead == true}">
-		<acme:cancel url="curricula/hacker/list.do" code="educationData.cancel"/>
+		<acme:cancel url="curricula/rookie/list.do" code="educationData.cancel"/>
 
 	</jstl:if>
 

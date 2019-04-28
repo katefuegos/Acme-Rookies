@@ -1,4 +1,3 @@
-
 package domain;
 
 import java.util.Date;
@@ -21,20 +20,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-@Table(indexes = {
-	@Index(name = "ID1", columnList = "status")
+@Table(indexes = { @Index(name = "ID1", columnList = "status")
 
 })
 public class Application extends DomainEntity {
 
 	// Identification ---------------------------------------------------------
 	// ATRIBUTOS
-	private Date	publicationMoment;
-	private Date	submissionMoment;
-	private String	status;
-	private String	textAnswer;
-	private String	linkAnswer;
-
+	private Date publicationMoment;
+	private Date submissionMoment;
+	private String status;
+	private String textAnswer;
+	private String linkAnswer;
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
@@ -84,13 +81,11 @@ public class Application extends DomainEntity {
 		this.linkAnswer = linkAnswer;
 	}
 
-
 	// Relationships ---------------------------------------------------------
-	private Problem		problem;
-	private Position	position;
-	private Curricula	curricula;
-	private Hacker		hacker;
-
+	private Problem problem;
+	private Position position;
+	private Curricula curricula;
+	private Rookie rookie;
 
 	@NotNull
 	@Valid
@@ -128,12 +123,12 @@ public class Application extends DomainEntity {
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	public Hacker getHacker() {
-		return this.hacker;
+	public Rookie getRookie() {
+		return this.rookie;
 	}
 
-	public void setHacker(final Hacker hacker) {
-		this.hacker = hacker;
+	public void setRookie(final Rookie rookie) {
+		this.rookie = rookie;
 	}
 
 }

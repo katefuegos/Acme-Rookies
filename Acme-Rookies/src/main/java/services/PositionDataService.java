@@ -30,7 +30,7 @@ public class PositionDataService {
 	private CurriculaService		curriculaService;
 
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService			rookieService;
 
 
 	// Constructor----------------------------------------------
@@ -43,7 +43,7 @@ public class PositionDataService {
 	// Simple CRUD----------------------------------------------
 
 	public PositionData create() {
-		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("HACKER"));
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("ROOKIE"));
 		final PositionData positionData = new PositionData();
 
 		return positionData;
@@ -59,9 +59,9 @@ public class PositionDataService {
 
 	public PositionData save(final PositionData positionData) {
 		Assert.notNull(positionData);
-		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("HACKER"));
-		final int hackerId = this.hackerService.findHackerByUseraccount(LoginService.getPrincipal()).getId();
-		final Collection<Curricula> curriculas = this.curriculaService.findByHackerId(hackerId);
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("ROOKIE"));
+		final int rookieId = this.rookieService.findRookieByUseraccount(LoginService.getPrincipal()).getId();
+		final Collection<Curricula> curriculas = this.curriculaService.findByRookieId(rookieId);
 		Assert.isTrue(curriculas.contains(positionData.getCurricula()));
 		final PositionData saved = this.positionDataRepository.save(positionData);
 		return saved;
@@ -69,9 +69,9 @@ public class PositionDataService {
 
 	public void delete(final PositionData positionData) {
 		Assert.notNull(positionData);
-		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("HACKER"));
-		final int hackerId = this.hackerService.findHackerByUseraccount(LoginService.getPrincipal()).getId();
-		final Collection<Curricula> curriculas = this.curriculaService.findByHackerId(hackerId);
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("ROOKIE"));
+		final int rookieId = this.rookieService.findRookieByUseraccount(LoginService.getPrincipal()).getId();
+		final Collection<Curricula> curriculas = this.curriculaService.findByRookieId(rookieId);
 		Assert.isTrue(curriculas.contains(positionData.getCurricula()));
 		this.positionDataRepository.delete(positionData);
 	}

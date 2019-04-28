@@ -27,12 +27,12 @@
 			<acme:delete confirmDelete="miscellaneousData.confirmDelete" name="delete" code="miscellaneousData.delete"/>
 		
 		</jstl:if>
-		<acme:cancel url="curricula/hacker/list.do" code="miscellaneousData.cancel"/>
+		<acme:cancel url="curricula/rookie/list.do" code="miscellaneousData.cancel"/>
 	</jstl:if>
 
 
 	<jstl:if test="${isRead == true}">
-		<acme:cancel url="curricula/hacker/list.do" code="miscellaneousData.cancel"/>
+		<acme:cancel url="curricula/rookie/list.do" code="miscellaneousData.cancel"/>
 
 	</jstl:if>
 

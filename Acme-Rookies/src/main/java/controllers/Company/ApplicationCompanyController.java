@@ -109,7 +109,7 @@ public class ApplicationCompanyController extends AbstractController {
 			applicationForm.setPosition(application.getPosition());
 			applicationForm.setTextAnswer(application.getTextAnswer());
 			applicationForm.setCompany(application.getPosition().getCompany());
-			applicationForm.setHacker(application.getHacker());
+			applicationForm.setRookie(application.getRookie());
 			applicationForm.setProblem(application.getProblem());
 			applicationForm.setPublicationMoment(application
 					.getPublicationMoment());

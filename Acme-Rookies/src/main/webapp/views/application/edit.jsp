@@ -23,5 +23,5 @@
 		<acme:submit name="save" code="application.save" />
 	</jstl:if>
 
-	<acme:cancel url="application/hacker/list.do" code="application.cancel" />
+	<acme:cancel url="application/rookie/list.do" code="application.cancel" />
 </form:form>

@@ -29,6 +29,6 @@
 		</jstl:if>
 	</jstl:if>
 
-	<acme:cancel url="curricula/hacker/list.do" code="positionData.cancel" />
+	<acme:cancel url="curricula/rookie/list.do" code="positionData.cancel" />
 
 </form:form>

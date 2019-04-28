@@ -30,7 +30,7 @@
 	<br>
 	<spring:message code="misc.deletePersonalDataInfo" />
 </security:authorize>
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKIE')">
 	<input type="button"
 		value="<spring:message code="misc.deletePersonalData"/>"
 		onclick="javascript: window.location.href = 'data/deletePersonalData.do';" />

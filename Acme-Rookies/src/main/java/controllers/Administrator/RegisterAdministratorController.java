@@ -39,9 +39,9 @@ public class RegisterAdministratorController extends AbstractController {
 
 	// Constructor---------------------------------------------------------
 
-	// Register hacker and company
+	// Register rookie and company
 	@RequestMapping(value = "/actor", method = RequestMethod.GET)
-	public ModelAndView createHackerAndCompany(@RequestParam(required = false, defaultValue = "default") final String authority) {
+	public ModelAndView createRookieAndCompany(@RequestParam(required = false, defaultValue = "default") final String authority) {
 		ModelAndView modelAndView;
 		final ActorForm actorForm = new ActorForm();
 		final UserAccount userAccount = new UserAccount();

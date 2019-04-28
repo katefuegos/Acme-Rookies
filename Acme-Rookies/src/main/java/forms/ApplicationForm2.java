@@ -16,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import domain.Company;
 import domain.Curricula;
-import domain.Hacker;
+import domain.Rookie;
 import domain.Position;
 import domain.Problem;
 
@@ -29,7 +29,7 @@ public class ApplicationForm2 {
 	private String linkAnswer;
 	private Position position;
 	private Curricula curricula;
-	private Hacker hacker;
+	private Rookie rookie;
 	private Company company;
 	private Problem problem;
 	private Date publicationMoment;
@@ -38,12 +38,12 @@ public class ApplicationForm2 {
 
 	@Valid
 	@NotNull
-	public Hacker getHacker() {
-		return hacker;
+	public Rookie getRookie() {
+		return rookie;
 	}
 
-	public void setHacker(Hacker hacker) {
-		this.hacker = hacker;
+	public void setRookie(Rookie rookie) {
+		this.rookie = rookie;
 	}
 
 	@Valid

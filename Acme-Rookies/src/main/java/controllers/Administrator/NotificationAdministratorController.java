@@ -62,7 +62,7 @@ public class NotificationAdministratorController extends AbstractController {
 
 			result = this.notifyModelAndView(notificationForm);
 		} catch (final Throwable oops) {
-			result = new ModelAndView("redirect:/application/hacker/list.do");
+			result = new ModelAndView("redirect:/application/rookie/list.do");
 			if (admin == null) {
 				redirectAttrs.addFlashAttribute("message", "commit.error");
 			}
@@ -95,8 +95,8 @@ public class NotificationAdministratorController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/notifyBreachHackers", method = RequestMethod.GET)
-	public ModelAndView notifyBreachHackers(
+	@RequestMapping(value = "/notifyBreachRookies", method = RequestMethod.GET)
+	public ModelAndView notifyBreachRookies(
 			final RedirectAttributes redirectAttrs) {
 		ModelAndView result;
 		final NotificationForm notificationForm = new NotificationForm();
@@ -108,13 +108,13 @@ public class NotificationAdministratorController extends AbstractController {
 			notificationForm.setId(0);
 			notificationForm.setMoment(new Date(System.currentTimeMillis() - 1000));
 			notificationForm
-					.setBody("Se ha detectado una brecha de seguridad que afecta a los hackers / We have detected a security breach who affects hackers");
+					.setBody("Se ha detectado una brecha de seguridad que afecta a los rookies / We have detected a security breach who affects rookies");
 			notificationForm
-					.setSubject("Brecha de seguridad hackers / Security breach hackers");
+					.setSubject("Brecha de seguridad rookies / Security breach rookies");
 
-			result = this.notifyHackersModelAndView(notificationForm);
+			result = this.notifyRookiesModelAndView(notificationForm);
 		} catch (final Throwable oops) {
-			result = new ModelAndView("redirect:/application/hacker/list.do");
+			result = new ModelAndView("redirect:/application/rookie/list.do");
 			if (admin == null) {
 				redirectAttrs.addFlashAttribute("message", "commit.error");
 			}
@@ -122,13 +122,13 @@ public class NotificationAdministratorController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/notifyBreachHackers", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/notifyBreachRookies", method = RequestMethod.POST, params = "save")
 	public ModelAndView save2(@Valid final NotificationForm notificationForm,
 			final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors())
-			result = this.notifyHackersModelAndView(notificationForm,
+			result = this.notifyRookiesModelAndView(notificationForm,
 					"commit.error");
 		else
 			try {
@@ -136,12 +136,12 @@ public class NotificationAdministratorController extends AbstractController {
 				notification.setBody(notificationForm.getBody());
 				notification.setSubject(notificationForm.getSubject());
 
-				this.notificationService.broadcastHackers(notification);
+				this.notificationService.broadcastRookies(notification);
 
 				result = new ModelAndView(
 						"redirect:/notification/actor/list.do");
 			} catch (final Throwable oops) {
-				result = this.notifyHackersModelAndView(notificationForm,
+				result = this.notifyRookiesModelAndView(notificationForm,
 						"commit.error");
 			}
 		return result;
@@ -166,7 +166,7 @@ public class NotificationAdministratorController extends AbstractController {
 
 			result = this.notifyCompaniesModelAndView(notificationForm);
 		} catch (final Throwable oops) {
-			result = new ModelAndView("redirect:/application/hacker/list.do");
+			result = new ModelAndView("redirect:/application/rookie/list.do");
 			if (admin == null) {
 				redirectAttrs.addFlashAttribute("message", "commit.error");
 			}
@@ -224,22 +224,22 @@ public class NotificationAdministratorController extends AbstractController {
 		return result;
 	}
 
-	protected ModelAndView notifyHackersModelAndView(
+	protected ModelAndView notifyRookiesModelAndView(
 			final NotificationForm notificationForm) {
 		ModelAndView result;
-		result = this.notifyHackersModelAndView(notificationForm, null);
+		result = this.notifyRookiesModelAndView(notificationForm, null);
 		return result;
 	}
 
-	protected ModelAndView notifyHackersModelAndView(
+	protected ModelAndView notifyRookiesModelAndView(
 			final NotificationForm notificationForm, final String message) {
 		final ModelAndView result;
 
-		result = new ModelAndView("notification/broadcastHackers");
+		result = new ModelAndView("notification/broadcastRookies");
 
 		result.addObject("message", message);
 		result.addObject("requestURI",
-				"notification/administrator/notifyBreachHackers.do");
+				"notification/administrator/notifyBreachRookies.do");
 		result.addObject("notificationForm", notificationForm);
 		result.addObject("banner", this.configurationService.findAll()
 				.iterator().next().getBanner());

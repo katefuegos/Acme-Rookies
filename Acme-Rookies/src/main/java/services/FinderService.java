@@ -21,7 +21,7 @@ import security.UserAccount;
 import domain.Actor;
 import domain.Configuration;
 import domain.Finder;
-import domain.Hacker;
+import domain.Rookie;
 import domain.Position;
 
 @Service
@@ -39,7 +39,7 @@ public class FinderService {
 	@Autowired
 	private ActorService			actorService;
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService			rookieService;
 
 	@Autowired
 	private PositionService			positionService;
@@ -57,9 +57,9 @@ public class FinderService {
 		final UserAccount userAccount = LoginService.getPrincipal();
 		final Actor actor = this.actorService.findByUserAccount(userAccount);
 
-		final Authority hacker = new Authority();
-		hacker.setAuthority("HACKER");
-		Assert.isTrue(actor.getUserAccount().getAuthorities().contains(hacker), "finder.error.no.hacker");
+		final Authority rookie = new Authority();
+		rookie.setAuthority("ROOKIE");
+		Assert.isTrue(actor.getUserAccount().getAuthorities().contains(rookie), "finder.error.no.rookie");
 
 		final Finder res = new Finder();
 		// final Date lastUpdate = new Date();
@@ -100,9 +100,9 @@ public class FinderService {
 		final Finder saved = this.finderRepository.save(finder);
 		if (finder.getId() == 0) {
 			final UserAccount userAccount = LoginService.getPrincipal();
-			final Hacker hacker = this.hackerService.findHackerByUseraccount(userAccount);
-			hacker.setFinder(saved);
-			this.hackerService.save(hacker);
+			final Rookie rookie = this.rookieService.findRookieByUseraccount(userAccount);
+			rookie.setFinder(saved);
+			this.rookieService.save(rookie);
 		}
 		return saved;
 	}
@@ -160,13 +160,13 @@ public class FinderService {
 		final UserAccount userAccount = LoginService.getPrincipal();
 		final Actor actor = this.actorService.findByUserAccount(userAccount);
 
-		final Authority hackerAuthority = new Authority();
-		hackerAuthority.setAuthority("HACKER");
+		final Authority rookieAuthority = new Authority();
+		rookieAuthority.setAuthority("ROOKIE");
 
-		final Finder finder = this.findFinderByHackerId(actor.getId());
+		final Finder finder = this.findFinderByRookieId(actor.getId());
 
 		Assert.isTrue(											//No es necesaria esta comprobacion
-			actor.getUserAccount().getAuthorities().contains(hackerAuthority), "finder.error.no.hacker");
+			actor.getUserAccount().getAuthorities().contains(rookieAuthority), "finder.error.no.rookie");
 
 		Assert.isTrue(f.equals(finder) || (f.getId() == 0 && finder == null), "finder.error.owner");
 
@@ -207,15 +207,15 @@ public class FinderService {
 		return result;
 	}
 
-	public Finder findFinderByHackerId(final int hackerId) {
-		return this.finderRepository.findByHackerId(hackerId);
+	public Finder findFinderByRookieId(final int rookieId) {
+		return this.finderRepository.findByRookieId(rookieId);
 	}
 
 	public Finder findFinder() {
 		final UserAccount userAccount = LoginService.getPrincipal();
-		final Hacker hacker = this.hackerService.findHackerByUseraccount(userAccount);
+		final Rookie rookie = this.rookieService.findRookieByUseraccount(userAccount);
 
-		Finder finder = this.findFinderByHackerId(hacker.getId());
+		Finder finder = this.findFinderByRookieId(rookie.getId());
 
 		if (finder == null)
 			finder = this.save(this.create());

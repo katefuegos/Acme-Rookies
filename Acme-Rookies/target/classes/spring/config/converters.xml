@@ -43,8 +43,8 @@
 		<bean class="converters.NotificationToStringConverter" />
 		<bean class="converters.StringToNotificationConverter" />
 		
-		<bean class="converters.HackerToStringConverter" />
-		<bean class="converters.StringToHackerConverter" />
+		<bean class="converters.RookieToStringConverter" />
+		<bean class="converters.StringToRookieConverter" />
 
 		
 		<bean class="converters.PositionDataToStringConverter" />
@@ -55,6 +55,18 @@
 		
 		<bean class="converters.MiscellaneousDataToStringConverter" />
 		<bean class="converters.StringToMiscellaneousDataConverter" />
+		
+		<bean class="converters.AuditToStringConverter" />
+		<bean class="converters.StringToAuditConverter" />
+		
+		<bean class="converters.AuditorToStringConverter" />
+		<bean class="converters.StringToAuditorConverter" />
+		
+		<bean class="converters.ProviderToStringConverter" />
+		<bean class="converters.StringToProviderConverter" />
+		
+		<bean class="converters.ItemToStringConverter" />
+		<bean class="converters.StringToItemConverter" />
 
 	</util:list>
 

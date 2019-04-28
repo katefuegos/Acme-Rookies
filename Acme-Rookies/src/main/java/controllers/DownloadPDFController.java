@@ -26,11 +26,11 @@ import services.AdministratorService;
 import services.CompanyService;
 import services.ConfigurationService;
 import services.CurriculaService;
-import services.HackerService;
+import services.RookieService;
 import domain.Administrator;
 import domain.Company;
 import domain.Curricula;
-import domain.Hacker;
+import domain.Rookie;
 
 @Controller
 @RequestMapping("/data")
@@ -40,7 +40,7 @@ public class DownloadPDFController {
 	CompanyService companyService;
 
 	@Autowired
-	HackerService hackerService;
+	RookieService rookieService;
 
 	@Autowired
 	AdministratorService administratorService;
@@ -104,19 +104,19 @@ public class DownloadPDFController {
 				csvWriter.write(company, header);
 			}
 
-		} else if (userAccount.getAuthorities().toString().contains("HACKER")) {
+		} else if (userAccount.getAuthorities().toString().contains("ROOKIE")) {
 
-			Hacker h1 = hackerService.findHackerByUseraccount(userAccount);
+			Rookie h1 = rookieService.findRookieByUseraccount(userAccount);
 
-			List<Hacker> listHacker = Arrays.asList(h1);
+			List<Rookie> listRookie = Arrays.asList(h1);
 
 			String[] header = { "name", "surnames", "VATNumber", "photo",
 					"email", "phone", "address" };
 
 			csvWriter.writeHeader(header);
 
-			for (Hacker hacker : listHacker) {
-				csvWriter.write(hacker, header);
+			for (Rookie rookie : listRookie) {
+				csvWriter.write(rookie, header);
 			}
 
 		} else if (userAccount.getAuthorities().toString().contains("ADMIN")) {
@@ -164,8 +164,8 @@ public class DownloadPDFController {
 				userAccountService.save(userAccount);
 
 			} else if (userAccount.getAuthorities().toString()
-					.contains("HACKER")) {
-				Hacker h = hackerService.findHackerByUseraccount(userAccount);
+					.contains("ROOKIE")) {
+				Rookie h = rookieService.findRookieByUseraccount(userAccount);
 				Assert.notNull(h);
 				h.setAddress(null);
 				h.setEmail("null@null.null");
@@ -175,7 +175,7 @@ public class DownloadPDFController {
 				h.setPhone(null);
 				h.setPhoto(null);
 				userAccount.setEnabled(false);
-				hackerService.save(h);
+				rookieService.save(h);
 				userAccountService.save(userAccount);
 				Collection<Curricula> curriculas = curriculaService
 						.findNoCopies(h.getId());

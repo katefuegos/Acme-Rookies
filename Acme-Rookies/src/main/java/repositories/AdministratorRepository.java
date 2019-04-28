@@ -25,16 +25,16 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	@Query("select avg(1.0 * (select count(e) from Position e where e.company.id = b.id)),min(1.0 * (select count(e) from Position e where e.company.id = b.id)),max(1.0 * (select count(e) from Position e where e.company.id = b.id)),stddev(1.0 * (select count(e) from Position e where e.company.id = b.id)) from Company b")
 	Object[] queryC1();
 
-	//C2 - avg,min,max,stddev of the number of applications per hacker.
-	@Query("select avg(1.0 * (select count(e) from Application e where e.hacker.id = b.id)),min(1.0 * (select count(e) from Application e where e.hacker.id = b.id)),max(1.0 * (select count(e) from Application e where e.hacker.id = b.id)),stddev(1.0 * (select count(e) from Application e where e.hacker.id = b.id)) from Hacker b")
+	//C2 - avg,min,max,stddev of the number of applications per rookie.
+	@Query("select avg(1.0 * (select count(e) from Application e where e.rookie.id = b.id)),min(1.0 * (select count(e) from Application e where e.rookie.id = b.id)),max(1.0 * (select count(e) from Application e where e.rookie.id = b.id)),stddev(1.0 * (select count(e) from Application e where e.rookie.id = b.id)) from Rookie b")
 	Object[] queryC2();
 
 	//C3 - The companies that have offered more positions.
 	@Query("select e.company.id,e.company.comercialName, count(e) from Position e group by e.company order by 3 desc")
 	Page<Object[]> queryC3(Pageable pageable);
 
-	//C4 - The hackers who have made more applications.
-	@Query("select e.hacker.id,e.hacker.userAccount.username, count(e) from Application e group by e.hacker order by 3 desc")
+	//C4 - The rookies who have made more applications.
+	@Query("select e.rookie.id,e.rookie.userAccount.username, count(e) from Application e group by e.rookie order by 3 desc")
 	Page<Object[]> queryC4(Pageable pageable);
 
 	//C5 - The average, the minimum, the maximum, and the standard deviation of the salaries offered.
@@ -46,8 +46,8 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	Collection<domain.Position> queryC6();
 
 	//	//DASHBOARD B
-	//B1 - avg,min,max,stddev of the number of curricula per hacker.
-	@Query("select avg(1.0 * (select count(e) from Curricula e where e.hacker.id = b.id and e.copy = false)),min(1.0 * (select count(e) from Curricula e where e.hacker.id = b.id and e.copy = false)),max(1.0 * (select count(e) from Curricula e where e.hacker.id = b.id and e.copy = false)),stddev(1.0 * (select count(e) from Curricula e where e.hacker.id = b.id and e.copy = false)) from Hacker b")
+	//B1 - avg,min,max,stddev of the number of curricula per rookie.
+	@Query("select avg(1.0 * (select count(e) from Curricula e where e.rookie.id = b.id and e.copy = false)),min(1.0 * (select count(e) from Curricula e where e.rookie.id = b.id and e.copy = false)),max(1.0 * (select count(e) from Curricula e where e.rookie.id = b.id and e.copy = false)),stddev(1.0 * (select count(e) from Curricula e where e.rookie.id = b.id and e.copy = false)) from Rookie b")
 	Object[] queryB1();
 
 	// B2 -
@@ -59,7 +59,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	Object[] queryB3();
 
 	//	//C2 - avg,min,max,stddev of the number of result per finder.
-	//	@Query("select avg(1.0 * (select count(e) from Application e where e.hacker.id = b.id)),min(1.0 * (select count(e) from Application e where e.hacker.id = b.id)),max(1.0 * (select count(e) from Application e where e.hacker.id = b.id)),stddev(1.0 * (select count(e) from Application e where e.hacker.id = b.id)) from Hacker b")
+	//	@Query("select avg(1.0 * (select count(e) from Application e where e.rookie.id = b.id)),min(1.0 * (select count(e) from Application e where e.rookie.id = b.id)),max(1.0 * (select count(e) from Application e where e.rookie.id = b.id)),stddev(1.0 * (select count(e) from Application e where e.rookie.id = b.id)) from Rookie b")
 	//	Object[] queryB2();
 	//	//NEW DASHBOARD B
 	//

@@ -29,7 +29,7 @@
 		titleKey="application.company.comercialName" />
 
 	<display:column>
-		<a href="application/hacker/display.do?applicationId=${row.id}"><spring:message
+		<a href="application/rookie/display.do?applicationId=${row.id}"><spring:message
 				code="application.display" /> </a>
 	</display:column>
 
@@ -53,7 +53,7 @@
 		titleKey="application.company.comercialName" />
 
 	<display:column>
-		<a href="application/hacker/display.do?applicationId=${row.id}"><spring:message
+		<a href="application/rookie/display.do?applicationId=${row.id}"><spring:message
 				code="application.display" /> </a>
 	</display:column>
 
@@ -77,7 +77,7 @@
 		titleKey="application.company.comercialName" />
 
 	<display:column>
-		<a href="application/hacker/display.do?applicationId=${row.id}"><spring:message
+		<a href="application/rookie/display.do?applicationId=${row.id}"><spring:message
 				code="application.display" /> </a>
 	</display:column>
 
@@ -99,12 +99,12 @@
 		titleKey="application.company.comercialName" />
 
 	<display:column>
-		<a href="application/hacker/display.do?applicationId=${row.id}"><spring:message
+		<a href="application/rookie/display.do?applicationId=${row.id}"><spring:message
 				code="application.display" /> </a>
 	</display:column>
 
 	<display:column>
-		<a href="application/hacker/edit.do?applicationId=${row.id}"><spring:message
+		<a href="application/rookie/edit.do?applicationId=${row.id}"><spring:message
 				code="application.edit" /> </a>
 	</display:column>
 
@@ -112,6 +112,6 @@
 
 <br>
 <br>
-<a href="application/hacker/create.do"> <spring:message
+<a href="application/rookie/create.do"> <spring:message
 		code="application.create" />
 </a>

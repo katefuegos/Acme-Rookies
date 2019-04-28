@@ -32,7 +32,7 @@ public class ActorService {
 	// Services-------------------------------------------------
 
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService			rookieService;
 
 	@Autowired
 	private CompanyService			companyService;
@@ -112,20 +112,20 @@ public class ActorService {
 		Assert.notNull(actorform);
 
 		final Collection<Authority> authorities = actorform.getUserAccount().getAuthorities();
-		final Authority hacker = new Authority();
-		hacker.setAuthority(Authority.HACKER);
+		final Authority rookie = new Authority();
+		rookie.setAuthority(Authority.ROOKIE);
 		final Authority company = new Authority();
 		company.setAuthority(Authority.COMPANY);
 
 		final Authority admin = new Authority();
 		admin.setAuthority(Authority.ADMIN);
 
-		if (authorities.contains(hacker)) {
-			domain.Hacker hack = null;
+		if (authorities.contains(rookie)) {
+			domain.Rookie hack = null;
 			if (actorform.getId() != 0)
-				hack = this.hackerService.findOne(actorform.getId());
+				hack = this.rookieService.findOne(actorform.getId());
 			else {
-				hack = this.hackerService.create();
+				hack = this.rookieService.create();
 				hack.setUserAccount(actorform.getUserAccount());
 				// Assert.isTrue(LoginService.getPrincipal() == null);
 				Assert.isTrue(this.serviceUtils.checkAuthorityBoolean(null));
@@ -144,7 +144,7 @@ public class ActorService {
 
 			hack.setCreditCard(creditCard);
 
-			this.hackerService.save(hack);
+			this.rookieService.save(hack);
 
 		} else if (authorities.contains(company)) {
 			domain.Company compa = null;
