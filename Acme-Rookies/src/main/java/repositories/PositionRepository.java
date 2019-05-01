@@ -31,4 +31,7 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 	@Query("select p from Position p where p.draftmode=false and p.cancelled <> true")
 	Collection<Position> findFinalNotCancelled();
 
+	@Query("select p from Position p where p not in (select ap from Auditor a join a.positions ap")
+	Collection<Position> findAllNoAuditor();
+
 }

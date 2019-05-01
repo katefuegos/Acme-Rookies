@@ -173,4 +173,9 @@ public class PositionService {
 		this.positionRepository.flush();
 	}
 
+	public Collection<Position> findAllNoAuditor() {
+		final Collection<Position> positions = this.positionRepository.findAllNoAuditor();
+		return positions;
+	}
+
 }
