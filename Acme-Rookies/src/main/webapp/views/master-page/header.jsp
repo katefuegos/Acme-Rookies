@@ -138,6 +138,15 @@
 			<li><a class="fNiv" href="curricula/rookie/list.do"><spring:message
 						code="master.page.curricula.list" /></a></li>
 		</security:authorize>
+		
+		<!-- AUDITOR -->
+		
+		<security:authorize access="hasRole('AUDITOR')">
+			<li><a class="fNiv" href="audit/auditor/list.do"><spring:message
+						code="master.page.audit.list" /></a></li>
+			<li><a class="fNiv" href="audit/auditor/listPositions.do"><spring:message
+						code="master.page.audit.positions" /></a></li>
+		</security:authorize>
 
 
 		<!-- PRIVACY POLICY -->

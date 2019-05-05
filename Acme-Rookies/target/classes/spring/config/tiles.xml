@@ -42,6 +42,8 @@
 		<value>/views/miscellaneousData/tiles.xml</value>
 		<value>/views/configuration/tiles.xml</value>
 		
+		<value>/views/audit/tiles.xml</value>
+		
 	</util:list>
 
 </beans>

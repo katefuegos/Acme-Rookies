@@ -38,6 +38,9 @@
 		<value>/views/miscellaneousData/messages</value>
 		<value>/views/configuration/messages</value>
 		
+		
+		<value>/views/audit/messages</value>
+		
 	</util:list>
 
 </beans>
