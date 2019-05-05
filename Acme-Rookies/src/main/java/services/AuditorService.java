@@ -15,6 +15,7 @@ import repositories.AuditorRepository;
 import security.Authority;
 import security.UserAccount;
 import domain.Auditor;
+import domain.Position;
 
 @Service
 @Transactional
@@ -41,6 +42,7 @@ public class AuditorService {
 		final Auditor auditor = new Auditor();
 		final UserAccount userAccount = new UserAccount();
 		final Collection<Authority> authorities = new ArrayList<Authority>();
+		final Collection<Position> positions = new ArrayList<Position>();
 
 		final Authority a = new Authority();
 		a.setAuthority("AUDITOR");
@@ -48,6 +50,8 @@ public class AuditorService {
 		userAccount.setAuthorities(authorities);
 		userAccount.setEnabled(true);
 		auditor.setUserAccount(userAccount);
+		auditor.setPositions(positions);
+
 		return auditor;
 	}
 	public List<Auditor> findAll() {

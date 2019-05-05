@@ -43,6 +43,7 @@
 						<li><a
 							href="register/administrator/newActor.do?authority=ADMIN"><spring:message
 									code="master.page.register.admin" /></a></li>
+						
 					</security:authorize>
 				</ul></li>
 			<li><a href="position/list.do"><spring:message
@@ -87,6 +88,8 @@
 								code="master.page.administrator.dashboard" /></a> <br></li>
 					<li><a href="register/administrator/actor.do?authority=ADMIN"><spring:message
 								code="master.page.register.admin" /></a></li>
+					<li><a href="register/administrator/actor.do?authority=AUDITOR"><spring:message
+								code="master.page.register.auditor" /></a></li>
 					<li><a href="configuration/administrator/list.do"><spring:message
 								code="master.page.administrator.configuration" /></a></li>
 

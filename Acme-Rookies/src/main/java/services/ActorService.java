@@ -38,6 +38,12 @@ public class ActorService {
 	private CompanyService			companyService;
 
 	@Autowired
+	private AuditorService			auditorService;
+
+	@Autowired
+	private ProviderService			providerService;
+
+	@Autowired
 	private AdministratorService	administratorService;
 
 	@Autowired
@@ -116,35 +122,92 @@ public class ActorService {
 		rookie.setAuthority(Authority.ROOKIE);
 		final Authority company = new Authority();
 		company.setAuthority(Authority.COMPANY);
+		final Authority auditor = new Authority();
+		auditor.setAuthority(Authority.AUDITOR);
+		final Authority provider = new Authority();
+		provider.setAuthority(Authority.PROVIDER);
 
 		final Authority admin = new Authority();
 		admin.setAuthority(Authority.ADMIN);
 
 		if (authorities.contains(rookie)) {
-			domain.Rookie hack = null;
+			domain.Rookie rook = null;
 			if (actorform.getId() != 0)
-				hack = this.rookieService.findOne(actorform.getId());
+				rook = this.rookieService.findOne(actorform.getId());
 			else {
-				hack = this.rookieService.create();
-				hack.setUserAccount(actorform.getUserAccount());
+				rook = this.rookieService.create();
+				rook.setUserAccount(actorform.getUserAccount());
 				// Assert.isTrue(LoginService.getPrincipal() == null);
 				Assert.isTrue(this.serviceUtils.checkAuthorityBoolean(null));
 			}
-			hack.setId(actorform.getId());
-			hack.setVersion(actorform.getVersion());
-			hack.setName(actorform.getName());
-			hack.setSurnames(actorform.getSurname());
-			hack.setAddress(actorform.getAddress());
-			hack.setEmail(actorform.getEmail());
-			hack.setPhone(actorform.getPhone());
-			hack.setPhoto(actorform.getPhoto());
-			hack.setVATNumber(actorform.getVATNumber());
+			rook.setId(actorform.getId());
+			rook.setVersion(actorform.getVersion());
+			rook.setName(actorform.getName());
+			rook.setSurnames(actorform.getSurname());
+			rook.setAddress(actorform.getAddress());
+			rook.setEmail(actorform.getEmail());
+			rook.setPhone(actorform.getPhone());
+			rook.setPhoto(actorform.getPhoto());
+			rook.setVATNumber(actorform.getVATNumber());
 
 			final domain.CreditCard creditCard = this.saveCreditCard(actorform);
 
-			hack.setCreditCard(creditCard);
+			rook.setCreditCard(creditCard);
 
-			this.rookieService.save(hack);
+			this.rookieService.save(rook);
+
+		} else if (authorities.contains(auditor)) {
+			domain.Auditor aud = null;
+			if (actorform.getId() != 0)
+				aud = this.auditorService.findOne(actorform.getId());
+			else {
+				aud = this.auditorService.create();
+				aud.setUserAccount(actorform.getUserAccount());
+				// Assert.isTrue(LoginService.getPrincipal() == null);
+				Assert.isTrue(this.serviceUtils.checkAuthorityBoolean(null));
+			}
+			aud.setId(actorform.getId());
+			aud.setVersion(actorform.getVersion());
+			aud.setName(actorform.getName());
+			aud.setSurnames(actorform.getSurname());
+			aud.setAddress(actorform.getAddress());
+			aud.setEmail(actorform.getEmail());
+			aud.setPhone(actorform.getPhone());
+			aud.setPhoto(actorform.getPhoto());
+			aud.setVATNumber(actorform.getVATNumber());
+
+			final domain.CreditCard creditCard = this.saveCreditCard(actorform);
+
+			aud.setCreditCard(creditCard);
+
+			this.auditorService.save(aud);
+
+		} else if (authorities.contains(provider)) {
+			domain.Provider pro = null;
+			if (actorform.getId() != 0)
+				pro = this.providerService.findOne(actorform.getId());
+			else {
+				pro = this.providerService.create();
+				pro.setUserAccount(actorform.getUserAccount());
+				// Assert.isTrue(LoginService.getPrincipal() == null);
+				Assert.isTrue(this.serviceUtils.checkAuthorityBoolean(null));
+			}
+			pro.setId(actorform.getId());
+			pro.setVersion(actorform.getVersion());
+			pro.setName(actorform.getName());
+			pro.setSurnames(actorform.getSurname());
+			pro.setAddress(actorform.getAddress());
+			pro.setEmail(actorform.getEmail());
+			pro.setPhone(actorform.getPhone());
+			pro.setPhoto(actorform.getPhoto());
+			pro.setVATNumber(actorform.getVATNumber());
+			pro.setMake(actorform.getMake());
+
+			final domain.CreditCard creditCard = this.saveCreditCard(actorform);
+
+			pro.setCreditCard(creditCard);
+
+			this.providerService.save(pro);
 
 		} else if (authorities.contains(company)) {
 			domain.Company compa = null;

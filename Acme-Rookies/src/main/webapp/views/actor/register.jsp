@@ -47,13 +47,19 @@
 
 	<jstl:if test="${actorForm.auth != 'COMPANY'}">
 		<form:hidden path="comercialName" />
-
+		<form:hidden path="make" />
+		
 	</jstl:if>
 
 	<jstl:if test="${actorForm.auth == 'COMPANY' }">
 		<acme:textbox code="actor.comercialName" path="comercialName" />
 
 	</jstl:if>
+	<jstl:if test="${actorForm.auth == 'PROVIDER' }">
+		<acme:textbox code="actor.make" path="make" />
+
+	</jstl:if>
+	
 	<br>
 	<h5>
 	<spring:message code="actor.add.creditcard" />

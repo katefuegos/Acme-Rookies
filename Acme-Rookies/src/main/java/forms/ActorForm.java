@@ -1,3 +1,4 @@
+
 package forms;
 
 import javax.persistence.Access;
@@ -19,31 +20,35 @@ public class ActorForm {
 
 	// Attributes------------------------------------------------------------------
 
-	private int id;
-	private int version;
+	private int			id;
+	private int			version;
 
-	private UserAccount userAccount;
-	private boolean checkTerms;
-	private String auth;
+	private UserAccount	userAccount;
+	private boolean		checkTerms;
+	private String		auth;
 
-	private String name;
-	private String surname;
-	private String VATNumber;
-	private String photo;
-	private String email;
-	private String phone;
-	private String address;
+	private String		name;
+	private String		surname;
+	private String		VATNumber;
+	private String		photo;
+	private String		email;
+	private String		phone;
+	private String		address;
 
 	// Creditcard
-	private String holderName;
-	private String brandName;
-	private String number;
-	private int expirationMonth;
-	private int expirationYear;
-	private int CVVCode;
+	private String		holderName;
+	private String		brandName;
+	private String		number;
+	private int			expirationMonth;
+	private int			expirationYear;
+	private int			CVVCode;
 
 	// Atributos necesarios para company
-	private String comercialName;
+	private String		comercialName;
+
+	// Atributos necesarios para provider
+	private String		make;
+
 
 	// Constructor------------------------------------------------------------------
 
@@ -60,6 +65,14 @@ public class ActorForm {
 
 	public void setAuth(final String auth) {
 		this.auth = auth;
+	}
+
+	public String getMake() {
+		return this.make;
+	}
+
+	public void setMake(final String make) {
+		this.make = make;
 	}
 
 	public boolean getCheckTerms() {
