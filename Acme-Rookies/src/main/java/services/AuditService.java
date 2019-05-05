@@ -1,5 +1,7 @@
+
 package services;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -20,12 +22,13 @@ public class AuditService {
 	// Repository-----------------------------------------------
 
 	@Autowired
-	private AuditRepository auditRepository;
+	private AuditRepository	auditRepository;
 
 	// Services-------------------------------------AuditService.java------------
-	
+
 	@Autowired
-	private AuditorService auditorService;
+	private AuditorService	auditorService;
+
 
 	// Constructor----------------------------------------------
 
@@ -41,7 +44,7 @@ public class AuditService {
 
 		audit.setDraftMode(true);
 		audit.setMoment(new Date(System.currentTimeMillis() - 1000));
-		audit.setAuditor(auditorService.findByUseraccount(LoginService.getPrincipal()));
+		audit.setAuditor(this.auditorService.findByUseraccount(LoginService.getPrincipal()));
 
 		return audit;
 	}
@@ -71,6 +74,11 @@ public class AuditService {
 
 	public void flush() {
 		this.auditRepository.flush();
+	}
+
+	public Collection<Audit> findByAuditorId(final int auditorId) {
+		Assert.notNull(auditorId);
+		return this.auditRepository.findByAuditorId(auditorId);
 	}
 
 }
