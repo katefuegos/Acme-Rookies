@@ -120,11 +120,9 @@ public class AuditAuditorController extends AbstractController {
 		Collection<Position> freepositions = new ArrayList<>();
 		Auditor auditor = null;
 		try {
-			Assert.isTrue(!freepositions.isEmpty());
 			auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
 			Assert.notNull(auditor);
 			freepositions = this.positionService.findAllNoAuditor();
-			Assert.isTrue(!freepositions.isEmpty());
 			auditForm.setId(0);
 
 			result = this.createModelAndView(auditForm);
