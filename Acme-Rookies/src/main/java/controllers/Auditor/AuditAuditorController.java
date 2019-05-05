@@ -83,15 +83,32 @@ public class AuditAuditorController extends AbstractController {
 			final Collection<Position> positions = auditor.getPositions();
 			freepositions = this.positionService.findAllNoAuditor();
 
-			result = new ModelAndView("audit/position/list");
+			result = new ModelAndView("audit/listPositions");
 			result.addObject("positions", positions);
 			result.addObject("freepositions", freepositions);
-			result.addObject("requestURI", "audit/position/list.do");
+			result.addObject("requestURI", "audit/auditor/listPositions.do");
 			result.addObject("banner", this.configurationService.findAll().iterator().next().getBanner());
 			result.addObject("systemName", this.configurationService.findAll().iterator().next().getSystemName());
 		} catch (final Throwable e) {
 			result = new ModelAndView("redirect:/");
 		}
+		return result;
+	}
+
+	@RequestMapping(value = "/asign", method = RequestMethod.GET)
+	public ModelAndView asign(final Position position, final RedirectAttributes redirectAttrs) {
+		ModelAndView result;
+		final Auditor auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
+		final Collection<Position> auditorpositions = new ArrayList<>(auditor.getPositions());
+		final AuditForm auditForm = new AuditForm();
+		Position p;
+
+		p = this.positionService.findOne(position.getId());
+		Assert.notNull(p);
+		auditorpositions.add(p);
+		this.auditorService.save(auditor);
+		result = this.createModelAndView(auditForm);
+
 		return result;
 	}
 

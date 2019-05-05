@@ -8,11 +8,14 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
 <!-- POSITION DATA -->
 
+<div class="title">
 <spring:message code="audit.positions" />
+</div>
 <br>
 
 <display:table name="positions" id="row" requestURI="${requestURI}"
@@ -54,7 +57,10 @@
 		</display:column>
 
 </display:table>
-
+<div class="title">
+<spring:message code="audit.freepositions" />
+</div>
+<br>
 <display:table name="freepositions" id="row" requestURI="${requestURI}"
 	pagesize="15" class="displaytag">
 	
@@ -91,6 +97,10 @@
 		</display:column>
 		<display:column >
 			<a href="company/display.do?companyId=${row.company.id}"><spring:message code="position.display.company" /> </a>
+		</display:column>
+		<display:column >
+		<acme:action confirm="audit.asign.confirm" name="asign"
+				code="audit.asign" />
 		</display:column>
 
 </display:table>

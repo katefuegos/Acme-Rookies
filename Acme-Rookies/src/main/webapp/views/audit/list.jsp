@@ -10,63 +10,34 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-<display:table name="curriculas" id="row" requestURI="${requestURI}"
+<display:table name="audits" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 	
-		<security:authorize access="hasRole('HACKER')">
+		<security:authorize access="hasRole('AUDITOR')">
 		<display:column>
-			<a href="curricula/hacker/show.do?curriculaId=${row.id}"> <spring:message
-					code="curricula.show" />
+			<a href="audit/auditor/show.do?auditId=${row.id}"> <spring:message
+					code="audit.show" />
 			</a>
 		</display:column>
 		
 		<display:column>
-			<a href="curricula/hacker/edit.do?curriculaId=${row.id}"> <spring:message
-					code="curricula.edit" />
+			<a href="audit/auditor/edit.do?auditId=${row.id}"> <spring:message
+					code="audit.edit" />
 			</a>
 		</display:column>
 	</security:authorize>
 
-	<display:column property="fullName" titleKey="curricula.fullName" />
+	<display:column property="moment" titleKey="audit.moment" />
 
-	<display:column property="statement" titleKey="curricula.statement" />
+	<display:column property="text" titleKey="audit.text" />
 
-	<display:column property="phoneNumber" titleKey="curricula.phoneNumber" />
-	
-	<display:column property="githubProfile" titleKey="curricula.githubProfile" />
-	
-	<display:column property="linkedinprofile" titleKey="curricula.linkedInProfile" />
-
-	<security:authorize access="hasRole('HACKER')">
-		<display:column>
-			<a href="curricula/hacker/listData.do?curriculaId=${row.id}"> <spring:message
-					code="curricula.listData" />
-			</a>
-		</display:column>
-		
-		<display:column>
-			<a href="positionData/hacker/create.do?curriculaId=${row.id}"> <spring:message
-					code="curricula.createPD" />
-			</a>
-		</display:column>
-		<display:column>
-			<a href="miscellaneousData/hacker/create.do?curriculaId=${row.id}"> <spring:message
-					code="curricula.createMD" />
-			</a>
-		</display:column>
-		<display:column>
-			<a href="educationData/hacker/create.do?curriculaId=${row.id}"> <spring:message
-					code="curricula.createED" />
-			</a>
-			
-		</display:column>
-	</security:authorize>
+	<display:column property="score" titleKey="audit.score" />
 
 </display:table>
 <br>
 <br>
-<security:authorize access="hasRole('HACKER')">
-			<a href="curricula/hacker/create.do"> <spring:message code="curricula.create" />
+<security:authorize access="hasRole('AUDITOR')">
+			<a href="audit/auditor/create.do"> <spring:message code="audit.create" />
 			</a>
 	</security:authorize>
 <br>
