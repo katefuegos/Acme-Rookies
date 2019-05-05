@@ -123,9 +123,9 @@ public class ActorService {
 		final Authority company = new Authority();
 		company.setAuthority(Authority.COMPANY);
 		final Authority auditor = new Authority();
-		company.setAuthority(Authority.AUDITOR);
+		auditor.setAuthority(Authority.AUDITOR);
 		final Authority provider = new Authority();
-		company.setAuthority(Authority.PROVIDER);
+		provider.setAuthority(Authority.PROVIDER);
 
 		final Authority admin = new Authority();
 		admin.setAuthority(Authority.ADMIN);
