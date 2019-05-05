@@ -38,6 +38,9 @@
 
 					<li><a href="register/actor.do?authority=COMPANY"><spring:message
 								code="master.page.register.company" /></a></li>
+								
+					<li><a href="register/actor.do?authority=AUDITOR"><spring:message
+								code="master.page.register.company" /></a></li>
 
 					<security:authorize access="hasRole('ADMIN')">
 						<li><a
