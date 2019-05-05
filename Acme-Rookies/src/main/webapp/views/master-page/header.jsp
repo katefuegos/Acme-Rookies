@@ -38,14 +38,13 @@
 
 					<li><a href="register/actor.do?authority=COMPANY"><spring:message
 								code="master.page.register.company" /></a></li>
-								
-					<li><a href="register/actor.do?authority=AUDITOR"><spring:message
-								code="master.page.register.company" /></a></li>
 
 					<security:authorize access="hasRole('ADMIN')">
 						<li><a
 							href="register/administrator/newActor.do?authority=ADMIN"><spring:message
 									code="master.page.register.admin" /></a></li>
+						<li><a href="register/actor.do?authority=AUDITOR"><spring:message
+								code="master.page.register.auditor" /></a></li>
 					</security:authorize>
 				</ul></li>
 			<li><a href="position/list.do"><spring:message
