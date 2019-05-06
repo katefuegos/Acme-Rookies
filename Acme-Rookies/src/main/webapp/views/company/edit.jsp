@@ -17,8 +17,14 @@
 
 	<img src="${company.photo}" height="200px" width="auto" />
 	<br />
+	
+	
 	<acme:textbox code="actor.comercialName" path="comercialName"
 		readonly="${readonly}" />
+		
+	<acme:textbox code="company.auditScore" path="auditScore"
+		readonly="${true}" />
+	
 	<acme:textbox code="actor.name" path="name" readonly="${readonly}" />
 	<acme:textbox code="actor.surnames" path="surnames"
 		readonly="${readonly}" />

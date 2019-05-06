@@ -3,6 +3,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 
 import javax.transaction.Transactional;
 
@@ -28,6 +29,9 @@ public class CompanyService {
 
 	@Autowired
 	private ConfigurationService	configurationService;
+
+	@Autowired
+	private AuditService			auditService;
 
 
 	// Constructor----------------------------------------------
@@ -88,6 +92,21 @@ public class CompanyService {
 
 	public Company findCompanyByUseraccountId(final int id) {
 		return this.companyRepository.findCompanyByUserAccount(id);
+	}
+
+	public void calculateAllAuditScore() {
+
+		final Collection<domain.Company> companies = this.companyRepository.findAll();
+		final Collection<Company> companies2 = new LinkedList<>();
+		for (final Company company : companies) {
+
+			company.setAuditScore(this.auditService.calculateScoreCompany(company.getId()));
+			companies2.add(company);
+
+		}
+
+		this.companyRepository.save(companies2);
+
 	}
 
 }

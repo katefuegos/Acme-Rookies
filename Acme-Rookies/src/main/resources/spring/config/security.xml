@@ -235,6 +235,10 @@
 			pattern="/configuration/administrator/launchProcess.do" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/configuration/administrator/process.do"
 			access="hasRole('ADMIN')" />
+			
+		<security:intercept-url pattern="/configuration/administrator/calculeAuditScore.do"
+			access="hasRole('ADMIN')" />
+			
 
 
 		<!-- OTHERS -->

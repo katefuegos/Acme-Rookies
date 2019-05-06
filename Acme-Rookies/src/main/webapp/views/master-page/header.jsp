@@ -94,6 +94,8 @@
 								code="master.page.administrator.configuration" /></a></li>
 					<li><a href="configuration/administrator/process.do"><spring:message
 								code="master.page.administrator.process.onlyOnce" /></a></li>
+					<li><a href="configuration/administrator/calculeAuditScore.do"><spring:message
+								code="master.page.administrator.calculateAuditsScore" /></a></li>
 
 				</ul></li>
 			<li><a class="fNiv"><spring:message
