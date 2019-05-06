@@ -51,6 +51,11 @@
 		<put-attribute name="body" value="/views/actor/register.jsp" />
 	</definition>
 	
+	<definition name="register/provider" extends="master.page">
+		<put-attribute name="title" value="Registrarse como proveedor" />
+		<put-attribute name="body" value="/views/actor/register.jsp" />
+	</definition>
+	
 
 
 </tiles-definitions>

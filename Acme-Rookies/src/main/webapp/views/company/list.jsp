@@ -19,7 +19,14 @@
 	<display:column property="email" titleKey="actor.email" />
 	<display:column property="phone" titleKey="actor.phone" />
 	<display:column property="VATNumber" titleKey="actor.VATnumber" />
-
+	<display:column titleKey="company.auditScore" >
+		<jstl:if test="${row.auditScore != null }">
+			<jstl:out value="${row.auditScore }"/>
+		</jstl:if>
+		<jstl:if test="${row.auditScore == null }">
+			<p> N/A </p>
+		</jstl:if>
+	</display:column>
 	<jstl:if test="${isRead==true}">
 		<img src="${row.photo}" height="50px" width="auto" />
 		<br />

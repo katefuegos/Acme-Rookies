@@ -3,6 +3,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 
 import javax.transaction.Transactional;
 
@@ -22,10 +23,16 @@ public class CompanyService {
 	// Repository-----------------------------------------------
 
 	@Autowired
-	private CompanyRepository	companyRepository;
-
+	private CompanyRepository		companyRepository;
 
 	// Services-------------------------------------------------
+
+	@Autowired
+	private ConfigurationService	configurationService;
+
+	@Autowired
+	private AuditService			auditService;
+
 
 	// Constructor----------------------------------------------
 
@@ -40,6 +47,8 @@ public class CompanyService {
 		final Company company = new Company();
 		final UserAccount userAccount = new UserAccount();
 		final Collection<Authority> authorities = new ArrayList<Authority>();
+
+		company.setShowMessage(!this.configurationService.findDefault().isProcessExecuted());
 
 		final Authority a = new Authority();
 		a.setAuthority("COMPANY");
@@ -83,6 +92,21 @@ public class CompanyService {
 
 	public Company findCompanyByUseraccountId(final int id) {
 		return this.companyRepository.findCompanyByUserAccount(id);
+	}
+
+	public void calculateAllAuditScore() {
+
+		final Collection<domain.Company> companies = this.companyRepository.findAll();
+		final Collection<Company> companies2 = new LinkedList<>();
+		for (final Company company : companies) {
+
+			company.setAuditScore(this.auditService.calculateScoreCompany(company.getId()));
+			companies2.add(company);
+
+		}
+
+		this.companyRepository.save(companies2);
+
 	}
 
 }

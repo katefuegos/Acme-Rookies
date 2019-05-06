@@ -8,6 +8,21 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<jstl:if test="${processExecuted == true && showMessage==true}">
+	<br />
+	<span class="pagebanner"> 
+	<br>
+	<span class="message"> <spring:message
+			code="welcome.message.newBrand" />
+			<a class="enlaceboton"
+		href="welcome/notShowMessage.do">
+			<spring:message code="welcome.message.notShow" />
+	</a>
+	</span>
+
+	<br>
+	</span>
+</jstl:if>
 
 <p>${welomeMessage}</p>
 

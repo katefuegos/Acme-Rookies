@@ -29,6 +29,9 @@ public class AuditService {
 	@Autowired
 	private AuditorService	auditorService;
 
+	@Autowired
+	private CompanyService	companyService;
+
 
 	// Constructor----------------------------------------------
 
@@ -79,6 +82,18 @@ public class AuditService {
 	public Collection<Audit> findByAuditorId(final int auditorId) {
 		Assert.notNull(auditorId);
 		return this.auditRepository.findByAuditorId(auditorId);
+	}
+
+	public Double calculateScoreCompany(final int companyId) {
+		Double result = null;
+
+		final Integer cantidad = this.auditRepository.countByCompany(companyId);
+
+		if (cantidad > 0)
+			result = (this.auditRepository.sumByCompany(companyId) * 1.0) / (cantidad * 1.0);
+
+		return result;
+
 	}
 
 }

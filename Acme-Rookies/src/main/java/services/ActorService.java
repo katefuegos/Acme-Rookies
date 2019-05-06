@@ -201,7 +201,7 @@ public class ActorService {
 			pro.setPhone(actorform.getPhone());
 			pro.setPhoto(actorform.getPhoto());
 			pro.setVATNumber(actorform.getVATNumber());
-			pro.setMake(actorform.getMake());
+			pro.setMake(actorform.getMarca());
 
 			final domain.CreditCard creditCard = this.saveCreditCard(actorform);
 

@@ -14,18 +14,27 @@ public class Company extends Actor {
 	// Identification ---------------------------------------------------------
 	// ATRIBUTOS
 
-	private String comercialName;
+	private String	comercialName;
+	private Double	auditScore;
+
 
 	@NotBlank
 	public String getComercialName() {
-		return comercialName;
+		return this.comercialName;
 	}
 
-	public void setComercialName(String comercialName) {
+	public void setComercialName(final String comercialName) {
 		this.comercialName = comercialName;
 	}
-	
-	
+
+	public Double getAuditScore() {
+		return this.auditScore;
+	}
+
+	public void setAuditScore(final Double auditScore) {
+		this.auditScore = auditScore;
+	}
+
 	// Relationships ---------------------------------------------------------
 
 }

@@ -90,8 +90,14 @@
 								code="master.page.register.admin" /></a></li>
 					<li><a href="register/administrator/actor.do?authority=AUDITOR"><spring:message
 								code="master.page.register.auditor" /></a></li>
+					<li><a href="register/administrator/actor.do?authority=PROVIDER"><spring:message
+								code="master.page.register.provider" /></a></li>
 					<li><a href="configuration/administrator/list.do"><spring:message
 								code="master.page.administrator.configuration" /></a></li>
+					<li><a href="configuration/administrator/process.do"><spring:message
+								code="master.page.administrator.process.onlyOnce" /></a></li>
+					<li><a href="configuration/administrator/calculeAuditScore.do"><spring:message
+								code="master.page.administrator.calculateAuditsScore" /></a></li>
 
 				</ul></li>
 			<li><a class="fNiv"><spring:message

@@ -23,10 +23,13 @@ public class ProviderService {
 	//Repository-----------------------------------------------
 
 	@Autowired
-	private ProviderRepository	providerRepository;
-
+	private ProviderRepository		providerRepository;
 
 	//Services-------------------------------------------------
+
+	@Autowired
+	private ConfigurationService	configurationService;
+
 
 	//Constructor----------------------------------------------
 
@@ -41,6 +44,8 @@ public class ProviderService {
 		final Provider provider = new Provider();
 		final UserAccount userAccount = new UserAccount();
 		final Collection<Authority> authorities = new ArrayList<Authority>();
+
+		provider.setShowMessage(!this.configurationService.findDefault().isProcessExecuted());
 
 		final Authority a = new Authority();
 		a.setAuthority("PROVIDER");

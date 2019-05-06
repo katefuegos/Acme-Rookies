@@ -24,10 +24,13 @@ public class AuditorService {
 	//Repository-----------------------------------------------
 
 	@Autowired
-	private AuditorRepository	auditorRepository;
-
+	private AuditorRepository		auditorRepository;
 
 	//Services-------------------------------------------------
+
+	@Autowired
+	private ConfigurationService	configurationService;
+
 
 	//Constructor----------------------------------------------
 
@@ -43,6 +46,8 @@ public class AuditorService {
 		final UserAccount userAccount = new UserAccount();
 		final Collection<Authority> authorities = new ArrayList<Authority>();
 		final Collection<Position> positions = new ArrayList<Position>();
+
+		auditor.setShowMessage(!this.configurationService.findDefault().isProcessExecuted());
 
 		final Authority a = new Authority();
 		a.setAuthority("AUDITOR");

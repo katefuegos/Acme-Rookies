@@ -137,6 +137,7 @@
 		<property name="address" value="C/Calle, 54" />
 		<property name="creditCard" ref="creditCard1" />
 		<property name="userAccount" ref="userAccount1" />
+		<property name="showMessage" value="true" />
 
 	</bean>
 
@@ -155,6 +156,7 @@
 		<property name="creditCard" ref="creditCard8" />
 		<property name="userAccount" ref="userAccount8" />
 		<property name="make" value="makep2" />
+		<property name="showMessage" value="true" />
 	</bean>
 
 	<bean id="provider2" class="domain.Provider">
@@ -169,6 +171,7 @@
 		<property name="creditCard" ref="creditCard9" />
 		<property name="userAccount" ref="userAccount9" />
 		<property name="make" value="makep1" />
+		<property name="showMessage" value="true" />
 	</bean>
 
 	<!-- Auditors -->
@@ -189,6 +192,8 @@
 				<ref bean="position3" />
 			</list>
 		</property>
+		<property name="showMessage" value="true" />
+		
 	</bean>
 
 	<bean id="auditor2" class="domain.Auditor">
@@ -208,6 +213,7 @@
 				<ref bean="position2" />
 			</list>
 		</property>
+		<property name="showMessage" value="true" />
 	</bean>
 
 	<!-- Rookies -->
@@ -224,6 +230,7 @@
 		<property name="creditCard" ref="creditCard2" />
 		<property name="userAccount" ref="userAccount2" />
 		<property name="finder" ref="finder2" />
+		<property name="showMessage" value="true" />
 	</bean>
 
 	<bean id="rookie2" class="domain.Rookie">
@@ -238,6 +245,7 @@
 		<property name="creditCard" ref="creditCard3" />
 		<property name="userAccount" ref="userAccount3" />
 		<property name="finder" ref="finder1" />
+		<property name="showMessage" value="true" />
 	</bean>
 
 	<!-- Finder -->
@@ -285,6 +293,7 @@
 		<property name="comercialName" value="C3V3RYs SL" />
 		<property name="creditCard" ref="creditCard4" />
 		<property name="userAccount" ref="userAccount4" />
+		<property name="showMessage" value="true" />
 	</bean>
 
 	<bean id="company2" class="domain.Company">
@@ -299,6 +308,7 @@
 		<property name="comercialName" value="Hoolie" />
 		<property name="creditCard" ref="creditCard5" />
 		<property name="userAccount" ref="userAccount5" />
+		<property name="showMessage" value="true" />
 	</bean>
 
 	<!-- CONFIGURATION -->
@@ -330,6 +340,7 @@
 		<property name="finderCacheTime" value="1" />
 		<property name="finderMaxResults" value="10" />
 		<property name="systemName" value="Acme-Rookies" />
+		<property name="processExecuted" value="false" />
 	</bean>
 
 	<!-- CREDIT CARD -->
