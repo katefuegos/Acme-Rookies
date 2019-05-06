@@ -1,3 +1,4 @@
+
 package domain;
 
 import java.util.Date;
@@ -21,27 +22,28 @@ public class Audit extends DomainEntity {
 
 	// Identification ---------------------------------------------------------
 	// ATRIBUTOS
-	private String text;
-	private int score;
-	private Date moment;
-	private boolean draftMode;
+	private String	text;
+	private int		score;
+	private Date	moment;
+	private boolean	draftMode;
+
 
 	@NotBlank
 	public String getText() {
-		return text;
+		return this.text;
 	}
 
-	public void setText(String text) {
+	public void setText(final String text) {
 		this.text = text;
 	}
 
 	@NotNull
-	@Range(min=0,max=10)
+	@Range(min = 0, max = 10)
 	public int getScore() {
-		return score;
+		return this.score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(final int score) {
 		this.score = score;
 	}
 
@@ -49,34 +51,36 @@ public class Audit extends DomainEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	public Date getMoment() {
-		return moment;
+		return this.moment;
 	}
 
-	public void setMoment(Date moment) {
+	public void setMoment(final Date moment) {
 		this.moment = moment;
 	}
 
 	@NotNull
 	public boolean isDraftMode() {
-		return draftMode;
+		return this.draftMode;
 	}
 
-	public void setDraftMode(boolean draftMode) {
+	public void setDraftMode(final boolean draftMode) {
 		this.draftMode = draftMode;
 	}
 
+
 	// Relationships ---------------------------------------------------------
-	private Position position;
-	private Auditor auditor;
+	private Position	position;
+	private Auditor		auditor;
+
 
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
 	public Position getPosition() {
-		return position;
+		return this.position;
 	}
 
-	public void setPosition(Position position) {
+	public void setPosition(final Position position) {
 		this.position = position;
 	}
 
@@ -84,10 +88,10 @@ public class Audit extends DomainEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	public Auditor getAuditor() {
-		return auditor;
+		return this.auditor;
 	}
 
-	public void setAuditor(Auditor auditor) {
+	public void setAuditor(final Auditor auditor) {
 		this.auditor = auditor;
 	}
 

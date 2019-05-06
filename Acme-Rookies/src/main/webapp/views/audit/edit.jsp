@@ -19,7 +19,13 @@
 	<acme:textbox code="audit.text" path="text" />
 	<acme:textbox code="audit.moment" path="moment" />
 	<acme:textbox code="audit.score" path="score" />
-	<acme:selectCollection items="${positions}" itemLabel="title" code="audit.position" path="position"/>
+	<form:label path="draftMode">
+				<spring:message code="audit.draftMode" />
+			</form:label>
+			<form:checkbox path="draftMode" readonly="true" />
+			<form:errors path="draftMode" cssClass="error" />
+			<br />
+	<acme:selectCollection items="${freepositions}" itemLabel="title" code="audit.position" path="position"/>
 
 	<jstl:if test="${isRead == false}">
 		<acme:submit name="save" code="audit.save" />
