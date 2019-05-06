@@ -14,25 +14,30 @@
 		<put-attribute name="title" value="Lista de audits" />
 		<put-attribute name="body" value="/views/audit/list.jsp" />
 	</definition>
-	
-		<definition name="audit/listPositions" extends="master.page">
+
+	<definition name="audit/list2" extends="master.page">
+		<put-attribute name="title" value="Lista de audits" />
+		<put-attribute name="body" value="/views/audit/list2.jsp" />
+	</definition>
+
+	<definition name="audit/listPositions" extends="master.page">
 		<put-attribute name="title" value="Lista de mis positions" />
 		<put-attribute name="body" value="/views/audit/listPositions.jsp" />
 	</definition>
-	
+
 	<definition name="audit/create" extends="master.page">
 		<put-attribute name="title" value="Crear audit" />
 		<put-attribute name="body" value="/views/audit/edit.jsp" />
 	</definition>
-	
+
 	<definition name="audit/edit" extends="master.page">
 		<put-attribute name="title" value="Editar audit" />
 		<put-attribute name="body" value="/views/audit/edit.jsp" />
 	</definition>
-	
+
 	<definition name="audit/show" extends="master.page">
 		<put-attribute name="title" value="Ver audit" />
 		<put-attribute name="body" value="/views/audit/edit.jsp" />
 	</definition>
-	
+
 </tiles-definitions>

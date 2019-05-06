@@ -83,6 +83,11 @@ public class AuditService {
 		Assert.notNull(auditorId);
 		return this.auditRepository.findByAuditorId(auditorId);
 	}
+	
+	public Collection<Audit> findByPositionId(final int positionId) {
+		Assert.notNull(positionId);
+		return this.auditRepository.findByPositionId(positionId);
+	}
 
 	public Double calculateScoreCompany(final int companyId) {
 		Double result = null;

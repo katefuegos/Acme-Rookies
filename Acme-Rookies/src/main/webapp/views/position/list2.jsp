@@ -12,7 +12,7 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
- <h3>
+<h3>
 	<spring:message code="position.final" />
 </h3>
 <display:table name="positionsFinal" id="row" requestURI="${requestURI}"
@@ -58,12 +58,15 @@
 					code="position.cancel" /> </a>
 		</jstl:if>
 	</display:column>
-
+	<display:column>
+		<a href="audit/listByPosition.do?positionId=${row.id}"><spring:message
+				code="position.display.audits" /> </a>
+	</display:column>
 </display:table>
 
 <h3>
 	<spring:message code="position.draft" />
-</h3> 
+</h3>
 <display:table name="positionsDraft" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
@@ -81,6 +84,10 @@
 	<display:column>
 		<a href="position/company/edit.do?positionId=${row.id}"><spring:message
 				code="position.edit" /> </a>
+	</display:column>
+	<display:column>
+		<a href="audit/listByPosition.do?positionId=${row.id}"><spring:message
+				code="position.display.audits" /> </a>
 	</display:column>
 
 </display:table>
