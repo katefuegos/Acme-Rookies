@@ -28,8 +28,11 @@ public class AdministratorService {
 	@Autowired
 	private AdministratorRepository	administratorRepository;
 
-
 	//Services-------------------------------------------------
+
+	@Autowired
+	private ConfigurationService	configurationService;
+
 
 	//Constructor----------------------------------------------
 
@@ -44,6 +47,8 @@ public class AdministratorService {
 		final Administrator administrator = new Administrator();
 		final UserAccount userAccount = new UserAccount();
 		final Collection<Authority> authorities = new ArrayList<Authority>();
+
+		administrator.setShowMessage(!this.configurationService.findDefault().isProcessExecuted());
 
 		final Authority a = new Authority();
 		a.setAuthority("ADMIN");

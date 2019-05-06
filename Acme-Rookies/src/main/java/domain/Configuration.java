@@ -1,3 +1,4 @@
+
 package domain;
 
 import java.util.Map;
@@ -18,19 +19,21 @@ public class Configuration extends DomainEntity {
 
 	// Identification ---------------------------------------------------------
 	// ATRIBUTOS
-	private int countryCode;
-	private Map<String, String> welcomeMessage;
-	private String banner;
-	private int finderCacheTime;
-	private int finderMaxResults;
-	private String systemName;
+	private int					countryCode;
+	private Map<String, String>	welcomeMessage;
+	private String				banner;
+	private int					finderCacheTime;
+	private int					finderMaxResults;
+	private String				systemName;
+	private boolean				processExecuted;
+
 
 	@NotBlank
 	public String getSystemName() {
-		return systemName;
+		return this.systemName;
 	}
 
-	public void setSystemName(String systemName) {
+	public void setSystemName(final String systemName) {
 		this.systemName = systemName;
 	}
 
@@ -83,6 +86,14 @@ public class Configuration extends DomainEntity {
 
 	public void setWelcomeMessage(final Map<String, String> welcomeMessage) {
 		this.welcomeMessage = welcomeMessage;
+	}
+
+	public boolean isProcessExecuted() {
+		return processExecuted;
+	}
+
+	public void setProcessExecuted(boolean processExecuted) {
+		this.processExecuted = processExecuted;
 	}
 
 	// Relationships ---------------------------------------------------------

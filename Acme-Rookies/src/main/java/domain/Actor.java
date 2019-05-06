@@ -28,6 +28,8 @@ public class Actor extends DomainEntity {
 	private String	phone;
 	private String	address;
 
+	private boolean	showMessage;
+
 
 	@NotBlank
 	public String getName() {
@@ -117,6 +119,14 @@ public class Actor extends DomainEntity {
 
 	public void setCreditCard(final CreditCard creditCard) {
 		this.creditCard = creditCard;
+	}
+
+	public boolean isShowMessage() {
+		return this.showMessage;
+	}
+
+	public void setShowMessage(final boolean showMessage) {
+		this.showMessage = showMessage;
 	}
 
 }

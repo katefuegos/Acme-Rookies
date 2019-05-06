@@ -22,10 +22,13 @@ public class CompanyService {
 	// Repository-----------------------------------------------
 
 	@Autowired
-	private CompanyRepository	companyRepository;
-
+	private CompanyRepository		companyRepository;
 
 	// Services-------------------------------------------------
+
+	@Autowired
+	private ConfigurationService	configurationService;
+
 
 	// Constructor----------------------------------------------
 
@@ -40,6 +43,8 @@ public class CompanyService {
 		final Company company = new Company();
 		final UserAccount userAccount = new UserAccount();
 		final Collection<Authority> authorities = new ArrayList<Authority>();
+
+		company.setShowMessage(!this.configurationService.findDefault().isProcessExecuted());
 
 		final Authority a = new Authority();
 		a.setAuthority("COMPANY");

@@ -92,6 +92,8 @@
 								code="master.page.register.auditor" /></a></li>
 					<li><a href="configuration/administrator/list.do"><spring:message
 								code="master.page.administrator.configuration" /></a></li>
+					<li><a href="configuration/administrator/process.do"><spring:message
+								code="master.page.administrator.process.onlyOnce" /></a></li>
 
 				</ul></li>
 			<li><a class="fNiv"><spring:message

@@ -20,7 +20,11 @@
 		<put-attribute name="body" value="/views/configuration/list.jsp" />
 	</definition>
 
-
+	<definition name="configuration/launchProcess" extends="master.page">
+		<put-attribute name="title" value="Lanzar proceso" />
+		<put-attribute name="body" value="/views/configuration/launchProcess.jsp" />
+	</definition>
+	
 
 
 </tiles-definitions>

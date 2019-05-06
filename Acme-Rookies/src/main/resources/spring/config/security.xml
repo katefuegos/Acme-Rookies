@@ -84,6 +84,10 @@
 		<security:intercept-url pattern="/actor/edit.do"
 			access="isAuthenticated()" />
 
+		<!-- Show message new brand-->
+		<security:intercept-url pattern="/welcome/notShowMessage.do"
+			access="isAuthenticated()" />
+
 		<!-- Position -->
 		<security:intercept-url pattern="/position/company/list.do"
 			access="hasRole('COMPANY')" />
@@ -172,7 +176,7 @@
 			access="hasRole('ROOKIE')" />
 		<security:intercept-url pattern="/positionData/rookie/display.do"
 			access="hasRole('ROOKIE')" />
-			<security:intercept-url pattern="/positionData/rookie/show.do"
+		<security:intercept-url pattern="/positionData/rookie/show.do"
 			access="hasRole('ROOKIE')" />
 
 		<!-- EDUCATION DATA -->
@@ -200,7 +204,7 @@
 			access="hasRole('ROOKIE')" />
 		<security:intercept-url pattern="/miscellaneousData/rookie/show.do"
 			access="hasRole('ROOKIE')" />
-	
+
 		<!-- AUDIT -->
 
 		<security:intercept-url pattern="/audit/auditor/list.do"
@@ -215,11 +219,11 @@
 			access="hasRole('AUDITOR')" />
 		<security:intercept-url pattern="/audit/auditor/show.do"
 			access="hasRole('AUDITOR')" />
-		
+
 		<!-- DASHBOARD -->
 		<security:intercept-url pattern="/dashboard/administrator/dashboard.do"
 			access="hasRole('ADMIN')" />
-		
+
 		<!-- CONFIGURATION -->
 		<security:intercept-url pattern="/configuration/administrator/list.do"
 			access="hasRole('ADMIN')" />
@@ -227,6 +231,11 @@
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/configuration/administrator/show.do"
 			access="hasRole('ADMIN')" />
+		<security:intercept-url
+			pattern="/configuration/administrator/launchProcess.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/configuration/administrator/process.do"
+			access="hasRole('ADMIN')" />
+
 
 		<!-- OTHERS -->
 		<security:intercept-url pattern="/welcome/terms.do"

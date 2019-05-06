@@ -40,6 +40,44 @@ public class ConfigurationAdministratorController extends AbstractController {
 
 	//List-------------------------------------------------------------------
 
+	@RequestMapping(value = "/launchProcess", method = RequestMethod.GET)
+	public ModelAndView launchProcessOnlyOnce() {
+
+		ModelAndView result;
+		result = new ModelAndView("configuration/launchProcess");
+		final Configuration configuration = this.configurationService.findOne();
+
+		try {
+			Assert.isTrue(!configuration.isProcessExecuted());
+			configuration.setProcessExecuted(true);
+
+			result.addObject("message", "configuration.process.success");
+		} catch (final Exception e) {
+			result.addObject("message", "configuration.process.error");
+		}
+
+		result.addObject("banner", this.configurationService.findAll().iterator().next().getBanner());
+		result.addObject("systemName", this.configurationService.findAll().iterator().next().getSystemName());
+
+		return result;
+
+	}
+
+	@RequestMapping(value = "/process", method = RequestMethod.GET)
+	public ModelAndView processOnlyOnce() {
+
+		ModelAndView result;
+		result = new ModelAndView("configuration/launchProcess");
+
+		result.addObject("banner", this.configurationService.findAll().iterator().next().getBanner());
+		result.addObject("systemName", this.configurationService.findAll().iterator().next().getSystemName());
+
+		return result;
+
+	}
+
+	//List-------------------------------------------------------------------
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 
@@ -72,11 +110,11 @@ public class ConfigurationAdministratorController extends AbstractController {
 		Assert.notNull(configuration);
 
 		configurationForm.setBannerr(configuration.getBanner());
-		
+
 		configurationForm.setId(configuration.getId());
 
 		configurationForm.setSystemName(configuration.getSystemName());
-		
+
 		configurationForm.setCountryCode(configuration.getCountryCode());
 
 		configurationForm.setFinderCacheTime(configuration.getFinderCacheTime());
@@ -105,7 +143,6 @@ public class ConfigurationAdministratorController extends AbstractController {
 
 		welcomeMessage.put("ES", configurationForm.getWelcomeMessageES());
 
-	
 		try {
 
 			final Configuration configuration = this.configurationService.findOne();
@@ -157,7 +194,7 @@ public class ConfigurationAdministratorController extends AbstractController {
 		configurationForm.setWelcomeMessageES(configuration.getWelcomeMessage().get("ES"));
 
 		configurationForm.setWelcomeMessageEN(configuration.getWelcomeMessage().get("EN"));
-		
+
 		configurationForm.setSystemName(configuration.getSystemName());
 
 		result = this.createEditModelAndView(configurationForm);
@@ -202,7 +239,7 @@ public class ConfigurationAdministratorController extends AbstractController {
 				configuration.setFinderMaxResults(configurationForm.getFinderMaxResults());
 
 				configuration.setWelcomeMessage(welcomeMessage);
-				
+
 				configuration.setSystemName(configurationForm.getSystemName());
 
 				this.configurationService.save(configuration);

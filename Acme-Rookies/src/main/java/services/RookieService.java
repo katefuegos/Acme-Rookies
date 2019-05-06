@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -22,9 +23,13 @@ public class RookieService {
 	// Repository-----------------------------------------------
 
 	@Autowired
-	private RookieRepository rookieRepository;
+	private RookieRepository		rookieRepository;
 
 	// Services-------------------------------------------------
+
+	@Autowired
+	private ConfigurationService	configurationService;
+
 
 	// Constructor----------------------------------------------
 
@@ -39,6 +44,8 @@ public class RookieService {
 		final Rookie rookie = new Rookie();
 		final UserAccount userAccount = new UserAccount();
 		final Collection<Authority> authorities = new ArrayList<Authority>();
+
+		rookie.setShowMessage(!this.configurationService.findDefault().isProcessExecuted());
 
 		final Authority a = new Authority();
 		a.setAuthority("COMPANY");
@@ -72,8 +79,7 @@ public class RookieService {
 	// Other Methods--------------------------------------------
 
 	public Rookie findRookieByUseraccount(final UserAccount userAccount) {
-		return this.rookieRepository.findRookieByUserAccount(userAccount
-				.getId());
+		return this.rookieRepository.findRookieByUserAccount(userAccount.getId());
 
 	}
 
