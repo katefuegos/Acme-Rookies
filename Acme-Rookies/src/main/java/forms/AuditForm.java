@@ -15,6 +15,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import domain.Auditor;
 import domain.Position;
 
 @Access(AccessType.PROPERTY)
@@ -30,6 +31,7 @@ public class AuditForm {
 
 	// Relationships ---------------------------------------------------------
 	private Position	position;
+	private Auditor		auditor;
 
 
 	@NotBlank
@@ -80,6 +82,17 @@ public class AuditForm {
 
 	public void setPosition(final Position position) {
 		this.position = position;
+	}
+
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	public Auditor getAuditor() {
+		return this.auditor;
+	}
+
+	public void setAuditor(final Auditor auditor) {
+		this.auditor = auditor;
 	}
 
 	@NotNull

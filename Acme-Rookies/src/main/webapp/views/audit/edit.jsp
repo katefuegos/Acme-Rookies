@@ -11,26 +11,25 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="${requestURI}" modelAttribute="curriculaForm">
+<form:form action="${requestURI}" modelAttribute="auditForm">
 	<form:hidden path="id" />
-	<form:hidden path="hacker" />
+	<form:hidden path="auditor" />
 
 
-	<acme:textbox code="curricula.fullName" path="fullName" />
-	<acme:textbox code="curricula.statement" path="statement" />
-	<acme:textbox code="curricula.phoneNumber" path="phoneNumber" />
-	<acme:textbox code="curricula.githubProfile" path="githubProfile" />
-	<acme:textbox code="curricula.linkedInProfile" path="linkedInProfile" />
+	<acme:textbox code="audit.text" path="text" />
+	<acme:textbox code="audit.moment" path="moment" />
+	<acme:textbox code="audit.score" path="score" />
+	<acme:selectCollection items="${positions}" itemLabel="title" code="audit.position" path="position"/>
 
 	<jstl:if test="${isRead == false}">
-		<acme:submit name="save" code="curricula.save" />
+		<acme:submit name="save" code="audit.save" />
 		<jstl:if test="${id != 0}">
-			<acme:delete confirmDelete="curricula.confirmDelete" name="delete"
-				code="curricula.delete" />
+			<acme:delete confirmDelete="audit.confirmDelete" name="delete"
+				code="audit.delete" />
 
 		</jstl:if>
 	</jstl:if>
 
-	<acme:cancel url="curricula/hacker/list.do" code="curricula.cancel" />
+	<acme:cancel url="audit/auditor/list.do" code="audit.cancel" />
 
 </form:form>
