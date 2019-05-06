@@ -47,7 +47,7 @@ public class ActorForm {
 	private String		comercialName;
 
 	// Atributos necesarios para provider
-	private String		make;
+	private String		marca;
 
 
 	// Constructor------------------------------------------------------------------
@@ -66,13 +66,13 @@ public class ActorForm {
 	public void setAuth(final String auth) {
 		this.auth = auth;
 	}
-
-	public String getMake() {
-		return this.make;
+	@NotBlank
+	public String getMarca() {
+		return this.marca;
 	}
 
-	public void setMake(final String make) {
-		this.make = make;
+	public void setMarca(final String marca) {
+		this.marca = marca;
 	}
 
 	public boolean getCheckTerms() {
