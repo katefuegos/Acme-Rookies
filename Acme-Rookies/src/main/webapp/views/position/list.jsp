@@ -57,6 +57,9 @@
 		<display:column >
 			<a href="company/display.do?companyId=${row.company.id}"><spring:message code="position.display.company" /> </a>
 		</display:column>
+		<display:column >
+			<a href="audit/listByPosition.do?positionId=${row.id}"><spring:message code="position.display.audits" /> </a>
+		</display:column>
 
 </display:table>
 

@@ -84,7 +84,7 @@
 		<security:intercept-url pattern="/actor/edit.do"
 			access="isAuthenticated()" />
 
-		<!-- Show message new brand-->
+		<!-- Show message new brand -->
 		<security:intercept-url pattern="/welcome/notShowMessage.do"
 			access="isAuthenticated()" />
 
@@ -209,6 +209,8 @@
 
 		<security:intercept-url pattern="/audit/auditor/list.do"
 			access="hasRole('AUDITOR')" />
+		<security:intercept-url pattern="/audit/listByPosition.do"
+			access="permitAll" />
 		<security:intercept-url pattern="/audit/auditor/edit.do"
 			access="hasRole('AUDITOR')" />
 		<security:intercept-url pattern="/audit/auditor/create.do"
@@ -221,6 +223,10 @@
 			access="hasRole('AUDITOR')" />
 		<security:intercept-url pattern="/audit/auditor/asign.do"
 			access="hasRole('AUDITOR')" />
+
+		<!-- AUDIT -->
+		<security:intercept-url pattern="/provider/list.do"
+			access="permitAll" />
 
 		<!-- DASHBOARD -->
 		<security:intercept-url pattern="/dashboard/administrator/dashboard.do"
@@ -237,10 +243,10 @@
 			pattern="/configuration/administrator/launchProcess.do" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/configuration/administrator/process.do"
 			access="hasRole('ADMIN')" />
-			
-		<security:intercept-url pattern="/configuration/administrator/calculeAuditScore.do"
-			access="hasRole('ADMIN')" />
-			
+
+		<security:intercept-url
+			pattern="/configuration/administrator/calculeAuditScore.do" access="hasRole('ADMIN')" />
+
 
 
 		<!-- OTHERS -->

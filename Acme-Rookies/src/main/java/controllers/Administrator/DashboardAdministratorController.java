@@ -41,6 +41,7 @@ public class DashboardAdministratorController extends AbstractController {
 
 		final String nulo = "n/a";
 
+		// ------------
 		// QueryC1
 		final Object[] result = this.administratorService.queryC1();
 
@@ -208,6 +209,107 @@ public class DashboardAdministratorController extends AbstractController {
 			modelAndView.addObject("ratioEmpty", df.format(ratioEmpty));
 		else
 			modelAndView.addObject("ratioEmpty", nulo);
+
+		// ------------
+		// Acme-rookie
+		// QueryC1
+		final Object[] resultNew = this.administratorService.queryNewC1();
+
+		final Double avgNewC1 = (Double) resultNew[0];
+		final Double minNewC1 = (Double) resultNew[1];
+		final Double maxNewC1 = (Double) resultNew[2];
+		final Double stddevNewC1 = (Double) resultNew[3];
+
+		if (avgNewC1 != null)
+			modelAndView.addObject("avgNewC1", df.format(avgNewC1));
+		else
+			modelAndView.addObject("avgNewC1", nulo);
+
+		if (maxNewC1 != null)
+			modelAndView.addObject("maxNewC1", df.format(maxNewC1));
+		else
+			modelAndView.addObject("maxNewC1", nulo);
+
+		if (minNewC1 != null)
+			modelAndView.addObject("minNewC1", df.format(minNewC1));
+		else
+			modelAndView.addObject("minNewC1", nulo);
+
+		if (stddevNewC1 != null)
+			modelAndView.addObject("stddevNewC1", df.format(stddevNewC1));
+		else
+			modelAndView.addObject("stddevNewC1", nulo);
+
+		// QueryC2
+		final Object[] resultNewC2 = this.administratorService.queryNewC2();
+
+		final Double avgNewC2 = (Double) resultNewC2[0];
+		final Double minNewC2 = (Double) resultNewC2[1];
+		final Double maxNewC2 = (Double) resultNewC2[2];
+		final Double stddevNewC2 = (Double) resultNewC2[3];
+
+		if (avgNewC2 != null)
+			modelAndView.addObject("avgNewC2", df.format(avgNewC2));
+		else
+			modelAndView.addObject("avgNewC2", nulo);
+
+		if (maxNewC2 != null)
+			modelAndView.addObject("maxNewC2", df.format(maxNewC2));
+		else
+			modelAndView.addObject("maxNewC2", nulo);
+
+		if (minNewC2 != null)
+			modelAndView.addObject("minNewC2", df.format(minNewC2));
+		else
+			modelAndView.addObject("minNewC2", nulo);
+
+		if (stddevNewC2 != null)
+			modelAndView.addObject("stddevNewC2", df.format(stddevNewC2));
+		else
+			modelAndView.addObject("stddevNewC2", nulo);
+
+		//QueryC3 - 
+
+		modelAndView.addObject("queryNewC3", this.administratorService.queryNewC3());
+
+		//QueryC4 - 
+		final Double resultNewC4 = this.administratorService.queryNewC4();
+		if (resultNewC4 != null)
+			modelAndView.addObject("queryNewC4", df.format(resultNewC4));
+		else
+			modelAndView.addObject("queryNewC4", nulo);
+
+		// QueryB1
+		final Object[] resultNewB1 = this.administratorService.queryNewB1();
+
+		final Double avgNewB1 = (Double) resultNewB1[0];
+		final Double minNewB1 = (Double) resultNewB1[1];
+		final Double maxNewB1 = (Double) resultNewB1[2];
+		final Double stddevNewB1 = (Double) resultNewB1[3];
+
+		if (avgNewB1 != null)
+			modelAndView.addObject("avgNewB1", df.format(avgNewB1));
+		else
+			modelAndView.addObject("avgNewB1", nulo);
+
+		if (maxNewB1 != null)
+			modelAndView.addObject("maxNewB1", df.format(maxNewB1));
+		else
+			modelAndView.addObject("maxNewB1", nulo);
+
+		if (minNewB1 != null)
+			modelAndView.addObject("minNewB1", df.format(minNewB1));
+		else
+			modelAndView.addObject("minNewB1", nulo);
+
+		if (stddevNewB1 != null)
+			modelAndView.addObject("stddevNewB1", df.format(stddevNewB1));
+		else
+			modelAndView.addObject("stddevNewB1", nulo);
+
+		// QueryB2
+		final Collection<forms.QueryAuxForm> queryNewB2 = this.administratorService.queryNewB2();
+		modelAndView.addObject("queryNewB2", queryNewB2);
 
 		// --------------------------------
 		modelAndView.addObject("banner", this.configurationService.findAll().iterator().next().getBanner());

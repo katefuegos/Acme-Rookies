@@ -15,6 +15,11 @@
 		<put-attribute name="body" value="/views/audit/list.jsp" />
 	</definition>
 	
+	<definition name="audit/list2" extends="master.page">
+		<put-attribute name="title" value="Audit list" />
+		<put-attribute name="body" value="/views/audit/list2.jsp" />
+	</definition>
+	
 		<definition name="audit/listPositions" extends="master.page">
 		<put-attribute name="title" value="My positions" />
 		<put-attribute name="body" value="/views/audit/listPositions.jsp" />

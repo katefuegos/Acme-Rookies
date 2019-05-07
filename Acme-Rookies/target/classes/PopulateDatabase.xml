@@ -26,7 +26,7 @@
 
 	<bean id="userAccount2" class="security.UserAccount">
 		<property name="username" value="rookie1" />
-		<property name="password" value="2ba2a8ac968a7a2b0a7baa7f2fef18d2" />
+		<property name="password" value="9701eb1802a4c63f51e1501512fbdd30" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -38,7 +38,7 @@
 
 	<bean id="userAccount3" class="security.UserAccount">
 		<property name="username" value="rookie2" />
-		<property name="password" value="91af68b69a50a98dbc0800942540342c" />
+		<property name="password" value="124be4fa2a59341a1d7e965ac49b2923" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -750,6 +750,7 @@
 		<property name="text" value="audit1" />
 		<property name="moment" value="2019/01/23 12:00" />
 		<property name="score" value="8" />
+		<property name="draftMode" value="true" />
 		<property name="auditor" ref="auditor1" />
 		<property name="position" ref="position1" />
 	</bean>
@@ -758,6 +759,7 @@
 		<property name="text" value="audit2" />
 		<property name="moment" value="2019/02/11 13:00" />
 		<property name="score" value="5" />
+		<property name="draftMode" value="true" />
 		<property name="auditor" ref="auditor2" />
 		<property name="position" ref="position2" />
 	</bean>

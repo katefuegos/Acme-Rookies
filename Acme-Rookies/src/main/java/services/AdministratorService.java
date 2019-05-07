@@ -87,6 +87,7 @@ public class AdministratorService {
 		return this.administratorRepository.findAdminByUsername(username);
 	}
 
+	// --------------------------------
 	public Object[] queryC1() {
 		Object[] result = null;
 
@@ -175,6 +176,66 @@ public class AdministratorService {
 		Object[] result = null;
 
 		result = this.administratorRepository.queryB3();
+		return result;
+	}
+
+	// ---------------------------------
+	public Object[] queryNewC1() {
+		Object[] result = null;
+
+		result = this.administratorRepository.queryNewC1();
+
+		return result;
+	}
+
+	public Object[] queryNewC2() {
+		Object[] result = null;
+
+		result = this.administratorRepository.queryNewC2();
+
+		return result;
+	}
+
+	public domain.Company queryNewC3() {
+		domain.Company result = null;
+
+		result = this.administratorRepository.queryNewC3();
+
+		return result;
+	}
+
+	public Double queryNewC4() {
+		Double result = null;
+
+		result = this.administratorRepository.queryNewC4();
+
+		return result;
+	}
+
+	public Object[] queryNewB1() {
+		Object[] result = null;
+
+		result = this.administratorRepository.queryNewB1();
+		return result;
+	}
+
+	public Collection<forms.QueryAuxForm> queryNewB2() {
+		final Collection<forms.QueryAuxForm> result = new ArrayList<>();
+
+		Page<Object[]> p = null;
+
+		p = this.administratorRepository.queryNewB2(new PageRequest(0, 5));
+
+		if (p.getContent() != null)
+			for (final Object[] objects : p.getContent()) {
+				final forms.QueryAuxForm q = new QueryAuxForm();
+				q.setId((int) objects[0]);
+				q.setName((String) objects[1]);
+				q.setCount((Long) objects[2]);
+
+				result.add(q);
+			}
+
 		return result;
 	}
 

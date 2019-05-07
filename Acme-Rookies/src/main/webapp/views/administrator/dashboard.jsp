@@ -151,4 +151,106 @@
 	<li><spring:message code="administrator.ratioEmpty" />: <jstl:out
 			value="${ratioEmpty}" /></li>
 </ul>
+<br />
+<br />
+<hr>
+<hr>
+<br />
+<br />
 
+<h3>
+	<spring:message code="administrator.dashboard.new.C1" />
+</h3>
+
+<ul>
+	<li><spring:message code="administrator.avg" />: <jstl:out
+			value="${avgNewC1}" /></li>
+	<li><spring:message code="administrator.max" />: <jstl:out
+			value="${maxNewC1}" /></li>
+	<li><spring:message code="administrator.min" />: <jstl:out
+			value="${minNewC1}" /></li>
+	<li><spring:message code="administrator.stddev" />: <jstl:out
+			value="${stddevNewC1}" /></li>
+</ul>
+<br />
+<br />
+<h3>
+	<spring:message code="administrator.dashboard.new.C2" />
+</h3>
+
+<ul>
+	<li><spring:message code="administrator.avg" />: <jstl:out
+			value="${avgNewC2}" /></li>
+	<li><spring:message code="administrator.max" />: <jstl:out
+			value="${maxNewC2}" /></li>
+	<li><spring:message code="administrator.min" />: <jstl:out
+			value="${minNewC2}" /></li>
+	<li><spring:message code="administrator.stddev" />: <jstl:out
+			value="${stddevNewC2}" /></li>
+</ul>
+<br />
+<br />
+<h3>
+	<spring:message code="administrator.dashboard.new.C3" />
+</h3>
+<display:table name="queryNewC3" id="row" class="displaytag">
+	<display:column property="comercialName" titleKey="actor.comercialName" />
+	<display:column property="name" titleKey="actor.name" />
+	<display:column property="email" titleKey="actor.email" />
+	<display:column property="phone" titleKey="actor.phone" />
+	<display:column property="VATNumber" titleKey="actor.VATnumber" />
+	<display:column titleKey="company.auditScore" >
+		<jstl:if test="${row.auditScore != null }">
+			<jstl:out value="${row.auditScore }"/>
+		</jstl:if>
+		<jstl:if test="${row.auditScore == null }">
+			<p> N/A </p>
+		</jstl:if>
+	</display:column>
+
+	<display:column>
+		<a href="company/display.do?companyId=${row.id}"><spring:message
+				code="position.display" /> </a>
+	</display:column>
+</display:table>
+<br />
+<br />
+<h3>
+	<spring:message code="administrator.dashboard.new.C4" />
+</h3>
+<li><spring:message code="position.salary" />: <jstl:out
+			value="${queryNewC4}" /></li>
+<br />
+<hr>
+<br />
+
+<h3>
+	<spring:message code="administrator.dashboard.new.B1" />
+</h3>
+
+<ul>
+	<li><spring:message code="administrator.avg" />: <jstl:out
+			value="${avgNewB1}" /></li>
+	<li><spring:message code="administrator.max" />: <jstl:out
+			value="${maxNewB1}" /></li>
+	<li><spring:message code="administrator.min" />: <jstl:out
+			value="${minNewB1}" /></li>
+	<li><spring:message code="administrator.stddev" />: <jstl:out
+			value="${stddevNewB1}" /></li>
+</ul>
+
+<br />
+<br />
+
+<h3>
+	<spring:message code="administrator.dashboard.new.B2" />
+</h3>
+
+<display:table name="queryNewB2" id="row" class="displaytag">
+ 	<display:column property="name"
+		titleKey="actor.name" />
+	<display:column property="count"
+		titleKey="administrator.count" />
+</display:table>
+<br />
+<br />
