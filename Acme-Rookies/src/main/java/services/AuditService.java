@@ -14,6 +14,8 @@ import org.springframework.util.Assert;
 import repositories.AuditRepository;
 import security.LoginService;
 import domain.Audit;
+import domain.Auditor;
+import domain.Position;
 
 @Service
 @Transactional
@@ -31,6 +33,9 @@ public class AuditService {
 
 	@Autowired
 	private CompanyService	companyService;
+
+	@Autowired
+	private PositionService	positionService;
 
 
 	// Constructor----------------------------------------------
@@ -94,6 +99,15 @@ public class AuditService {
 
 		return result;
 
+	}
+
+	public void asign(final Position position, final Auditor auditor) {
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("AUDITOR"));
+		Assert.notNull(auditor);
+		Assert.notNull(position);
+		Assert.isTrue(position.isDraftmode());
+		auditor.getPositions().add(position);
+		this.auditorService.save(auditor);
 	}
 
 }

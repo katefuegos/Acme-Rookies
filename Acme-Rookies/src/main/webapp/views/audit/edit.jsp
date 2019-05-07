@@ -25,16 +25,20 @@
 			<form:checkbox path="draftMode" readonly="true" />
 			<form:errors path="draftMode" cssClass="error" />
 			<br />
-	<acme:selectCollection items="${freepositions}" itemLabel="title" code="audit.position" path="position"/>
+	<acme:selectCollection items="${positions}" itemLabel="title" code="audit.position" path="position"/>
 
-	<jstl:if test="${isRead == false}">
+	<jstl:if test="${isRead == false }">
 		<acme:submit name="save" code="audit.save" />
-		<jstl:if test="${id != 0}">
+	</jstl:if>
+	
+	<jstl:if test="${isRead == false && row.id != 0}">
+		<jstl:if test="${id != 0 }">
 			<acme:delete confirmDelete="audit.confirmDelete" name="delete"
 				code="audit.delete" />
 
 		</jstl:if>
 	</jstl:if>
+	
 
 	<acme:cancel url="audit/auditor/list.do" code="audit.cancel" />
 

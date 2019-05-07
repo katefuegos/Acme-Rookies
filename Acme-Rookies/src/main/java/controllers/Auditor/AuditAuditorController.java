@@ -75,7 +75,6 @@ public class AuditAuditorController extends AbstractController {
 	public ModelAndView listPositions(final RedirectAttributes redirectAttrs) {
 		ModelAndView result;
 		final Auditor auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
-		final Collection<Audit> audits = this.auditService.findByAuditorId(LoginService.getPrincipal().getId());
 		Collection<Position> freepositions = null;
 		try {
 			final int auditorId = this.auditorService.findByUseraccount(LoginService.getPrincipal()).getId();
@@ -96,19 +95,28 @@ public class AuditAuditorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/asign", method = RequestMethod.GET)
-	public ModelAndView asign(final Position position, final RedirectAttributes redirectAttrs) {
+	public ModelAndView accept(final int positionId, final RedirectAttributes redirectAttrs) {
 		ModelAndView result;
-		final Auditor auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
-		final Collection<Position> auditorpositions = new ArrayList<>(auditor.getPositions());
-		final AuditForm auditForm = new AuditForm();
-		Position p;
-
-		p = this.positionService.findOne(position.getId());
-		Assert.notNull(p);
-		auditorpositions.add(p);
-		this.auditorService.save(auditor);
-		result = this.createModelAndView(auditForm);
-
+		Auditor auditor = null;
+		Position position = null;
+		try {
+			auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
+			Assert.notNull(auditor);
+			position = this.positionService.findOne(positionId);
+			Assert.notNull(position);
+			Assert.isTrue(position.isDraftmode());
+			this.auditService.asign(position, auditor);
+			result = new ModelAndView("redirect:/audit/auditor/listPositions.do");
+			System.out.println(auditor.getPositions().contains(position));
+		} catch (final Throwable oops) {
+			result = new ModelAndView("redirect:/audit/auditor/listPositions.do");
+			if (auditor == null)
+				redirectAttrs.addFlashAttribute("message", "commit.error");
+			else if (position == null)
+				redirectAttrs.addFlashAttribute("message", "position.error.unexists");
+			else if (!position.isDraftmode())
+				redirectAttrs.addFlashAttribute("message", "position.error.draft");
+		}
 		return result;
 	}
 
@@ -123,6 +131,7 @@ public class AuditAuditorController extends AbstractController {
 			auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
 			Assert.notNull(auditor);
 			freepositions = this.positionService.findAllNoAuditor();
+			auditForm.setAuditor(auditor);
 			auditForm.setId(0);
 
 			result = this.createModelAndView(auditForm);
@@ -144,13 +153,15 @@ public class AuditAuditorController extends AbstractController {
 			result = this.createModelAndView(auditForm, "commit.error");
 		else
 			try {
-				Audit audit = this.auditService.create();
+				final Audit audit = this.auditService.create();
 				audit.setMoment(auditForm.getMoment());
 				audit.setText(auditForm.getText());
 				audit.setScore(auditForm.getScore());
 				audit.setDraftMode(auditForm.isDraftMode());
+				audit.setPosition(auditForm.getPosition());
+				audit.setAuditor(auditForm.getAuditor());
 
-				audit = this.auditService.save(audit);
+				this.auditService.save(audit);
 
 				result = new ModelAndView("redirect:/audit/auditor/list.do");
 			} catch (final Throwable oops) {
@@ -166,27 +177,35 @@ public class AuditAuditorController extends AbstractController {
 		final AuditForm auditForm = new AuditForm();
 		Auditor auditor = null;
 		Audit audit = null;
+		Position position = null;
+		Collection<Position> positions = new ArrayList<>();
 		try {
 			auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
 			Assert.notNull(auditor);
 			audit = this.auditService.findOne(auditId);
 			Assert.notNull(audit);
 			Assert.isTrue(audit.getAuditor().equals(auditor));
-
+			positions = this.positionService.findAllNoAuditor();
+			position = audit.getPosition();
+			Assert.isTrue(audit.isDraftMode());
 			auditForm.setId(audit.getId());
 			auditForm.setPosition(audit.getPosition());
+			auditForm.setAuditor(audit.getAuditor());
 			auditForm.setText(audit.getText());
 			auditForm.setMoment(audit.getMoment());
 			auditForm.setScore(audit.getScore());
 			auditForm.setDraftMode(audit.isDraftMode());
 
 			result = this.editModelAndView(auditForm);
+			result.addObject("positions", positions);
 		} catch (final Throwable oops) {
 			result = new ModelAndView("redirect:/audit/auditor/list.do");
 			if (auditor == null)
 				redirectAttrs.addFlashAttribute("message", "commit.error");
 			else if (audit == null)
 				redirectAttrs.addFlashAttribute("message", "audit.error.unexists");
+			else if (!audit.isDraftMode())
+				redirectAttrs.addFlashAttribute("message", "audit.error.notDraftMode");
 			else if (!audit.getAuditor().equals(auditor))
 				redirectAttrs.addFlashAttribute("message", "audit.error.notYours");
 		}
@@ -201,18 +220,53 @@ public class AuditAuditorController extends AbstractController {
 			result = this.editModelAndView(auditForm, "commit.error");
 		else
 			try {
-				Audit audit = this.auditService.findOne(auditForm.getId());
+				final Audit audit = this.auditService.findOne(auditForm.getId());
 				audit.setMoment(auditForm.getMoment());
 				audit.setText(auditForm.getText());
 				audit.setScore(auditForm.getScore());
 				audit.setDraftMode(auditForm.isDraftMode());
+				//audit.setPosition(auditForm.getPosition());
+				audit.setAuditor(auditForm.getAuditor());
 
-				audit = this.auditService.save(audit);
+				this.auditService.save(audit);
 
 				result = new ModelAndView("redirect:/audit/auditor/list.do");
 			} catch (final Throwable oops) {
 				result = this.editModelAndView(auditForm, "commit.error");
 			}
+		return result;
+	}
+	// SHOW
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public ModelAndView show(final int auditId, final RedirectAttributes redirectAttrs) {
+		ModelAndView result;
+		Audit audit = null;
+		final Auditor b = this.auditorService.findByUseraccount(LoginService.getPrincipal());
+		Position position = null;
+		try {
+			audit = this.auditService.findOne(auditId);
+			Assert.notNull(audit);
+			position = audit.getPosition();
+			final AuditForm auditForm = new AuditForm();
+			auditForm.setId(audit.getId());
+			auditForm.setPosition(audit.getPosition());
+			auditForm.setAuditor(audit.getAuditor());
+			auditForm.setText(audit.getText());
+			auditForm.setMoment(audit.getMoment());
+			auditForm.setScore(audit.getScore());
+			auditForm.setDraftMode(audit.isDraftMode());
+
+			result = this.ShowModelAndView(auditForm);
+			result.addObject("position", position);
+
+		} catch (final Throwable e) {
+
+			result = new ModelAndView("redirect:/audit/auditor/list.do");
+			if (this.auditService.findOne(auditId) == null)
+				redirectAttrs.addFlashAttribute("message", "audit.error.unexist	");
+			else if (!this.auditService.findOne(auditId).getAuditor().equals(b))
+				redirectAttrs.addFlashAttribute("message", "audit.error.notFromHacker");
+		}
 		return result;
 	}
 
@@ -255,6 +309,30 @@ public class AuditAuditorController extends AbstractController {
 		result.addObject("requestURI", "audit/auditor/edit.do?auditId=" + auditForm.getId());
 		result.addObject("auditForm", auditForm);
 		result.addObject("isRead", false);
+		result.addObject("banner", this.configurationService.findAll().iterator().next().getBanner());
+		result.addObject("systemName", this.configurationService.findAll().iterator().next().getSystemName());
+		return result;
+	}
+
+	protected ModelAndView ShowModelAndView(final AuditForm auditForm) {
+		ModelAndView result;
+		result = this.ShowModelAndView(auditForm, null);
+		return result;
+	}
+
+	protected ModelAndView ShowModelAndView(final AuditForm auditForm, final String message) {
+		final ModelAndView result;
+
+		final Auditor b = this.auditorService.findByUseraccount(LoginService.getPrincipal());
+		final Position position = auditForm.getPosition();
+
+		result = new ModelAndView("audit/show");
+		result.addObject("message", message);
+		result.addObject("requestURI", "audit/auditor/show.do?auditId=" + auditForm.getId());
+		result.addObject("auditForm", auditForm);
+		result.addObject("id", auditForm.getId());
+		result.addObject("position", position);
+		result.addObject("isRead", true);
 		result.addObject("banner", this.configurationService.findAll().iterator().next().getBanner());
 		result.addObject("systemName", this.configurationService.findAll().iterator().next().getSystemName());
 		return result;

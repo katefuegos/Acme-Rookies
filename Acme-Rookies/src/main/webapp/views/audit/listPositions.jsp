@@ -99,8 +99,8 @@
 			<a href="company/display.do?companyId=${row.company.id}"><spring:message code="position.display.company" /> </a>
 		</display:column>
 		<display:column >
-		<acme:action confirm="audit.asign.confirm" name="asign"
-				code="audit.asign" />
+			<a href="audit/auditor/asign.do?positionId=${row.id}"><spring:message
+				code="audit.asign" /> </a>
 		</display:column>
 
 </display:table>
