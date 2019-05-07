@@ -101,17 +101,14 @@
 		<display:column >
 			<a href="company/display.do?companyId=${row.company.id}"><spring:message code="position.display.company" /> </a>
 		</display:column>
+		<security:authorize access="hasRole('AUDITOR')">
 		<display:column >
-<<<<<<< HEAD
 			<a href="audit/auditor/asign.do?positionId=${row.id}"><spring:message
 				code="audit.asign" /> </a>
-=======
-			<a href="audit/listByPosition.do?positionId=${row.id}"><spring:message code="position.display.audits" /> </a>
 		</display:column>
+		</security:authorize>
 		<display:column >
-		<acme:action confirm="audit.asign.confirm" name="asign"
-				code="audit.asign" />
->>>>>>> 7b4c3de8900363b5f0d1df735f1e5d9a2a6a3ee6
+		<a href="audit/listByPosition.do?positionId=${row.id}"><spring:message code="position.display.audits" /> </a>
 		</display:column>
 
 </display:table>

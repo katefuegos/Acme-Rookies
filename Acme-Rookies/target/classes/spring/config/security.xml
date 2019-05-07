@@ -221,6 +221,8 @@
 			access="hasRole('AUDITOR')" />
 		<security:intercept-url pattern="/audit/auditor/show.do"
 			access="hasRole('AUDITOR')" />
+		<security:intercept-url pattern="/audit/auditor/asign.do"
+			access="hasRole('AUDITOR')" />
 
 		<!-- AUDIT -->
 		<security:intercept-url pattern="/provider/list.do"
