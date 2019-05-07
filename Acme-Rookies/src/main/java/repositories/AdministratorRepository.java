@@ -58,27 +58,30 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	@Query("select (select count(f1) from Finder f1 where f1.positions.size > 0)*1.0/count(f), (select count(f2) from Finder f2 where f2.positions.size = 0)*1.0/count(f) from Finder f")
 	Object[] queryB3();
 
-	//	//C2 - avg,min,max,stddev of the number of result per finder.
-	//	@Query("select avg(1.0 * (select count(e) from Application e where e.rookie.id = b.id)),min(1.0 * (select count(e) from Application e where e.rookie.id = b.id)),max(1.0 * (select count(e) from Application e where e.rookie.id = b.id)),stddev(1.0 * (select count(e) from Application e where e.rookie.id = b.id)) from Rookie b")
-	//	Object[] queryB2();
-	//	//NEW DASHBOARD B
-	//
-	//	// New B1
-	//	@Query("select (select count(b) from Area b where b.chapter.id=null)/(1.0*count(a)) from Area a")
-	//	Double queryNewB1();
-	//	// New B2
-	//	@Query("select avg(1.0 * (select count(e) from Parade e where e.brotherhood.area.chapter.id = b.id)), min(1.0 * (select count(e) from Parade e where e.brotherhood.area.chapter.id = b.id)), max(1.0 * (select count(e) from Parade e where e.brotherhood.area.chapter.id = b.id)), stddev(1.0 * (select count(e) from Parade e where e.brotherhood.area.chapter.id = b.id)) from Chapter b")
-	//	Object[] queryNewB2();
-	//
-	//	// New B3
-	//	@Query("select c from Parade p join p.brotherhood.area.chapter c group by c having count(p)> (select avg(1.0 * (select count(e) from Parade e where e.brotherhood.area.chapter.id = b.id)) from Chapter b)")
-	//	Collection<domain.Chapter> queryNewB3();
-	//
-	//	// New B4 - 2 valores [0,1]
-	//	@Query("select (select count(b) from Parade b where b.draftMode=true)/(1.0*count(a)),(select count(c) from Parade c where c.draftMode=false)/(1.0*count(a)) from Parade a")
-	//	Object[] queryNewB4();
-	//
-	//	// New B5
-	//	@Query("select p.status, (count(p)*1.0)/(1.0*(select count(r) from Parade r)) from Parade p group by p.status")
-	//	Collection<Object[]> queryNewB5();
+	// ACME - ROOKIE 
+	//DASHBOARD C
+	//C1 - 
+	@Query("select avg(a.score)*1.0, min(a.score)*1.0, max(a.score)*1.0, stddev(a.score)*1.0 from Audit a")
+	Object[] queryNewC1();
+
+	//C2 - 
+	@Query("select avg(a.auditScore)*1.0, min(a.auditScore)*1.0, max(a.auditScore)*1.0, stddev(a.auditScore)*1.0 from Company a")
+	Object[] queryNewC2();
+
+	//C3 -
+	@Query("select c from Company c where c.auditScore = (select max(a.auditScore) from Company a)")
+	domain.Company queryNewC3();
+
+	//C4 - 
+	@Query("select avg(a.position.salary)*1.0 from  Audit a where a.score > (select avg(t.score) from Audit t)")
+	Double queryNewC4();
+
+	//	//DASHBOARD B
+	//B1 - 
+	@Query("select avg(1.0 * (select count(e) from Item e where e.provider.id = b.id )),min(1.0 * (select count(e) from Item e where e.provider.id = b.id)),max(1.0 * (select count(e) from Item e where e.provider.id = b.id )),stddev(1.0 * (select count(e) from Item e where e.provider.id = b.id)) from Provider b")
+	Object[] queryNewB1();
+
+	//B2 - 
+	@Query("select e.provider.id,e.provider.userAccount.username, count(e) from Item e group by e.provider order by 3 desc")
+	Page<Object[]> queryNewB2(Pageable pageable);
 }

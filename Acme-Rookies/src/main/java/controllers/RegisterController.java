@@ -54,13 +54,13 @@ public class RegisterController extends AbstractController {
 				a.setAuthority(Authority.ROOKIE);
 				actorForm.setAuth("ROOKIE");
 				actorForm.setComercialName("---");
-				actorForm.setMake("---");
+				actorForm.setMarca("---");
 				break;
 
 			case "COMPANY":
 				a.setAuthority(Authority.COMPANY);
 				actorForm.setAuth("COMPANY");
-				actorForm.setMake("---");
+				actorForm.setMarca("---");
 				break;
 			default:
 				throw new NullPointerException();
