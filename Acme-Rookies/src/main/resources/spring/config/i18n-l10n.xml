@@ -41,6 +41,7 @@
 		
 		<value>/views/audit/messages</value>
 		<value>/views/provider/messages</value>
+		<value>/views/item/messages</value>
 		
 	</util:list>
 

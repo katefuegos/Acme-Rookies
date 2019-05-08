@@ -154,6 +154,14 @@
 			<li><a class="fNiv" href="curricula/rookie/list.do"><spring:message
 						code="master.page.curricula.list" /></a></li>
 		</security:authorize>
+		
+		<!-- PROVIDER -->
+
+		<security:authorize access="hasRole('PROVIDER')">
+			<li><a class="fNiv" href="item/provider/list.do"><spring:message
+						code="master.page.item.list" /></a></li>
+		
+		</security:authorize>
 
 		<!-- AUDITOR -->
 

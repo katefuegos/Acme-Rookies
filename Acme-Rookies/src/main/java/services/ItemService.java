@@ -1,5 +1,7 @@
+
 package services;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -19,12 +21,13 @@ public class ItemService {
 	// Repository-----------------------------------------------
 
 	@Autowired
-	private ItemRepository itemRepository;
+	private ItemRepository	itemRepository;
 
 	// Services-------------------------------------ItemService.java------------
-	
+
 	@Autowired
-	private ProviderService providerService;
+	private ProviderService	providerService;
+
 
 	// Constructor----------------------------------------------
 
@@ -38,7 +41,7 @@ public class ItemService {
 	public Item create() {
 		final Item item = new Item();
 
-		item.setProvider(providerService.findByUseraccount(LoginService.getPrincipal()));
+		item.setProvider(this.providerService.findByUseraccount(LoginService.getPrincipal()));
 
 		return item;
 	}
@@ -53,7 +56,7 @@ public class ItemService {
 
 	public Item save(final Item item) {
 		Assert.notNull(item);
-		
+
 		final Item saved = this.itemRepository.save(item);
 		return saved;
 	}
@@ -66,6 +69,11 @@ public class ItemService {
 
 	public void flush() {
 		this.itemRepository.flush();
+	}
+
+	public Collection<Item> findByProviderId(final int providerId) {
+		Assert.notNull(providerId);
+		return this.itemRepository.findByProviderId(providerId);
 	}
 
 }

@@ -236,6 +236,29 @@ public class AuditAuditorController extends AbstractController {
 			}
 		return result;
 	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(@Valid final AuditForm auditForm, final BindingResult binding) {
+		ModelAndView result;
+		final Auditor b = this.auditorService.findByUseraccount(LoginService.getPrincipal());
+		if (binding.hasErrors())
+			result = this.editModelAndView(auditForm, "audit.commit.error");
+		else
+			try {
+				Assert.notNull(auditForm);
+				final Audit audit = this.auditService.findOne(auditForm.getId());
+				Assert.isTrue(audit.getAuditor().equals(b));
+
+				this.auditService.delete(this.auditService.findOne(auditForm.getId()));
+
+				result = new ModelAndView("redirect:/audit/auditor/list.do");
+			} catch (final Throwable oops) {
+
+				result = this.editModelAndView(auditForm, "audit.commit.error");
+			}
+		return result;
+	}
+
 	// SHOW
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public ModelAndView show(final int auditId, final RedirectAttributes redirectAttrs) {
