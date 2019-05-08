@@ -223,9 +223,9 @@
 			access="hasRole('AUDITOR')" />
 		<security:intercept-url pattern="/audit/auditor/asign.do"
 			access="hasRole('AUDITOR')" />
-			
+
 		<!-- ITEM -->
-		
+
 		<security:intercept-url pattern="/item/provider/create.do"
 			access="hasRole('PROVIDER')" />
 		<security:intercept-url pattern="/item/provider/edit.do"
@@ -236,9 +236,14 @@
 			access="hasRole('PROVIDER')" />
 		<security:intercept-url pattern="/item/provider/display.do"
 			access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/item/listByProvider.do"
+			access="permitAll" />
 
-		<!-- AUDIT -->
+		<!-- PROVIDER -->
 		<security:intercept-url pattern="/provider/list.do"
+			access="permitAll" />
+
+		<security:intercept-url pattern="/provider/listByItem.do"
 			access="permitAll" />
 
 		<!-- DASHBOARD -->

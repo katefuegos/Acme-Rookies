@@ -27,5 +27,10 @@
 
 	<display:column property="VATNumber" titleKey="provider.VATNumber" />
 
+	<display:column>
+		<a href="item/listByProvider.do?providerId=${row.id}"><spring:message
+				code="provider.display.items" /> </a>
+	</display:column>
+
 </display:table>
 <br>
