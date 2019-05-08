@@ -63,12 +63,6 @@ public class RegisterAdministratorController extends AbstractController {
 				actorForm.setComercialName("---");
 				actorForm.setMarca("---");
 				break;
-			case "PROVIDER":
-				a.setAuthority(Authority.PROVIDER);
-				actorForm.setAuth("PROVIDER");
-				actorForm.setComercialName("---");
-				actorForm.setMarca(null);
-				break;
 			default:
 				throw new NullPointerException();
 			}
@@ -141,15 +135,10 @@ public class RegisterAdministratorController extends AbstractController {
 		final Authority aud = new Authority();
 		aud.setAuthority("AUDITOR");
 
-		final Authority pro = new Authority();
-		pro.setAuthority("PROVIDER");
-
 		if (authorities.contains(admin))
 			result = new ModelAndView("register/admin");
 		else if (authorities.contains(aud))
 			result = new ModelAndView("register/auditor");
-		else if (authorities.contains(pro))
-			result = new ModelAndView("register/provider");
 		else
 			throw new NullPointerException();
 

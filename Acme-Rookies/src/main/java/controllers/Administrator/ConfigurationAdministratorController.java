@@ -49,11 +49,13 @@ public class ConfigurationAdministratorController extends AbstractController {
 
 		ModelAndView result;
 		result = new ModelAndView("configuration/launchProcess");
-		final Configuration configuration = this.configurationService.findOne();
+		//final Configuration configuration = this.configurationService.findOne();
 
 		try {
-			Assert.isTrue(!configuration.isProcessExecuted());
-			configuration.setProcessExecuted(true);
+			//			Assert.isTrue(!configuration.isProcessExecuted());
+			//			configuration.setProcessExecuted(true);
+
+			this.configurationService.launchProcessOnlyOnce();
 
 			result.addObject("message", "configuration.process.success");
 		} catch (final Exception e) {

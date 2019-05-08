@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 
 import repositories.CompanyRepository;
 import security.Authority;
+import security.LoginService;
 import security.UserAccount;
 import domain.Company;
 
@@ -29,6 +30,9 @@ public class CompanyService {
 
 	@Autowired
 	private ConfigurationService	configurationService;
+
+	@Autowired
+	private AdministratorService	administratorService;
 
 	@Autowired
 	private AuditService			auditService;
@@ -95,6 +99,8 @@ public class CompanyService {
 	}
 
 	public void calculateAllAuditScore() {
+
+		Assert.isTrue(this.administratorService.findByUseraccount(LoginService.getPrincipal()) != null);
 
 		final Collection<domain.Company> companies = this.companyRepository.findAll();
 		final Collection<Company> companies2 = new LinkedList<>();

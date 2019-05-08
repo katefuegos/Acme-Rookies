@@ -127,7 +127,13 @@ public class PositionController extends AbstractController {
 			position = this.positionService.findOne(positionId);
 			Assert.isTrue(position != null);
 
-			final Company company = this.companyService.findCompanyByUseraccount(LoginService.getPrincipal());
+			Company company;
+			try {
+				company = this.companyService.findCompanyByUseraccount(LoginService.getPrincipal());
+			} catch (final Exception e) {
+				company = null;
+			}
+
 			if (position.getCompany() != company)
 				Assert.isTrue(!position.isDraftmode(), "position.error.draftmode");
 
