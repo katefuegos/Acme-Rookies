@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -23,9 +24,12 @@ public class ConfigurationService {
 	// Repository-------------------------------------------------------------------------
 
 	@Autowired
-	private ConfigurationRepository configurationRepository;
+	private ConfigurationRepository	configurationRepository;
 
 	// Services---------------------------------------------------------------------------
+	@Autowired
+	private AdministratorService	administratorService;
+
 
 	// Constructor------------------------------------------------------------------------
 
@@ -68,11 +72,9 @@ public class ConfigurationService {
 	}
 
 	public Configuration save(final Configuration configuration) {
-		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString()
-				.contains("ADMIN"));
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("ADMIN"));
 		Assert.notNull(configuration);
-		final Configuration saved = this.configurationRepository
-				.save(configuration);
+		final Configuration saved = this.configurationRepository.save(configuration);
 		return saved;
 	}
 
@@ -90,8 +92,7 @@ public class ConfigurationService {
 
 	// Methods---------------------------------------------------------------------------
 
-	public Collection<String> internacionalizcionListas(
-			final Map<String, Collection<String>> words) {
+	public Collection<String> internacionalizcionListas(final Map<String, Collection<String>> words) {
 
 		final String laungage = LocaleContextHolder.getLocale().getLanguage();
 		final Collection<String> res = words.get(laungage.toUpperCase());
@@ -115,6 +116,18 @@ public class ConfigurationService {
 
 	public Configuration findDefault() {
 		return this.configurationRepository.findAll().get(0);
+	}
+
+	public void launchProcessOnlyOnce() {
+
+		Assert.isTrue(this.administratorService.findByUseraccount(LoginService.getPrincipal()) != null);
+
+		final Configuration configuration = this.findOne();
+
+		Assert.isTrue(!configuration.isProcessExecuted());
+		configuration.setProcessExecuted(true);
+
+		this.configurationRepository.save(configuration);
 	}
 
 }
