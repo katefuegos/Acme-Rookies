@@ -38,6 +38,9 @@
 
 					<li><a href="register/actor.do?authority=COMPANY"><spring:message
 								code="master.page.register.company" /></a></li>
+					<li><a href="register/actor.do?authority=PROVIDER"><spring:message
+								code="master.page.register.provider" /></a></li>
+					
 
 					<security:authorize access="hasRole('ADMIN')">
 						<li><a
@@ -96,9 +99,6 @@
 					<li><a
 						href="register/administrator/actor.do?authority=AUDITOR"><spring:message
 								code="master.page.register.auditor" /></a></li>
-					<li><a
-						href="register/administrator/actor.do?authority=PROVIDER"><spring:message
-								code="master.page.register.provider" /></a></li>
 					<li><a href="configuration/administrator/list.do"><spring:message
 								code="master.page.administrator.configuration" /></a></li>
 					<li><a href="configuration/administrator/process.do"><spring:message
