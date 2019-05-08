@@ -118,7 +118,7 @@ public class PositionController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView edit(final int positionId, final RedirectAttributes redirectAttrs) {
+	public ModelAndView display(final int positionId, final RedirectAttributes redirectAttrs) {
 		ModelAndView result;
 		Position position = null;
 		final PositionForm positionForm = new PositionForm();
