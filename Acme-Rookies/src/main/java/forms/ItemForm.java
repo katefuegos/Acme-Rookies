@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 
 import domain.Provider;
 
@@ -45,6 +46,7 @@ public class ItemForm {
 	}
 
 	@NotBlank
+	@URL
 	public String getLink() {
 		return this.link;
 	}
@@ -53,7 +55,7 @@ public class ItemForm {
 		this.link = link;
 	}
 
-	@NotBlank
+	@URL
 	public String getPicture() {
 		return this.picture;
 	}
