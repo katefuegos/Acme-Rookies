@@ -138,7 +138,7 @@ public class ItemProviderController extends AbstractController {
 			if (provider == null)
 				redirectAttrs.addFlashAttribute("message", "commit.error");
 			else if (item == null)
-				redirectAttrs.addFlashAttribute("message", "item.error.unexists");
+				redirectAttrs.addFlashAttribute("message", "item.error.unexist");
 			else if (!item.getProvider().equals(provider))
 				redirectAttrs.addFlashAttribute("message", "item.error.notYours");
 		}
@@ -227,7 +227,7 @@ public class ItemProviderController extends AbstractController {
 
 			result = new ModelAndView("redirect:/item/provider/list.do");
 			if (this.itemService.findOne(itemId) == null)
-				redirectAttrs.addFlashAttribute("message", "item.error.unexist	");
+				redirectAttrs.addFlashAttribute("message", "item.error.unexist");
 			else if (!this.itemService.findOne(itemId).getProvider().equals(b))
 				redirectAttrs.addFlashAttribute("message", "item.error.notYours");
 		}
@@ -283,8 +283,6 @@ public class ItemProviderController extends AbstractController {
 
 	protected ModelAndView ShowModelAndView(final ItemForm itemForm, final String message) {
 		final ModelAndView result;
-
-		final Provider b = this.providerService.findByUseraccount(LoginService.getPrincipal());
 
 		result = new ModelAndView("item/show");
 		result.addObject("message", message);
