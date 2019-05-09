@@ -48,6 +48,7 @@ public class AuditService {
 	// Simple CRUD----------------------------------------------
 
 	public Audit create() {
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("AUDITOR"));
 		final Audit audit = new Audit();
 
 		audit.setDraftMode(true);
@@ -67,6 +68,9 @@ public class AuditService {
 
 	public Audit save(final Audit audit) {
 		Assert.notNull(audit);
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("AUDITOR"));
+		final Auditor auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
+		Assert.isTrue(audit.getAuditor().equals(auditor));
 		if (audit.getId() == 0)
 			audit.setMoment(new Date(System.currentTimeMillis() - 1000));
 		final Audit saved = this.auditRepository.save(audit);
@@ -74,7 +78,10 @@ public class AuditService {
 	}
 
 	public void delete(final Audit audit) {
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("AUDITOR"));
 		Assert.notNull(audit);
+		final Auditor auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
+		Assert.isTrue(audit.getAuditor().equals(auditor));
 		Assert.isTrue(audit.isDraftMode(), "audit.error.draftmode");
 
 		this.auditRepository.delete(audit);
