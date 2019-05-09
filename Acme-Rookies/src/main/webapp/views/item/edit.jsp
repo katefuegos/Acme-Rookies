@@ -26,8 +26,8 @@
 		<acme:submit name="save" code="item.save" />
 	</jstl:if>
 	
-	<jstl:if test="${isRead == false && row.id != 0}">
-		<jstl:if test="${id != 0 }">
+	<jstl:if test="${isRead == false}">
+		<jstl:if test="${itemForm.id != 0 }">
 			<acme:delete confirmDelete="item.confirmDelete" name="delete"
 				code="item.delete" />
 

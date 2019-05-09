@@ -88,7 +88,7 @@ public class AuditService {
 		Assert.notNull(auditorId);
 		return this.auditRepository.findByAuditorId(auditorId);
 	}
-	
+
 	public Collection<Audit> findByPositionId(final int positionId) {
 		Assert.notNull(positionId);
 		return this.auditRepository.findByPositionId(positionId);
@@ -110,7 +110,7 @@ public class AuditService {
 		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("AUDITOR"));
 		Assert.notNull(auditor);
 		Assert.notNull(position);
-		Assert.isTrue(position.isDraftmode());
+		Assert.isTrue(position.isDraftmode()); // TODO ¿Es necesario que esté en draft mode?
 		auditor.getPositions().add(position);
 		this.auditorService.save(auditor);
 	}

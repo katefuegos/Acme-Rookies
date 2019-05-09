@@ -14,10 +14,10 @@
 <form:form action="${requestURI}" modelAttribute="auditForm">
 	<form:hidden path="id" />
 	<form:hidden path="auditor" />
+	<form:hidden path="moment" />
 
 
 	<acme:textbox code="audit.text" path="text" />
-	<acme:textbox code="audit.moment" path="moment" />
 	<acme:textbox code="audit.score" path="score" />
 	<form:label path="draftMode">
 				<spring:message code="audit.draftMode" />
@@ -25,14 +25,21 @@
 			<form:checkbox path="draftMode" readonly="true" />
 			<form:errors path="draftMode" cssClass="error" />
 			<br />
-	<acme:selectCollection items="${positions}" itemLabel="title" code="audit.position" path="position"/>
-
+			
+	<jstl:if test="${isRead == false }">		
+		<acme:selectCollection items="${positions}" itemLabel="title" code="audit.position" path="position"/>
+	</jstl:if>
+	<jstl:if test="${isRead == true }">
+		<spring:message code="audit.position" />: <a href="position/display.do?positionId=${auditForm.position.id}"><jstl:out value="${auditForm.position.title }"/></a>
+	</jstl:if>
+	<br>
 	<jstl:if test="${isRead == false }">
+		
 		<acme:submit name="save" code="audit.save" />
 	</jstl:if>
 	
-	<jstl:if test="${isRead == false && row.id != 0}">
-		<jstl:if test="${id != 0 }">
+	<jstl:if test="${isRead == false}">
+		<jstl:if test="${auditForm.id != 0 }">
 			<acme:delete confirmDelete="audit.confirmDelete" name="delete"
 				code="audit.delete" />
 

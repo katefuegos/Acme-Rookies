@@ -12,18 +12,20 @@
 
 <display:table name="audits" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
-	
-		<security:authorize access="hasRole('AUDITOR')">
+
+	<security:authorize access="hasRole('AUDITOR')">
 		<display:column>
 			<a href="audit/auditor/show.do?auditId=${row.id}"> <spring:message
 					code="audit.show" />
 			</a>
 		</display:column>
-		
+
 		<display:column>
-			<a href="audit/auditor/edit.do?auditId=${row.id}"> <spring:message
-					code="audit.edit" />
-			</a>
+			<jstl:if test="${row.draftMode==true}">
+				<a href="audit/auditor/edit.do?auditId=${row.id}"> <spring:message
+						code="audit.edit" />
+				</a>
+			</jstl:if>
 		</display:column>
 	</security:authorize>
 
@@ -37,7 +39,8 @@
 <br>
 <br>
 <security:authorize access="hasRole('AUDITOR')">
-			<a href="audit/auditor/create.do"> <spring:message code="audit.create" />
-			</a>
-	</security:authorize>
+	<a href="audit/auditor/create.do"> <spring:message
+			code="audit.create" />
+	</a>
+</security:authorize>
 <br>

@@ -153,7 +153,14 @@ public class ItemProviderController extends AbstractController {
 			result = this.editModelAndView(itemForm, "commit.error");
 		else
 			try {
+
 				final Item item = this.itemService.findOne(itemForm.getId());
+
+				final domain.Provider provider = this.providerService.findByUseraccount(LoginService.getPrincipal());
+				Assert.notNull(provider);
+				Assert.notNull(item);
+				Assert.isTrue(item.getProvider().equals(provider));
+
 				item.setName(itemForm.getName());
 				item.setDescription(itemForm.getDescription());
 				item.setLink(itemForm.getLink());
@@ -201,6 +208,10 @@ public class ItemProviderController extends AbstractController {
 		try {
 			item = this.itemService.findOne(itemId);
 			Assert.notNull(item);
+			final domain.Provider provider = this.providerService.findByUseraccount(LoginService.getPrincipal());
+			Assert.notNull(provider);
+			Assert.isTrue(item.getProvider().equals(provider));
+
 			final ItemForm itemForm = new ItemForm();
 			itemForm.setId(item.getId());
 
@@ -218,7 +229,7 @@ public class ItemProviderController extends AbstractController {
 			if (this.itemService.findOne(itemId) == null)
 				redirectAttrs.addFlashAttribute("message", "item.error.unexist	");
 			else if (!this.itemService.findOne(itemId).getProvider().equals(b))
-				redirectAttrs.addFlashAttribute("message", "item.error.notFromHacker");
+				redirectAttrs.addFlashAttribute("message", "item.error.notYours");
 		}
 		return result;
 	}

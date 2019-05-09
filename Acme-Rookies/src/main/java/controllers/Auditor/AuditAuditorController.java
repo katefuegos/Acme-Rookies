@@ -3,6 +3,7 @@ package controllers.Auditor;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.validation.Valid;
 
@@ -99,6 +100,7 @@ public class AuditAuditorController extends AbstractController {
 		ModelAndView result;
 		Auditor auditor = null;
 		Position position = null;
+
 		try {
 			auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
 			Assert.notNull(auditor);
@@ -130,8 +132,9 @@ public class AuditAuditorController extends AbstractController {
 		try {
 			auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
 			Assert.notNull(auditor);
-			freepositions = this.positionService.findAllNoAuditor();
+			freepositions = auditor.getPositions();
 			auditForm.setAuditor(auditor);
+			auditForm.setMoment(new Date(System.currentTimeMillis() + 1000));
 			auditForm.setId(0);
 
 			result = this.createModelAndView(auditForm);
@@ -154,7 +157,7 @@ public class AuditAuditorController extends AbstractController {
 		else
 			try {
 				final Audit audit = this.auditService.create();
-				audit.setMoment(auditForm.getMoment());
+				audit.setMoment(new Date(System.currentTimeMillis() + 1000));
 				audit.setText(auditForm.getText());
 				audit.setScore(auditForm.getScore());
 				audit.setDraftMode(auditForm.isDraftMode());
@@ -185,7 +188,8 @@ public class AuditAuditorController extends AbstractController {
 			audit = this.auditService.findOne(auditId);
 			Assert.notNull(audit);
 			Assert.isTrue(audit.getAuditor().equals(auditor));
-			positions = this.positionService.findAllNoAuditor();
+			//positions = this.positionService.findAllNoAuditor();
+			positions = auditor.getPositions();
 			position = audit.getPosition();
 			Assert.isTrue(audit.isDraftMode());
 			auditForm.setId(audit.getId());
@@ -203,11 +207,11 @@ public class AuditAuditorController extends AbstractController {
 			if (auditor == null)
 				redirectAttrs.addFlashAttribute("message", "commit.error");
 			else if (audit == null)
-				redirectAttrs.addFlashAttribute("message", "audit.error.unexists");
+				redirectAttrs.addFlashAttribute("message", "audit.error.unexist");
 			else if (!audit.isDraftMode())
 				redirectAttrs.addFlashAttribute("message", "audit.error.notDraftMode");
 			else if (!audit.getAuditor().equals(auditor))
-				redirectAttrs.addFlashAttribute("message", "audit.error.notYours");
+				redirectAttrs.addFlashAttribute("message", "audit.error.notFromRookie");
 		}
 		return result;
 	}
@@ -221,6 +225,9 @@ public class AuditAuditorController extends AbstractController {
 		else
 			try {
 				final Audit audit = this.auditService.findOne(auditForm.getId());
+				final Auditor b = this.auditorService.findByUseraccount(LoginService.getPrincipal());
+				Assert.isTrue(audit.getAuditor().getId() == b.getId());
+
 				audit.setMoment(auditForm.getMoment());
 				audit.setText(auditForm.getText());
 				audit.setScore(auditForm.getScore());
@@ -269,6 +276,7 @@ public class AuditAuditorController extends AbstractController {
 		try {
 			audit = this.auditService.findOne(auditId);
 			Assert.notNull(audit);
+			Assert.isTrue(audit.getAuditor().getId() == b.getId());
 			position = audit.getPosition();
 			final AuditForm auditForm = new AuditForm();
 			auditForm.setId(audit.getId());
@@ -288,7 +296,7 @@ public class AuditAuditorController extends AbstractController {
 			if (this.auditService.findOne(auditId) == null)
 				redirectAttrs.addFlashAttribute("message", "audit.error.unexist	");
 			else if (!this.auditService.findOne(auditId).getAuditor().equals(b))
-				redirectAttrs.addFlashAttribute("message", "audit.error.notFromHacker");
+				redirectAttrs.addFlashAttribute("message", "audit.error.notFromRookie");
 		}
 		return result;
 	}
@@ -303,7 +311,9 @@ public class AuditAuditorController extends AbstractController {
 	protected ModelAndView createModelAndView(final AuditForm auditForm, final String message) {
 		final ModelAndView result;
 
-		final Collection<Position> positions = this.positionService.findFinalMode();
+		final Auditor b = this.auditorService.findByUseraccount(LoginService.getPrincipal());
+
+		final Collection<Position> positions = b.getPositions();
 
 		result = new ModelAndView("audit/create");
 
