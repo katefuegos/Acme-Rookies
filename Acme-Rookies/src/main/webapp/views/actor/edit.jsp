@@ -55,7 +55,9 @@
 
 	<jstl:if test="${actorForm.auth == 'COMPANY' }">
 		<acme:textbox code="actor.comercialName" path="comercialName" />
-		<form:hidden path="marca" />
+		<!-- Bug ------------------------------------------------------------- -->
+		<%-- <form:hidden path="marca" /> --%>
+		<!-- Bug ------------------------------------------------------------- -->
 	</jstl:if>
 	
 	<jstl:if test="${actorForm.auth == 'PROVIDER' }">
