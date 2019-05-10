@@ -45,20 +45,27 @@
 	<form:errors path="phone" cssClass="error" />
 	<br />
 	<acme:textbox code="actor.address" path="address" />
-	
-	
-	<jstl:if test="${actorForm.auth != 'COMPANY'}">
-		<form:hidden path="comercialName" />
 
+
+	<jstl:if
+		test="${actorForm.auth != 'COMPANY' && actorForm.auth != 'PROVIDER'}">
+		<form:hidden path="comercialName" />
+		<form:hidden path="marca" />
 	</jstl:if>
 
 	<jstl:if test="${actorForm.auth == 'COMPANY' }">
 		<acme:textbox code="actor.comercialName" path="comercialName" />
+		<form:hidden path="marca" />
+	</jstl:if>
+	
+	<jstl:if test="${actorForm.auth == 'PROVIDER' }">
+		<form:hidden path="comercialName" />
+		<acme:textbox code="actor.make" path="marca" />
 	</jstl:if>
 
-<br>
+	<br>
 	<h5>
-	<spring:message code="actor.add.creditcard" />
+		<spring:message code="actor.add.creditcard" />
 	</h5>
 	<acme:textbox code="actor.holderName" path="holderName" />
 	<acme:textbox code="actor.brandName" path="brandName" />
@@ -91,7 +98,7 @@
 		<input type="submit" name="save"
 			value='<spring:message code="actor.save"/>'
 			onclick=" javascript: return isValid();">
-	
+
 		<acme:cancel url="welcome/index.do" code="actor.back" />
 		<br />
 	</jstl:if>
