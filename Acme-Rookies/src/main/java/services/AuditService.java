@@ -71,8 +71,10 @@ public class AuditService {
 		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("AUDITOR"));
 		final Auditor auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
 		Assert.isTrue(audit.getAuditor().equals(auditor));
-		if (audit.getId() == 0)
+		if (audit.getId() == 0) {
 			audit.setMoment(new Date(System.currentTimeMillis() - 1000));
+			Assert.isTrue(auditor.getPositions().contains(audit.getPosition()));
+		}
 		final Audit saved = this.auditRepository.save(audit);
 		return saved;
 	}

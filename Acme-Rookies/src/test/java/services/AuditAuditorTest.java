@@ -34,7 +34,7 @@ public class AuditAuditorTest extends AbstractTest {
 	// Tests ------------------------------------------------------------------
 	@Test
 	public void driverCreate() {
-		final int positionIdMine = super.getEntityId("position1");
+		final int positionIdMine = super.getEntityId("position3");
 		final int positionIdNotMine = super.getEntityId("position2");
 		final String text = "test";
 
@@ -58,7 +58,19 @@ public class AuditAuditorTest extends AbstractTest {
 			 */
 			{
 				text, positionIdMine, "company1", java.lang.IllegalArgumentException.class
+			},
+			/*
+			 * a) Functional requirements - 3.2. An actor who is
+			 * authenticated as an auditor must be able to manage
+			 * his or her audits. - Create.
+			 * b) Negative test - Business rule: it can't be created by a not auditor user c)
+			 * analysis of sentence coverage: 92.4%
+			 * d) analysis of data coverage - se intenta crear audit siendo company1.
+			 */
+			{
+				text, positionIdNotMine, "auditor1", java.lang.IllegalArgumentException.class
 			}
+
 		};
 
 		for (int i = 0; i < testingData.length; i++)
