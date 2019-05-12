@@ -170,8 +170,8 @@ public class ActorForm {
 	public void setAddress(final String address) {
 		this.address = address;
 	}
-
-	@NotBlank
+	// TODO descomentar para la entrega final
+	//@NotBlank
 	public String getComercialName() {
 		return this.comercialName;
 	}

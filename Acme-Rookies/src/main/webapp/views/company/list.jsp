@@ -37,8 +37,11 @@
 				code="position.display" /> </a>
 	</display:column>
 	<display:column>
-		<a href="position/listByCompany.do?companyId=${row.id}"><spring:message
+		<a href="position/listByCompany.do?companyId="><spring:message
 				code="company.display.position" /> </a>
+				
+<%-- 		<a href="position/listByCompany.do?companyId=${row.id}"><spring:message
+				code="company.display.position" /> </a> --%>
 	</display:column>
 
 </display:table>

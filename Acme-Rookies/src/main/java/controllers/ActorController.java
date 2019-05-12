@@ -25,6 +25,7 @@ import security.LoginService;
 import services.ActorService;
 import services.CompanyService;
 import services.ConfigurationService;
+import services.ProviderService;
 import domain.Actor;
 import domain.Company;
 import forms.ActorForm;
@@ -40,7 +41,11 @@ public class ActorController extends AbstractController {
 	private CompanyService			companyService;
 
 	@Autowired
+	private ProviderService			providerService;
+
+	@Autowired
 	private ConfigurationService	configurationService;
+
 
 	// Edit ---------------------------------------------------------------
 
@@ -51,22 +56,33 @@ public class ActorController extends AbstractController {
 
 		final Authority rookie = new Authority();
 		rookie.setAuthority(Authority.ROOKIE);
+		final Authority audit = new Authority();
+		audit.setAuthority(Authority.PROVIDER);
+		final Authority provider = new Authority();
+		provider.setAuthority(Authority.AUDITOR);
 		final Authority company = new Authority();
 		company.setAuthority(Authority.COMPANY);
 		final Authority admin = new Authority();
 		admin.setAuthority(Authority.ADMIN);
 
 		actorForm.setComercialName("---");
+		actorForm.setMarca("---");
 		try {
 			final Actor a = this.actorService.findByUserAccount(LoginService.getPrincipal());
 			Assert.notNull(a);
 
 			if (a.getUserAccount().getAuthorities().contains(rookie))
 				actorForm.setAuth("ROOKIE");
+			if (a.getUserAccount().getAuthorities().contains(audit))
+				actorForm.setAuth("AUDITOR");
 			else if (a.getUserAccount().getAuthorities().contains(company)) {
 				actorForm.setAuth("COMPANY");
 				final Company comp = this.companyService.findCompanyByUseraccountId(a.getUserAccount().getId());
 				actorForm.setComercialName(comp.getComercialName());
+			} else if (a.getUserAccount().getAuthorities().contains(provider)) {
+				actorForm.setAuth("PROVIDER");
+				final domain.Provider prov = this.providerService.findByUseraccount(a.getUserAccount());
+				actorForm.setComercialName(prov.getMake());
 			} else if (a.getUserAccount().getAuthorities().contains(admin))
 				actorForm.setAuth("ADMIN");
 
@@ -138,10 +154,17 @@ public class ActorController extends AbstractController {
 		ModelAndView result;
 		final Authority company = new Authority();
 		company.setAuthority(Authority.COMPANY);
+		final Authority provider = new Authority();
+		provider.setAuthority(Authority.PROVIDER);
+
 		if (actorForm.getUserAccount().getAuthorities().contains(company)) {
 			actorForm.setAuth("COMPANY");
 			final Company comp = this.companyService.findCompanyByUseraccountId(actorForm.getUserAccount().getId());
 			actorForm.setComercialName(comp.getComercialName());
+		} else if (actorForm.getUserAccount().getAuthorities().contains(provider)) {
+			actorForm.setAuth("PROVIDER");
+			final domain.Provider pro = this.providerService.findByUseraccount(actorForm.getUserAccount());
+			actorForm.setMarca(pro.getMake());
 		}
 
 		result = new ModelAndView("actor/edit");

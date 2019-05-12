@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 import repositories.ItemRepository;
 import security.LoginService;
 import domain.Item;
+import domain.Provider;
 
 @Service
 @Transactional
@@ -56,14 +57,14 @@ public class ItemService {
 
 	public Item save(final Item item) {
 		Assert.notNull(item);
-
+		this.check(item);
 		final Item saved = this.itemRepository.save(item);
 		return saved;
 	}
 
 	public void delete(final Item item) {
 		Assert.notNull(item);
-
+		this.check(item);
 		this.itemRepository.delete(item);
 	}
 
@@ -74,6 +75,13 @@ public class ItemService {
 	public Collection<Item> findByProviderId(final int providerId) {
 		Assert.notNull(providerId);
 		return this.itemRepository.findByProviderId(providerId);
+	}
+
+	public void check(final Item item) {
+		final Provider provider = this.providerService.findByUseraccount(LoginService.getPrincipal());
+		Assert.notNull(provider);
+		Assert.notNull(item);
+		Assert.isTrue(item.getProvider().equals(provider));
 	}
 
 }
