@@ -24,6 +24,7 @@ public class ActorForm {
 	private int			version;
 
 	private UserAccount	userAccount;
+	private String		passwordConfirmation;
 	private boolean		checkTerms;
 	private String		auth;
 
@@ -91,6 +92,14 @@ public class ActorForm {
 
 	public void setUserAccount(final UserAccount userAccount) {
 		this.userAccount = userAccount;
+	}
+
+	public String getPasswordConfirmation() {
+		return this.passwordConfirmation;
+	}
+
+	public void setPasswordConfirmation(final String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
 	}
 
 	public int getId() {
@@ -170,8 +179,8 @@ public class ActorForm {
 	public void setAddress(final String address) {
 		this.address = address;
 	}
-	// TODO descomentar para la entrega final
-	//@NotBlank
+
+	@NotBlank
 	public String getComercialName() {
 		return this.comercialName;
 	}

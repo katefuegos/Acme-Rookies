@@ -32,6 +32,8 @@
 		path="userAccount.username" />
 	<acme:password code="actor.userAccount.password"
 		path="userAccount.password" />
+	<acme:password code="actor.userAccount.password"
+		path="passwordConfirmation" />
 	<acme:textbox code="actor.name" path="name" />
 	<acme:textbox code="actor.surnames" path="surname" />
 	<acme:textbox code="actor.VATnumber" path="VATNumber" />

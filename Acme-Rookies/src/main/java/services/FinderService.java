@@ -21,8 +21,8 @@ import security.UserAccount;
 import domain.Actor;
 import domain.Configuration;
 import domain.Finder;
-import domain.Rookie;
 import domain.Position;
+import domain.Rookie;
 
 @Service
 @Transactional

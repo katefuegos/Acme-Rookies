@@ -92,6 +92,8 @@ public class RegisterAdministratorController extends AbstractController {
 			try {
 
 				Assert.isTrue(actorForm.getCheckTerms(), "actor.check.true");
+				Assert.isTrue(actorForm.getPasswordConfirmation().equals(actorForm.getUserAccount().getPassword()), "actor.passwordConfirmation.invalid");
+
 				final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 				actorForm.getUserAccount().setPassword(encoder.encodePassword(actorForm.getUserAccount().getPassword(), null));
 				this.actorService.update(actorForm);
@@ -105,6 +107,8 @@ public class RegisterAdministratorController extends AbstractController {
 				else if (oops.getMessage() == "actor.check.true")
 					result = this.createEditModelAndView(actorForm, oops.getMessage());
 				else if (oops.getMessage() == "actor.creditcard.error.date.invalid")
+					result = this.createEditModelAndView(actorForm, oops.getMessage());
+				else if (oops.getMessage() == "actor.passwordConfirmation.invalid")
 					result = this.createEditModelAndView(actorForm, oops.getMessage());
 
 				else

@@ -32,7 +32,13 @@ public class PositionService {
 	private CompanyService		companyService;
 
 	@Autowired
+	private AuditorService		auditorService;
+
+	@Autowired
 	private ProblemService		problemService;
+
+	@Autowired
+	private AuditService		auditService;
 
 
 	// Constructor----------------------------------------------
@@ -89,6 +95,13 @@ public class PositionService {
 		if (!collection.isEmpty())
 			for (final Problem problem : collection)
 				this.problemService.delete(problem);
+
+		final Collection<domain.Audit> audits = this.auditService.findByPositionId(position.getId());
+		if (!audits.isEmpty())
+			for (final domain.Audit audit : audits)
+				this.auditService.deleteByPosition(audit);
+
+		this.auditorService.removeReference(position);
 
 		this.positionRepository.delete(position);
 	}

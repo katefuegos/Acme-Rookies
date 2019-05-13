@@ -15,6 +15,7 @@ import repositories.AuditRepository;
 import security.LoginService;
 import domain.Audit;
 import domain.Auditor;
+import domain.Company;
 import domain.Position;
 
 @Service
@@ -85,6 +86,15 @@ public class AuditService {
 		final Auditor auditor = this.auditorService.findByUseraccount(LoginService.getPrincipal());
 		Assert.isTrue(audit.getAuditor().equals(auditor));
 		Assert.isTrue(audit.isDraftMode(), "audit.error.draftmode");
+
+		this.auditRepository.delete(audit);
+	}
+
+	public void deleteByPosition(final Audit audit) {
+		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("COMPANY"));
+		Assert.notNull(audit);
+		final Company company = this.companyService.findCompanyByUseraccount(LoginService.getPrincipal());
+		Assert.isTrue(audit.getPosition().getCompany().equals(company));
 
 		this.auditRepository.delete(audit);
 	}

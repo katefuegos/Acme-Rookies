@@ -88,4 +88,19 @@ public class AuditorService {
 		return this.auditorRepository.findAuditorByUsername(username);
 	}
 
+	public Collection<Auditor> findPositionId(final int positionId) {
+		return this.auditorRepository.findPositionId(positionId);
+	}
+
+	public void removeReference(final Position position) {
+		final int positionId = position.getId();
+		final Collection<Auditor> auditors = this.findPositionId(positionId);
+
+		for (final Auditor auditor : auditors)
+			if (auditor.getPositions().contains(position))
+				auditor.getPositions().remove(position);
+
+		this.auditorRepository.save(auditors);
+
+	}
 }

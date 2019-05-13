@@ -19,12 +19,12 @@
 	<display:column property="email" titleKey="actor.email" />
 	<display:column property="phone" titleKey="actor.phone" />
 	<display:column property="VATNumber" titleKey="actor.VATnumber" />
-	<display:column titleKey="company.auditScore" >
+	<display:column titleKey="company.auditScore">
 		<jstl:if test="${row.auditScore != null }">
-			<jstl:out value="${row.auditScore }"/>
+			<jstl:out value="${row.auditScore }" />
 		</jstl:if>
 		<jstl:if test="${row.auditScore == null }">
-			<p> N/A </p>
+			<p>N/A</p>
 		</jstl:if>
 	</display:column>
 	<jstl:if test="${isRead==true}">
@@ -37,11 +37,10 @@
 				code="position.display" /> </a>
 	</display:column>
 	<display:column>
-		<a href="position/listByCompany.do?companyId="><spring:message
+
+		<a href="position/listByCompany.do?companyId=${row.id}"><spring:message
 				code="company.display.position" /> </a>
-				
-<%-- 		<a href="position/listByCompany.do?companyId=${row.id}"><spring:message
-				code="company.display.position" /> </a> --%>
+
 	</display:column>
 
 </display:table>

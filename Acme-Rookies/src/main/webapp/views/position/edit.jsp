@@ -16,16 +16,12 @@
 	<jstl:if test="${idPosition==0 }">
 		<form:hidden path="draftmode" />
 	</jstl:if>
-	
-<!-- BUG ---------------------------------------------------------- -->
-		<acme:textbox code="position.ticker" path="ticker"
-			readonly="${readonly}" />
-<!-- BUG ---------------------------------------------------------- -->
 
-<%-- 	<jstl:if test="${readonly==true }">
+
+	<jstl:if test="${readonly==true }">
 		<acme:textbox code="position.ticker" path="ticker"
 			readonly="${readonly}" />
-	</jstl:if> --%>
+	</jstl:if>
 
 	<acme:textbox code="position.title" path="title" readonly="${readonly}" />
 	<acme:textbox code="position.description" path="description"

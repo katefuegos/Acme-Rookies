@@ -42,8 +42,8 @@ public class ProblemForm {
 	public void setTitle(final String title) {
 		this.title = title;
 	}
-	// TODO descomentar
-	//@NotBlank
+
+	@NotBlank
 	public String getHint() {
 		return this.hint;
 	}
