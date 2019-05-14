@@ -6,7 +6,6 @@ import javax.persistence.AccessType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
 import domain.Curricula;
@@ -32,7 +31,6 @@ public class ApplicationForm {
 		this.id = id;
 	}
 
-	@NotBlank
 	public String getTextAnswer() {
 		return this.textAnswer;
 	}
@@ -42,7 +40,6 @@ public class ApplicationForm {
 	}
 
 	@URL
-	@NotBlank
 	public String getLinkAnswer() {
 		return this.linkAnswer;
 	}
