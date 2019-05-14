@@ -24,7 +24,7 @@ public class ActorForm {
 	private int			version;
 
 	private UserAccount	userAccount;
-	private String		passwordConfirmation;
+	private String		confirmacion;
 	private boolean		checkTerms;
 	private String		auth;
 
@@ -94,12 +94,12 @@ public class ActorForm {
 		this.userAccount = userAccount;
 	}
 
-	public String getPasswordConfirmation() {
-		return this.passwordConfirmation;
+	public String getConfirmacion() {
+		return this.confirmacion;
 	}
 
-	public void setPasswordConfirmation(final String passwordConfirmation) {
-		this.passwordConfirmation = passwordConfirmation;
+	public void setConfirmacion(final String confirmacion) {
+		this.confirmacion = confirmacion;
 	}
 
 	public int getId() {

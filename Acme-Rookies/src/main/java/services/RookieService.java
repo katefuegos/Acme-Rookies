@@ -45,7 +45,7 @@ public class RookieService {
 		final UserAccount userAccount = new UserAccount();
 		final Collection<Authority> authorities = new ArrayList<Authority>();
 
-		rookie.setShowMessage(!this.configurationService.findDefault().isProcessExecuted());
+		rookie.setShowMessage(!this.configurationService.findDefault().isProcesoEjecutado());
 
 		final Authority a = new Authority();
 		a.setAuthority("COMPANY");

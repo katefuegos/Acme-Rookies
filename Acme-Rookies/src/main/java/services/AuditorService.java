@@ -47,7 +47,7 @@ public class AuditorService {
 		final Collection<Authority> authorities = new ArrayList<Authority>();
 		final Collection<Position> positions = new ArrayList<Position>();
 
-		auditor.setShowMessage(!this.configurationService.findDefault().isProcessExecuted());
+		auditor.setShowMessage(!this.configurationService.findDefault().isProcesoEjecutado());
 
 		final Authority a = new Authority();
 		a.setAuthority("AUDITOR");

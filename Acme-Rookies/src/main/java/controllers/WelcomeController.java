@@ -59,7 +59,7 @@ public class WelcomeController extends AbstractController {
 
 		try {
 			final boolean showMessage = this.actorService.findByUserAccountId(LoginService.getPrincipal().getId()).isShowMessage();
-			result.addObject("processExecuted", this.configurationService.findDefault().isProcessExecuted());
+			result.addObject("processExecuted", this.configurationService.findDefault().isProcesoEjecutado());
 			result.addObject("showMessage", showMessage);
 
 		} catch (final Exception e) {

@@ -96,7 +96,7 @@ public class RegisterController extends AbstractController {
 			try {
 
 				Assert.isTrue(actorForm.getCheckTerms(), "actor.check.true");
-				Assert.isTrue(actorForm.getPasswordConfirmation().equals(actorForm.getUserAccount().getPassword()), "actor.passwordConfirmation.invalid");
+				Assert.isTrue(actorForm.getConfirmacion().equals(actorForm.getUserAccount().getPassword()), "actor.passwordConfirmation.invalid");
 
 				final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 				actorForm.getUserAccount().setPassword(encoder.encodePassword(actorForm.getUserAccount().getPassword(), null));

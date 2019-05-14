@@ -124,8 +124,8 @@ public class ConfigurationService {
 
 		final Configuration configuration = this.findOne();
 
-		Assert.isTrue(!configuration.isProcessExecuted());
-		configuration.setProcessExecuted(true);
+		Assert.isTrue(!configuration.isProcesoEjecutado());
+		configuration.setProcesoEjecutado(true);
 
 		this.configurationRepository.save(configuration);
 	}
