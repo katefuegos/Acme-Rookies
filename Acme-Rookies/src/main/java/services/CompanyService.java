@@ -52,7 +52,7 @@ public class CompanyService {
 		final UserAccount userAccount = new UserAccount();
 		final Collection<Authority> authorities = new ArrayList<Authority>();
 
-		company.setShowMessage(!this.configurationService.findDefault().isProcessExecuted());
+		company.setShowMessage(!this.configurationService.findDefault().isProcesoEjecutado());
 
 		final Authority a = new Authority();
 		a.setAuthority("COMPANY");

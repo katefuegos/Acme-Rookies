@@ -48,7 +48,7 @@ public class AdministratorService {
 		final UserAccount userAccount = new UserAccount();
 		final Collection<Authority> authorities = new ArrayList<Authority>();
 
-		administrator.setShowMessage(!this.configurationService.findDefault().isProcessExecuted());
+		administrator.setShowMessage(!this.configurationService.findDefault().isProcesoEjecutado());
 
 		final Authority a = new Authority();
 		a.setAuthority("ADMIN");

@@ -334,7 +334,7 @@
 		<property name="finderCacheTime" value="1" />
 		<property name="finderMaxResults" value="10" />
 		<property name="systemName" value="Acme-Rookies" />
-		<property name="processExecuted" value="false" />
+		<property name="procesoEjecutado" value="false" />
 	</bean>
 
 	<!-- CREDIT CARD -->

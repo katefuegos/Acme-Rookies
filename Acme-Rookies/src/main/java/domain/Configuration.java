@@ -25,7 +25,7 @@ public class Configuration extends DomainEntity {
 	private int					finderCacheTime;
 	private int					finderMaxResults;
 	private String				systemName;
-	private boolean				processExecuted;
+	private boolean				procesoEjecutado;
 
 
 	@NotBlank
@@ -88,12 +88,12 @@ public class Configuration extends DomainEntity {
 		this.welcomeMessage = welcomeMessage;
 	}
 
-	public boolean isProcessExecuted() {
-		return processExecuted;
+	public boolean isProcesoEjecutado() {
+		return procesoEjecutado;
 	}
 
-	public void setProcessExecuted(boolean processExecuted) {
-		this.processExecuted = processExecuted;
+	public void setProcesoEjecutado(boolean procesoEjecutado) {
+		this.procesoEjecutado = procesoEjecutado;
 	}
 
 	// Relationships ---------------------------------------------------------

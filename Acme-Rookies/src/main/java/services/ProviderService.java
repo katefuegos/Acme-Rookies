@@ -45,7 +45,7 @@ public class ProviderService {
 		final UserAccount userAccount = new UserAccount();
 		final Collection<Authority> authorities = new ArrayList<Authority>();
 
-		provider.setShowMessage(!this.configurationService.findDefault().isProcessExecuted());
+		provider.setShowMessage(!this.configurationService.findDefault().isProcesoEjecutado());
 
 		final Authority a = new Authority();
 		a.setAuthority("PROVIDER");
