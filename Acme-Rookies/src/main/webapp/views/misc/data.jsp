@@ -37,3 +37,17 @@
 	<br>
 	<spring:message code="misc.deletePersonalDataInfo" />
 </security:authorize>
+<security:authorize access="hasRole('AUDITOR')">
+	<input type="button"
+		value="<spring:message code="misc.deletePersonalData"/>"
+		onclick="javascript: window.location.href = 'data/deletePersonalData.do';" />
+	<br>
+	<spring:message code="misc.deletePersonalDataInfo" />
+</security:authorize>
+<security:authorize access="hasRole('PROVIDER')">
+	<input type="button"
+		value="<spring:message code="misc.deletePersonalData"/>"
+		onclick="javascript: window.location.href = 'data/deletePersonalData.do';" />
+	<br>
+	<spring:message code="misc.deletePersonalDataInfo" />
+</security:authorize>

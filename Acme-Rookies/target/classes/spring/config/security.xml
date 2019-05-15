@@ -238,6 +238,8 @@
 			access="hasRole('PROVIDER')" />
 		<security:intercept-url pattern="/item/listByProvider.do"
 			access="permitAll" />
+		<security:intercept-url pattern="/item/list.do"
+			access="permitAll" />
 
 		<!-- PROVIDER -->
 		<security:intercept-url pattern="/provider/list.do"

@@ -40,7 +40,7 @@
 								code="master.page.register.company" /></a></li>
 					<li><a href="register/actor.do?authority=PROVIDER"><spring:message
 								code="master.page.register.provider" /></a></li>
-					
+
 
 					<security:authorize access="hasRole('ADMIN')">
 						<li><a
@@ -53,6 +53,8 @@
 						code="master.page.position.list" /></a></li>
 			<li><a href="provider/list.do"><spring:message
 						code="master.page.providers.list" /></a></li>
+			<li><a href="item/list.do"><spring:message
+						code="master.page.items.list" /></a></li>
 			<li><a href="company/list.do"><spring:message
 						code="master.page.company.list" /></a></li>
 		</security:authorize>
@@ -78,6 +80,8 @@
 			<li><a href="provider/list.do"><spring:message
 						code="master.page.providers.list" /></a></li>
 			<li class="arrow"></li>
+			<li><a href="item/list.do"><spring:message
+						code="master.page.items.list" /></a></li>
 			<li><a href="company/list.do"><spring:message
 						code="master.page.company.list" /></a></li>
 			<li><a href="notification/actor/list.do"><spring:message
@@ -154,13 +158,13 @@
 			<li><a class="fNiv" href="curricula/rookie/list.do"><spring:message
 						code="master.page.curricula.list" /></a></li>
 		</security:authorize>
-		
+
 		<!-- PROVIDER -->
 
 		<security:authorize access="hasRole('PROVIDER')">
 			<li><a class="fNiv" href="item/provider/list.do"><spring:message
 						code="master.page.item.list" /></a></li>
-		
+
 		</security:authorize>
 
 		<!-- AUDITOR -->

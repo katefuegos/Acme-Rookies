@@ -23,13 +23,17 @@ import security.UserAccount;
 import security.UserAccountService;
 import services.ActorService;
 import services.AdministratorService;
+import services.AuditorService;
 import services.CompanyService;
 import services.ConfigurationService;
 import services.CurriculaService;
+import services.ProviderService;
 import services.RookieService;
 import domain.Administrator;
+import domain.Auditor;
 import domain.Company;
 import domain.Curricula;
+import domain.Provider;
 import domain.Rookie;
 
 @Controller
@@ -38,6 +42,12 @@ public class DownloadPDFController {
 
 	@Autowired
 	CompanyService companyService;
+
+	@Autowired
+	ProviderService providerService;
+
+	@Autowired
+	AuditorService auditorService;
 
 	@Autowired
 	RookieService rookieService;
@@ -119,6 +129,36 @@ public class DownloadPDFController {
 				csvWriter.write(rookie, header);
 			}
 
+		} else if (userAccount.getAuthorities().toString().contains("PROVIDER")) {
+
+			Provider p1 = providerService.findByUseraccount(userAccount);
+
+			List<Provider> listProvider = Arrays.asList(p1);
+
+			String[] header = { "name", "surnames", "VATNumber", "photo",
+					"email", "phone", "address", "make" };
+
+			csvWriter.writeHeader(header);
+
+			for (Provider provider : listProvider) {
+				csvWriter.write(provider, header);
+			}
+
+		} else if (userAccount.getAuthorities().toString().contains("AUDITOR")) {
+
+			Auditor a1 = auditorService.findByUseraccount(userAccount);
+
+			List<Auditor> listAuditor = Arrays.asList(a1);
+
+			String[] header = { "name", "surnames", "VATNumber", "photo",
+					"email", "phone", "address" };
+
+			csvWriter.writeHeader(header);
+
+			for (Auditor auditor : listAuditor) {
+				csvWriter.write(auditor, header);
+			}
+
 		} else if (userAccount.getAuthorities().toString().contains("ADMIN")) {
 
 			Administrator a1 = administratorService
@@ -184,6 +224,36 @@ public class DownloadPDFController {
 						curriculaService.delete(c);
 					}
 				}
+			} else if (userAccount.getAuthorities().toString()
+					.contains("PROVIDER")) {
+				Provider p = providerService.findByUseraccount(userAccount);
+				Assert.notNull(p);
+				p.setAddress(null);
+				p.setEmail("null@null.null");
+				p.setName("null");
+				p.setSurnames("null");
+				p.setVATNumber("null");
+				p.setPhone(null);
+				p.setPhoto(null);
+				p.setMake("null");
+				userAccount.setEnabled(false);
+				providerService.save(p);
+				userAccountService.save(userAccount);
+
+			} else if (userAccount.getAuthorities().toString()
+					.contains("AUDITOR")) {
+				Auditor a = auditorService.findByUseraccount(userAccount);
+				Assert.notNull(a);
+				a.setAddress(null);
+				a.setEmail("null@null.null");
+				a.setName("null");
+				a.setSurnames("null");
+				a.setVATNumber("null");
+				a.setPhone(null);
+				a.setPhoto(null);
+				userAccount.setEnabled(false);
+				auditorService.save(a);
+				userAccountService.save(userAccount);
 			} else {
 				Assert.isTrue(false);
 			}
