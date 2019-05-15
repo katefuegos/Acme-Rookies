@@ -171,12 +171,14 @@ public class PositionCompanyTest extends AbstractTest {
 
 		for (int i = 0; i < testingData.length; i++)
 			try {
-				//				System.out.println("CASE -- " + i + " -- " + (String) testingData[i][10]);
+								System.out.println("CASE -- " + i + " -- " + (String) testingData[i][10]);
 				super.startTransaction();
 				this.templateManage((String) testingData[i][0], (String) testingData[i][1], (Date) testingData[i][2], (String) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (Double) testingData[i][6],
 					(boolean) testingData[i][7], (String) testingData[i][8], (String) testingData[i][9], (String) testingData[i][10], (Class<?>) testingData[i][11]);
 			} catch (final Throwable oops) {
-				//				System.out.println("-------  " + i + "  --------");
+				
+				
+				System.out.println("-------  " + i + "  --------");
 				System.out.println(oops.getMessage());
 				throw new RuntimeException(oops);
 			} finally {

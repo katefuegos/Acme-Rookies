@@ -48,7 +48,7 @@ public class ItemProviderTest extends AbstractTest {
 			/*
 			 * a) Functional requirements - 10.1 - Create a new Item by provider
 			 * b) Positive tests -
-			 * c) analysis of sentence coverage:
+			 * c) analysis of sentence coverage: 97.2%
 			 * d) analysis of data coverage. The item is being modified with the
 			 * following data: name= "Nuevo item", description="...", link="https://www.oneLink.com", picture="https://www.instagram.com"
 			 * The actor in charge is: provider1
@@ -59,7 +59,7 @@ public class ItemProviderTest extends AbstractTest {
 			/*
 			 * a) Functional requirements - 10.1 - Create a new Item by provider
 			 * b) Negative tests - the name can not be blank
-			 * c) analysis of sentence coverage:
+			 * c) analysis of sentence coverage: 97.2%
 			 * d) analysis of data coverage. The item is being modified with the
 			 * following data: name= "", description="...", link="https://www.oneLink.com", picture="https://www.instagram.com"
 			 * The actor in charge is: provider1
@@ -70,7 +70,7 @@ public class ItemProviderTest extends AbstractTest {
 			/*
 			 * a) Functional requirements - 10.1 - Create a new Item by provider
 			 * b) Negative tests - the description can not be blank
-			 * c) analysis of sentence coverage:
+			 * c) analysis of sentence coverage: 97.2%
 			 * d) analysis of data coverage. The item is being modified with the
 			 * following data: name= "Nuevo item", description="", link="https://www.oneLink.com", picture="https://www.instagram.com"
 			 * The actor in charge is: provider1
@@ -81,7 +81,7 @@ public class ItemProviderTest extends AbstractTest {
 			/*
 			 * a) Functional requirements - 10.1 - Edit a Item by provider
 			 * b) Positive tests -
-			 * c) analysis of sentence coverage:
+			 * c) analysis of sentence coverage: 97.2%
 			 * d) analysis of data coverage. The item is being modified with the
 			 * following data: name= "Nuevo item", description="...", link="https://www.oneLink.com", picture="https://www.instagram.com"
 			 * The actor in charge is: provider1
@@ -92,7 +92,7 @@ public class ItemProviderTest extends AbstractTest {
 			/*
 			 * a) Functional requirements - 10.1 - Edit a Item by provider
 			 * b) Negative tests - the description can not be blank
-			 * c) analysis of sentence coverage:
+			 * c) analysis of sentence coverage: 97.2%
 			 * d) analysis of data coverage. The item is being modified with the
 			 * following data: name= "Nuevo item", description="...", link="https://www.oneLink.com", picture="https://www.instagram.com"
 			 * The actor in charge is: provider1
@@ -103,7 +103,7 @@ public class ItemProviderTest extends AbstractTest {
 			/*
 			 * a) Functional requirements - 10.1 - Edit a Item by provider
 			 * b) Negative tests - Only the owner can modify his item
-			 * c) analysis of sentence coverage:
+			 * c) analysis of sentence coverage: 97.2%
 			 * d) analysis of data coverage. The item is being modified with the
 			 * following data: name= "Nuevo item", description="...", link="https://www.oneLink.com", picture="https://www.instagram.com"
 			 * The actor in charge is: provider1
@@ -114,7 +114,7 @@ public class ItemProviderTest extends AbstractTest {
 			/*
 			 * a) Functional requirements - 10.1 - Edit a Item by provider
 			 * b) Positive tests -
-			 * c) analysis of sentence coverage:
+			 * c) analysis of sentence coverage: 97.2%
 			 * d) analysis of data coverage. The item is being modified with the
 			 * following data: name= "Nuevo item", description="...", link="https://www.oneLink.com", picture="https://www.instagram.com"
 			 * The actor in charge is: provider1
@@ -125,7 +125,7 @@ public class ItemProviderTest extends AbstractTest {
 			/*
 			 * a) Functional requirements - 10.1 - Delete a Item by provider
 			 * b) Negative tests - You can not delete a null item
-			 * c) analysis of sentence coverage:
+			 * c) analysis of sentence coverage: 97.2%
 			 * d) analysis of data coverage. The item is being modified with the
 			 * following data: name= "Nuevo item", description="...", link="https://www.oneLink.com", picture="https://www.instagram.com"
 			 * The actor in charge is: provider1
@@ -136,7 +136,7 @@ public class ItemProviderTest extends AbstractTest {
 			/*
 			 * a) Functional requirements - 10.1 - Delete a Item by provider
 			 * b) Negative tests - Only the owner can modify his item
-			 * c) analysis of sentence coverage:
+			 * c) analysis of sentence coverage: 97.2%
 			 * d) analysis of data coverage. The item is being modified with the
 			 * following data: name= "Nuevo item", description="...", link="https://www.oneLink.com", picture="https://www.instagram.com"
 			 * The actor in charge is: provider1

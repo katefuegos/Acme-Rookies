@@ -1,3 +1,14 @@
+﻿drop database if exists `Acme-Rookies`;
+create database `Acme-Rookies`;
+
+grant select, insert, update, delete
+on `Acme-Rookies`.* to 'acme-user'@'%';
+grant select, insert, update, delete, create, drop, references, index, alter,
+create temporary tables, lock tables, create view, create routine,
+alter routine, execute, trigger, show view
+on `Acme-Rookies`.* to 'acme-manager'@'%';
+
+
 -- MySQL dump 10.13  Distrib 5.5.29, for Win64 (x86)
 --
 -- Host: localhost    Database: Acme-Rookies
@@ -624,7 +635,7 @@ CREATE TABLE `position` (
 
 LOCK TABLES `position` WRITE;
 /*!40000 ALTER TABLE `position` DISABLE KEYS */;
-INSERT INTO `position` VALUES (98,0,'\0','2019-09-09 09:13:00','description1','\0','profile1',1230,'skills1','tecnologies1','C3V3-8547','title1',93),(99,0,'\0','2019-05-12 10:00:00','description2','','profile2',1450,'skills2','tecnologies2','C3V3-8987','title2',93),(100,0,'\0','2019-01-23 12:00:00','description3','\0','profile3',2587.5,'skills3','tecnologies3','HOOL-5245','title3',95),(101,0,'\0','2019-05-12 10:00:00','description4','','profile4',4450,'skills4','tecnologies4','C3V3-4444','title4',93);
+INSERT INTO `position` VALUES (98,0,'\0','2019-09-09 09:13:00','description1','\0','profile1',1230,'skills1','tecnologies1','C3V3-8547','title1',93),(99,0,'\0','2019-05-12 10:00:00','description2','','profile2',1450,'skills2','tecnologies2','C3V3-8987','title2',93),(100,0,'\0','2019-01-23 12:00:00','description3','\0','profile3',2587.5,'skills3','tecnologies3','HOOL-5245','title3',95),(101,0,'\0','2019-09-12 10:00:00','description4','','profile4',4450,'skills4','tecnologies4','C3V3-4444','title4',93);
 /*!40000 ALTER TABLE `position` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -797,7 +808,7 @@ CREATE TABLE `user_account` (
 
 LOCK TABLES `user_account` WRITE;
 /*!40000 ALTER TABLE `user_account` DISABLE KEYS */;
-INSERT INTO `user_account` VALUES (68,0,NULL,'21232f297a57a5a743894a0e4a801fc3','admin'),(69,0,NULL,'9701eb1802a4c63f51e1501512fbdd30','rookie1'),(70,0,NULL,'124be4fa2a59341a1d7e965ac49b2923','rookie2'),(71,0,NULL,'df655f976f7c9d3263815bd981225cd9','company1'),(72,0,NULL,'d196a28097115067fefd73d25b0c0be8','company2'),(73,0,NULL,'175d2e7a63f386554a4dd66e865c3e14','auditor1'),(74,0,NULL,'04dd94ba3212ac52ad3a1f4cbfb52d4f','auditor2'),(75,0,NULL,'cdb82d56473901641525fbbd1d5dab56','provider1'),(76,0,NULL,'ebfc815ee2cc6a16225105bb7b3e1e53','provider2');
+INSERT INTO `user_account` VALUES (68,0,'','21232f297a57a5a743894a0e4a801fc3','admin'),(69,0,'','9701eb1802a4c63f51e1501512fbdd30','rookie1'),(70,0,'','124be4fa2a59341a1d7e965ac49b2923','rookie2'),(71,0,'','df655f976f7c9d3263815bd981225cd9','company1'),(72,0,'','d196a28097115067fefd73d25b0c0be8','company2'),(73,0,'','175d2e7a63f386554a4dd66e865c3e14','auditor1'),(74,0,'','04dd94ba3212ac52ad3a1f4cbfb52d4f','auditor2'),(75,0,'','cdb82d56473901641525fbbd1d5dab56','provider1'),(76,0,'','ebfc815ee2cc6a16225105bb7b3e1e53','provider2');
 /*!40000 ALTER TABLE `user_account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -835,4 +846,6 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-14 21:53:22
+-- Dump completed on 2019-05-15 19:46:00
+
+commit;
