@@ -15,6 +15,9 @@
 
 		<bean class="converters.ConfigurationToStringConverter" />
 		<bean class="converters.StringToConfigurationConverter" />
+		
+		<bean class="converters.CreditCardToStringConverter" />
+		<bean class="converters.StringToCreditCardConverter" />
 
 		<bean class="converters.ActorToStringConverter" />
 		<bean class="converters.StringToActorConverter" />

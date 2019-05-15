@@ -42,6 +42,9 @@ public class RegistrationTest extends AbstractTest {
 	@Autowired
 	private UserAccountService	accountService;
 
+	@Autowired
+	private CreditCardService	creditCardService;
+
 
 	// Tests ------------------------------------------------------------------
 
@@ -370,7 +373,7 @@ public class RegistrationTest extends AbstractTest {
 	private ActorForm constructActor(final UserAccount userAccount, final int id, final String auth, final String name, final String surname, final String VATNumber, final String photo, final String email, final String phone, final String address,
 		final String comercialName, final String marca, final String holderName, final String brandName, final String number, final int expirationMonth, final int expirationYear, final int cVVCode) {
 		final ActorForm result = new ActorForm();
-
+		final domain.CreditCard creditCard = this.creditCardService.create();
 		final int version = 0;
 
 		result.setId(id);
@@ -388,12 +391,14 @@ public class RegistrationTest extends AbstractTest {
 		result.setComercialName(comercialName);
 		result.setMarca(marca);
 
-		result.setHolderName(holderName);
-		result.setBrandName(brandName);
-		result.setNumber(number);
-		result.setExpirationMonth(expirationMonth);
-		result.setExpirationYear(expirationYear);
-		result.setCVVCode(cVVCode);
+		creditCard.setHolderName(holderName);
+		creditCard.setBrandName(brandName);
+		creditCard.setNumber(number);
+		creditCard.setExpirationMonth(expirationMonth);
+		creditCard.setExpirationYear(expirationYear);
+		creditCard.setCVVCode(cVVCode);
+
+		result.setTarjeta(creditCard);
 
 		return result;
 	}

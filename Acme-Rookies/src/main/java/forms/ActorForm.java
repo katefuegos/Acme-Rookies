@@ -40,10 +40,10 @@ public class ActorForm {
 	private String		holderName;
 	private String		brandName;
 	private String		number;
-	private int			expirationMonth;
-	private int			expirationYear;
-	private int			CVVCode;
-
+	private String		expirationMonth;
+	private String		expirationYear;
+	private String		CVVCode;
+	//private domain.CreditCard	tarjeta;
 	// Atributos necesarios para company
 	private String		comercialName;
 
@@ -219,33 +219,39 @@ public class ActorForm {
 	}
 
 	@Range(min = 1, max = 12)
-	@NotNull
-	public int getExpirationMonth() {
+	public String getExpirationMonth() {
 		return this.expirationMonth;
 	}
 
-	public void setExpirationMonth(final int expirationMonth) {
+	public void setExpirationMonth(final String expirationMonth) {
 		this.expirationMonth = expirationMonth;
 	}
 
 	@Range(min = 2019, max = 3000)
-	@NotNull
-	public int getExpirationYear() {
+	public String getExpirationYear() {
 		return this.expirationYear;
 	}
 
-	public void setExpirationYear(final int expirationYear) {
+	public void setExpirationYear(final String expirationYear) {
 		this.expirationYear = expirationYear;
 	}
 
-	@NotNull
 	@Range(min = 100, max = 999)
-	public int getCVVCode() {
+	public String getCVVCode() {
 		return this.CVVCode;
 	}
 
-	public void setCVVCode(final int cVVCode) {
+	public void setCVVCode(final String cVVCode) {
 		this.CVVCode = cVVCode;
 	}
+
+	//	@Valid
+	//	public domain.CreditCard getTarjeta() {
+	//		return this.tarjeta;
+	//	}
+	//
+	//	public void setTarjeta(final domain.CreditCard tarjeta) {
+	//		this.tarjeta = tarjeta;
+	//	}
 
 }

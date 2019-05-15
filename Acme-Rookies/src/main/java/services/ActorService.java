@@ -271,6 +271,7 @@ public class ActorService {
 
 	private domain.CreditCard saveCreditCard(final ActorForm f) {
 		final CreditCard creditCard;
+
 		if (f.getId() != 0)
 			creditCard = this.findOne(f.getId()).getCreditCard();
 		else
@@ -279,9 +280,9 @@ public class ActorService {
 		creditCard.setHolderName(f.getHolderName());
 		creditCard.setBrandName(f.getBrandName());
 		creditCard.setNumber(f.getNumber());
-		creditCard.setExpirationMonth(f.getExpirationMonth());
-		creditCard.setExpirationYear(f.getExpirationYear());
-		creditCard.setCVVCode(f.getCVVCode());
+		creditCard.setExpirationMonth(Integer.valueOf(f.getExpirationMonth()));
+		creditCard.setExpirationYear(Integer.valueOf(f.getExpirationYear()));
+		creditCard.setCVVCode(Integer.valueOf(f.getCVVCode()));
 
 		final CreditCard result = this.creditCardService.save(creditCard);
 

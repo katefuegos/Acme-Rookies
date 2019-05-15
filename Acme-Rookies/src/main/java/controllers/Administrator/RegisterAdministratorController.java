@@ -110,6 +110,8 @@ public class RegisterAdministratorController extends AbstractController {
 					result = this.createEditModelAndView(actorForm, oops.getMessage());
 				else if (oops.getMessage() == "actor.passwordConfirmation.invalid")
 					result = this.createEditModelAndView(actorForm, oops.getMessage());
+				else if (oops.getClass() == NumberFormatException.class)
+					result = this.createEditModelAndView(actorForm, "actor.creditcard.error.invalid");
 
 				else
 					result = this.createEditModelAndView(actorForm, "message.commit.error");

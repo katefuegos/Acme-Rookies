@@ -95,6 +95,8 @@ public class RegisterController extends AbstractController {
 		else
 			try {
 
+				final Integer d1 = Integer.valueOf(actorForm.getCVVCode());
+
 				Assert.isTrue(actorForm.getCheckTerms(), "actor.check.true");
 				Assert.isTrue(actorForm.getConfirmacion().equals(actorForm.getUserAccount().getPassword()), "actor.passwordConfirmation.invalid");
 
@@ -114,14 +116,14 @@ public class RegisterController extends AbstractController {
 					result = this.createEditModelAndView(actorForm, oops.getMessage());
 				else if (oops.getMessage() == "actor.passwordConfirmation.invalid")
 					result = this.createEditModelAndView(actorForm, oops.getMessage());
-
+				else if (oops.getClass() == NumberFormatException.class)
+					result = this.createEditModelAndView(actorForm, "actor.creditcard.error.invalid");
 				else
 					result = this.createEditModelAndView(actorForm, "message.commit.error");
 
 			}
 		return result;
 	}
-
 	// CreateModelAndView
 	protected ModelAndView createEditModelAndView(final ActorForm actorForm) {
 		ModelAndView result;

@@ -57,9 +57,9 @@ public class ActorController extends AbstractController {
 		final Authority rookie = new Authority();
 		rookie.setAuthority(Authority.ROOKIE);
 		final Authority audit = new Authority();
-		audit.setAuthority(Authority.PROVIDER);
+		audit.setAuthority(Authority.AUDITOR);
 		final Authority provider = new Authority();
-		provider.setAuthority(Authority.AUDITOR);
+		provider.setAuthority(Authority.PROVIDER);
 		final Authority company = new Authority();
 		company.setAuthority(Authority.COMPANY);
 		final Authority admin = new Authority();
@@ -73,7 +73,7 @@ public class ActorController extends AbstractController {
 
 			if (a.getUserAccount().getAuthorities().contains(rookie))
 				actorForm.setAuth("ROOKIE");
-			if (a.getUserAccount().getAuthorities().contains(audit))
+			else if (a.getUserAccount().getAuthorities().contains(audit))
 				actorForm.setAuth("AUDITOR");
 			else if (a.getUserAccount().getAuthorities().contains(company)) {
 				actorForm.setAuth("COMPANY");
@@ -82,7 +82,7 @@ public class ActorController extends AbstractController {
 			} else if (a.getUserAccount().getAuthorities().contains(provider)) {
 				actorForm.setAuth("PROVIDER");
 				final domain.Provider prov = this.providerService.findByUseraccount(a.getUserAccount());
-				actorForm.setComercialName(prov.getMake());
+				actorForm.setMarca(prov.getMake());
 			} else if (a.getUserAccount().getAuthorities().contains(admin))
 				actorForm.setAuth("ADMIN");
 
@@ -103,9 +103,11 @@ public class ActorController extends AbstractController {
 			actorForm.setHolderName(a.getCreditCard().getHolderName());
 			actorForm.setBrandName(a.getCreditCard().getBrandName());
 			actorForm.setNumber(a.getCreditCard().getNumber());
-			actorForm.setExpirationMonth(a.getCreditCard().getExpirationMonth());
-			actorForm.setExpirationYear(a.getCreditCard().getExpirationYear());
-			actorForm.setCVVCode(a.getCreditCard().getCVVCode());
+			actorForm.setExpirationMonth(String.valueOf(a.getCreditCard().getExpirationMonth()));
+			actorForm.setExpirationYear(String.valueOf(a.getCreditCard().getExpirationYear()));
+			actorForm.setCVVCode(String.valueOf(a.getCreditCard().getCVVCode()));
+
+			//			actorForm.setTarjeta(a.getCreditCard());
 
 			result = this.createEditModelAndView(actorForm);
 
@@ -132,7 +134,12 @@ public class ActorController extends AbstractController {
 				result = this.createEditModelAndView(actorForm, "actor.commit.ok");
 
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(actorForm, "actor.commit.error");
+				if (oops.getClass() == NumberFormatException.class)
+					result = this.createEditModelAndView(actorForm, "actor.creditcard.error.invalid");
+				else if (oops.getMessage() == "actor.creditcard.error.date.invalid")
+					result = this.createEditModelAndView(actorForm, oops.getMessage());
+				else
+					result = this.createEditModelAndView(actorForm, "actor.commit.error");
 
 			}
 		return result;
