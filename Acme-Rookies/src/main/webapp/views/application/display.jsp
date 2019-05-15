@@ -44,11 +44,8 @@
 		</form:label>
 	<form:input path="company.comercialName" readonly="${isRead}" />
 	<br>
-	<form:label path="problem.title">
-		<spring:message code="application.problem.title" />:
-		</form:label>
-	<form:input path="problem.title" readonly="${isRead}" />
-	<br>
+	
+	
 	<form:label path="publicationMoment">
 		<spring:message code="application.publicationMoment" />:
 		</form:label>
@@ -64,6 +61,33 @@
 		</form:label>
 	<form:input path="status" readonly="${isRead}" />
 	<br>
+	
+	<h5>
+		<spring:message code="application.problem.title"/>
+	</h5>
+	
+	<form:label path="problem.title">
+		<spring:message code="problem.title" />:
+		</form:label>
+	<form:input path="problem.title" readonly="true" />
+	<br>
+	<form:label path="problem.statement">
+		<spring:message code="problem.statement" />:
+		</form:label>
+	<form:input path="problem.statement" readonly="true" />
+	<br>
+	<form:label path="problem.hint">
+		<spring:message code="problem.hint" />:
+		</form:label>
+	<form:input path="problem.hint" readonly="true" />
+	<br>
+	<form:label path="problem.attachments">
+		<spring:message code="problem.attachments" />:
+		</form:label>
+	<form:input path="problem.attachments" readonly="true" />
+	<br>
+	
+	
 	<security:authorize access="hasRole('ROOKIE')">
 		<acme:cancel url="application/rookie/list.do" code="application.back" />
 	</security:authorize>

@@ -42,7 +42,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	Object[] queryC5();
 
 	// C6 - The best and the worst position in terms of salary. 
-	@Query("select p from Position p where p.salary = (select max(p.salary) from Position p) or p.salary = (select min(p.salary) from Position p) order by p.salary desc")
+	@Query("select p from Position p where p.draftmode=false and p.salary = (select max(p.salary) from Position p) or p.salary = (select min(p.salary) from Position p) order by p.salary desc")
 	Collection<domain.Position> queryC6();
 
 	//	//DASHBOARD B
