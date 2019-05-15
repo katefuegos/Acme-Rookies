@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -109,6 +110,7 @@ public class Position extends DomainEntity {
 		this.tecnologies = tecnologies;
 	}
 
+	@Range(min=0)
 	@NotNull
 	public Double getSalary() {
 		return this.salary;

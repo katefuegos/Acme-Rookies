@@ -73,7 +73,7 @@ public class PositionService {
 	public Position save(final Position position) {
 		Assert.notNull(position);
 		if (position.isDraftmode() == false)
-			Assert.isTrue(this.problemService.findByPositionId(position.getId()).size() >= 2, "position.error.noProblem");
+			Assert.isTrue(this.problemService.findByPositionIdAndFinal(position.getId()).size() >= 2, "position.error.noProblem");
 		Assert.isTrue(position.getDeadline().getTime() > System.currentTimeMillis() + 1, "position.error.deadline");
 		final Company company = this.companyService.findCompanyByUseraccountId(LoginService.getPrincipal().getId());
 		Assert.notNull(company);

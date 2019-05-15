@@ -10,6 +10,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Access(AccessType.PROPERTY)
@@ -102,6 +103,7 @@ public class PositionForm {
 		this.tecnologies = tecnologies;
 	}
 
+	@Range(min=0)
 	@NotNull
 	public Double getSalary() {
 		return this.salary;
