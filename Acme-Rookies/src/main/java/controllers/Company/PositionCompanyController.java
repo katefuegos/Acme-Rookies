@@ -186,7 +186,7 @@ public class PositionCompanyController extends AbstractController {
 				Assert.isTrue(position.getCompany().getId() == company.getId());
 				if (positionForm.isDraftmode() == false)
 					Assert.isTrue(
-							this.problemService.findByPositionId(
+							this.problemService.findByPositionIdAndFinal(
 									positionForm.getId()).size() >= 2,
 							"position.error.noProblem");
 				position = this.positionService.reconstruct(position,
