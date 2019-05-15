@@ -129,9 +129,9 @@ public class AuditService {
 		Assert.isTrue(LoginService.getPrincipal().getAuthorities().toString().contains("AUDITOR"));
 		Assert.notNull(auditor);
 		Assert.notNull(position);
-		//Assert.isTrue(this.positionService.findAllNoAuditor().contains(position));
+		Assert.isTrue(this.positionService.findAllNoAuditor().contains(position));
 		Assert.isTrue(!auditor.getPositions().contains(position));
-		//Assert.isTrue(position.isDraftmode()); // TODO ¿Es necesario que esté en draft mode?
+		Assert.isTrue(!position.isDraftmode());
 		auditor.getPositions().add(position);
 		this.auditorService.save(auditor);
 	}

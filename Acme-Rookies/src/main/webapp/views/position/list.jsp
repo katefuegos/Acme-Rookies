@@ -38,7 +38,7 @@
 			class="GREY" />
 
 
-		<display:column property="cancelled" titleKey="position.cancel"
+		<display:column property="cancelled" titleKey="position.cancelled"
 			class="GREY" />
 	</jstl:if>
 	<jstl:if test="${row.cancelled==false || row.cancelled == null }">
@@ -49,7 +49,7 @@
 		<display:column property="tecnologies" titleKey="position.tecnologies" />
 		<display:column property="salary" titleKey="position.salary" />
 
-		<display:column property="cancelled" titleKey="position.cancel" />
+		<display:column property="cancelled" titleKey="position.cancelled" />
 	</jstl:if>
 		<display:column >
 			<a href="position/display.do?positionId=${row.id}"><spring:message code="position.display" /> </a>

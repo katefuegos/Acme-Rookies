@@ -106,7 +106,8 @@ public class AuditAuditorController extends AbstractController {
 			Assert.notNull(auditor);
 			position = this.positionService.findOne(positionId);
 			Assert.notNull(position);
-			Assert.isTrue(position.isDraftmode());
+			Assert.isTrue(!position.isDraftmode());
+			Assert.isTrue(this.positionService.findAllNoAuditor().contains(position));
 			this.auditService.asign(position, auditor);
 			result = new ModelAndView("redirect:/audit/auditor/listPositions.do");
 			System.out.println(auditor.getPositions().contains(position));
@@ -118,6 +119,8 @@ public class AuditAuditorController extends AbstractController {
 				redirectAttrs.addFlashAttribute("message", "position.error.unexists");
 			else if (!position.isDraftmode())
 				redirectAttrs.addFlashAttribute("message", "position.error.draft");
+			else
+				redirectAttrs.addFlashAttribute("message", "commit.error");
 		}
 		return result;
 	}
@@ -248,21 +251,19 @@ public class AuditAuditorController extends AbstractController {
 	public ModelAndView delete(@Valid final AuditForm auditForm, final BindingResult binding) {
 		ModelAndView result;
 		final Auditor b = this.auditorService.findByUseraccount(LoginService.getPrincipal());
-		if (binding.hasErrors())
+
+		try {
+			Assert.notNull(auditForm);
+			final Audit audit = this.auditService.findOne(auditForm.getId());
+			Assert.isTrue(audit.getAuditor().equals(b));
+
+			this.auditService.delete(this.auditService.findOne(auditForm.getId()));
+
+			result = new ModelAndView("redirect:/audit/auditor/list.do");
+		} catch (final Throwable oops) {
+
 			result = this.editModelAndView(auditForm, "audit.commit.error");
-		else
-			try {
-				Assert.notNull(auditForm);
-				final Audit audit = this.auditService.findOne(auditForm.getId());
-				Assert.isTrue(audit.getAuditor().equals(b));
-
-				this.auditService.delete(this.auditService.findOne(auditForm.getId()));
-
-				result = new ModelAndView("redirect:/audit/auditor/list.do");
-			} catch (final Throwable oops) {
-
-				result = this.editModelAndView(auditForm, "audit.commit.error");
-			}
+		}
 		return result;
 	}
 

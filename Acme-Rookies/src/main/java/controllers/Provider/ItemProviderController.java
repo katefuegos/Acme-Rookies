@@ -180,21 +180,19 @@ public class ItemProviderController extends AbstractController {
 	public ModelAndView delete(@Valid final ItemForm itemForm, final BindingResult binding) {
 		ModelAndView result;
 		final Provider b = this.providerService.findByUseraccount(LoginService.getPrincipal());
-		if (binding.hasErrors())
+
+		try {
+			Assert.notNull(itemForm);
+			final Item item = this.itemService.findOne(itemForm.getId());
+			Assert.isTrue(item.getProvider().equals(b));
+
+			this.itemService.delete(this.itemService.findOne(itemForm.getId()));
+
+			result = new ModelAndView("redirect:/item/provider/list.do");
+		} catch (final Throwable oops) {
+
 			result = this.editModelAndView(itemForm, "item.commit.error");
-		else
-			try {
-				Assert.notNull(itemForm);
-				final Item item = this.itemService.findOne(itemForm.getId());
-				Assert.isTrue(item.getProvider().equals(b));
-
-				this.itemService.delete(this.itemService.findOne(itemForm.getId()));
-
-				result = new ModelAndView("redirect:/item/provider/list.do");
-			} catch (final Throwable oops) {
-
-				result = this.editModelAndView(itemForm, "item.commit.error");
-			}
+		}
 		return result;
 	}
 
